@@ -17,16 +17,19 @@ public class User {
     protected String email;
     protected String username;
     protected String prenom;
+    protected String hashedPwd;
     protected int tel;
     protected Date datedenaissance;
     protected Date registrationdate;
     protected int nbroffre;
     protected int points;
 
-    public User(String email,String username, String prenom, int tel, Date datedenaissance) {
+    //For new user
+    public User(String email,String username, String prenom, String hashedPwd, int tel, Date datedenaissance) {
         this.email = email;
         this.username = username;
         this.prenom = prenom;
+        this.hashedPwd = hashedPwd;
         this.tel = tel;
         this.datedenaissance = datedenaissance;
         long millis = System.currentTimeMillis();  
@@ -35,11 +38,13 @@ public class User {
         this.nbroffre = 0;
     }
 
-    public User(int id,String email, String username, String prenom, int tel, Date datedenaissance, Date registrationdate, int nbroffre, int points) {
+    //For retrieving a user from DB
+    public User(int id,String email, String username, String prenom, String hashedPwd, int tel, Date datedenaissance, Date registrationdate, int nbroffre, int points) {
         this.id = id;
         this.email = email;
         this.username = username;
         this.prenom = prenom;
+        this.hashedPwd = hashedPwd;
         this.tel = tel;
         this.datedenaissance = datedenaissance;
         this.registrationdate = registrationdate;
@@ -73,6 +78,16 @@ public class User {
         this.username = username;
     }
 
+    public String getHashedPwd() {
+        return hashedPwd;
+    }
+
+    public void setHashedPwd(String hashedPwd) {
+        this.hashedPwd = hashedPwd;
+    }
+
+    
+    
     public String getPrenom() {
         return prenom;
     }

@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.security.auth.login.LoginContext;
+import javax.security.auth.login.LoginException;
 
 /**
  *
@@ -29,7 +31,7 @@ public class UserController {
             String requete = "INSERT INTO fos_user (email,email_canonical, username, username_canonical, prenom, tel, datedenaissance, registrationdate, nbroffre,points,enabled,password,roles,image) "
                     + "VALUES ('" +u.getEmail()+"','" +u.getEmail()+"','" + u.getUsername() + "','"+ u.getUsername()+"','" + u.getPrenom() + "','" + u.getTel() 
                     + "','" + u.getDatedenaissance() + "','" + u.getRegistrationdate() + "','" + u.getNbroffre() 
-                    + "','" + u.getPoints()+ "',1,'12345','a:0:{}','C:\\wamp64\\tmp\\php358C.tmp')";
+                    + "','" + u.getPoints()+ "',1,'"+u.getHashedPwd()+"','a:0:{}','C:\\wamp64\\tmp\\php358C.tmp')";
             Statement st = cnx.createStatement();
             st.executeUpdate(requete);
             System.out.println("User ajoutée !");
@@ -75,7 +77,7 @@ public class UserController {
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
                 list.add(new User(rs.getInt("id"), rs. getString("email"),rs.getString("username"),rs.getString("prenom"),
-                        rs.getInt("tel"), rs.getDate("datedenaissance"),rs.getDate("registrationdate"),
+                        rs.getString("password"),rs.getInt("tel"), rs.getDate("datedenaissance"),rs.getDate("registrationdate"),
                         rs.getInt("nbroffre"),rs.getInt("points")));
             }
 
@@ -84,6 +86,34 @@ public class UserController {
         }
 
         return list;
+    }
+    
+    public User oneUser(String username) {
+        User u = null;
+        try {
+            String requete = "SELECT * FROM fos_user where username='"+username+"';";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            rs.next();
+                u = new User(rs.getInt("id"), rs. getString("email"),rs.getString("username"),rs.getString("prenom"),
+                        rs.getString("password"),rs.getInt("tel"), rs.getDate("datedenaissance"),rs.getDate("registrationdate"),
+                        rs.getInt("nbroffre"),rs.getInt("points"));
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+        return u;
+    }
+    
+    public void attemptLogin(String name, String pass) {
+        System.setProperty("java.security.auth.login.config", "jaas.config");       
+        try {
+                LoginContext lc = new LoginContext("User", new UserCallbackHandler(name, pass));
+                lc.login();
+        } catch (LoginException e) {
+                e.printStackTrace();
+        }
     }
     
 }
