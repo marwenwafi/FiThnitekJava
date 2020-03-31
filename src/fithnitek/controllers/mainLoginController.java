@@ -1,31 +1,58 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fithnitek.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.Parent;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  *
  * @author marwe
  */
 public class mainLoginController implements Initializable {
-    
+    @FXML
+    private Pane content;
+    @FXML
+    private AnchorPane Pane;
     @FXML
     private Label label;
-    
     @FXML
+    private TextField username;
+    @FXML
+    private PasswordField password;
+    
+        
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
-        label.setText("Hello World!");
+        //Label.setText("Hello World!");
     }
+    
+    @FXML
+    private void show_registration(MouseEvent event) throws Exception {
+        Parent register = FXMLLoader.load(getClass().getResource("/fithnitek/views/register.fxml"));
+        content.getChildren().removeAll();
+        content.getChildren().setAll(register);
+    }
+    
+    @FXML
+    private void attemptLogin(MouseEvent event) throws Exception {
+        UserController uc = new UserController();
+        String un = username.getText();
+        String pass = password.getText();
+        uc.attemptLogin(un, pass);
+    }
+    
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

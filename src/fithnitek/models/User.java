@@ -23,9 +23,10 @@ public class User {
     protected Date registrationdate;
     protected int nbroffre;
     protected int points;
+    protected String image;
 
     //For new user
-    public User(String email,String username, String prenom, String hashedPwd, int tel, Date datedenaissance) {
+    public User(String email,String username, String prenom, String hashedPwd, int tel, Date datedenaissance, String image) {
         this.email = email;
         this.username = username;
         this.prenom = prenom;
@@ -36,10 +37,11 @@ public class User {
         this.registrationdate = new java.sql.Date(millis);
         this.points = 0;
         this.nbroffre = 0;
+        this.image = image;
     }
 
     //For retrieving a user from DB
-    public User(int id,String email, String username, String prenom, String hashedPwd, int tel, Date datedenaissance, Date registrationdate, int nbroffre, int points) {
+    public User(int id,String email, String username, String prenom, String hashedPwd, int tel, Date datedenaissance, Date registrationdate, int nbroffre, int points, String image) {
         this.id = id;
         this.email = email;
         this.username = username;
@@ -50,6 +52,7 @@ public class User {
         this.registrationdate = registrationdate;
         this.nbroffre = nbroffre;
         this.points = points;
+        this.image = image;
     }
     
     
@@ -135,6 +138,15 @@ public class User {
     public void setPoints(int points) {
         this.points = points;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
     
        @Override
     public String toString() {

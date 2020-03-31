@@ -14,10 +14,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="container" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.mainLoginController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" styleClass="container" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.mainLoginController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0">
          <children>
             <ImageView fitHeight="83.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
@@ -34,37 +34,42 @@
             </Text>
          </children>
       </VBox>
-      <Pane layoutX="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #343a40;">
+      <Pane fx:id="content" layoutX="400.0" prefHeight="700.0" prefWidth="400.0" style="-fx-background-color: #343a40;" stylesheets="@stylesheet.css">
          <children>
-            <Text fill="#f8f549" fontSmoothingType="LCD" layoutX="22.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To our App">
+            <Text fill="#f8f549" fontSmoothingType="LCD" layoutX="24.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome To FiThnitek">
                <font>
                   <Font name="Impact" size="24.0" />
                </font>
             </Text>
-            <Text fill="#c2c2c2" layoutX="22.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in to continue">
+            <Text fill="#c2c2c2" layoutX="24.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in to continue">
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
             </Text>
-            <JFXTextField layoutX="60.0" layoutY="234.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Email" unFocusColor="WHITE">
+            <JFXTextField fx:id="username" layoutX="62.0" layoutY="219.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Username" styleClass="jfx-text-field" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font></JFXTextField>
-            <JFXPasswordField layoutX="60.0" layoutY="294.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Password" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="password" layoutX="62.0" layoutY="279.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="jfx-password-field" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXPasswordField>
-            <Text fill="#c2c2c2" layoutX="193.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot password?">
+            <Text fill="#2d9cfc" layoutX="195.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot password?">
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
             </Text>
-            <JFXButton layoutX="60.0" layoutY="420.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #ffffff;" text="Sign in" textAlignment="CENTER">
+            <JFXButton layoutX="62.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#attemptLogin" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #ffffff;" text="Sign in" textAlignment="CENTER">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
             </JFXButton>
+            <Text fill="#2d9cfc" layoutX="107.0" layoutY="498.0" onMouseClicked="#show_registration" strokeType="OUTSIDE" strokeWidth="0.0" text="New User? Register here">
+               <font>
+                  <Font name="Ebrima Bold" size="14.0" />
+               </font>
+            </Text>
 
          </children>
       </Pane>

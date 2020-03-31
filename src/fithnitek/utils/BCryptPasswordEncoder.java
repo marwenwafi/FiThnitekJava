@@ -26,9 +26,7 @@ public class BCryptPasswordEncoder {
 	 */
 	public static String hashPassword(String password_plaintext) {
 		String salt = BCrypt.gensalt(workload);
-                System.out.println("Before hashpw----- "+salt);
 		String hashed_password = BCrypt.hashpw(password_plaintext, salt);
-                System.out.println("After hashpw-----");
 
 
 		return(hashed_password);

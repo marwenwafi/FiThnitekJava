@@ -37,7 +37,7 @@ public class FiThnitek extends Application {
         //uc.ajouter(u);
         //uc.supprimer(u);
         //uc.afficher().forEach(System.out::println);
-        
+        /*
         Scanner sc = new Scanner(System.in);
         System.out.println("Login:");
         String l = sc.next();
@@ -45,7 +45,7 @@ public class FiThnitek extends Application {
         String p = sc.next();
         uc.attemptLogin(l, p);
         
-        
+        */
         /*
         BCryptPasswordEncoder b = new BCryptPasswordEncoder();
         System.out.println("BCrypt test -------------->");
@@ -53,14 +53,14 @@ public class FiThnitek extends Application {
         System.out.println(b.checkPassword("12345", "$2y$15$ipOy0E4xxbWtfJYMOqpGpel6D.OxG8pvzIS7eyTNCMCuEVHCB..Nm"));
         System.out.println(b.hashPassword("12345"));
         */
-        /*
+        
         Parent root = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-        */
+        
         
     }
 
