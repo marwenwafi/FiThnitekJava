@@ -52,7 +52,7 @@ public class ObjectifController {
     public void modifier(Objectif o) {
         try {
             String requete = "UPDATE objectif SET titre='" + o.getTitre()+ "',description='" + o.getDescription()+ "',type='" + o.getType()+ "',"
-                    + "but='"+ o.getBut()+"',etat='"+o.getEtat()+"',start_date='"+o.getStart_date()+"',end_date='"+o.getEnd_date()+"' WHERE id=" + o.getIdOjectif();
+                    + "but='"+ o.getBut()+"',etat='"+o.getEtat()+"',start_date='"+o.getStart_date()+"',end_date='"+o.getEnd_date()+"' WHERE id_objectif=" + o.getIdOjectif();
             Statement st = cnx.createStatement();
             st.executeUpdate(requete);
             System.out.println("Objectif modifiée !");

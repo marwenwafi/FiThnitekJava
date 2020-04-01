@@ -25,7 +25,7 @@ public class LeaderBoard {
     private Date updatedAt;
 
     //For Retrieving a LeaderBoard
-    public LeaderBoard(int idleaderboard, String title, String description, int size, Date start_date, Date end_date, int category, String color, String image, Date updatedAt) {
+    public LeaderBoard(int idleaderboard, String title, String description, int size, Date start_date, Date end_date, int category, String color, String image) {
         this.idleaderboard = idleaderboard;
         this.title = title;
         this.description = description;
@@ -35,11 +35,11 @@ public class LeaderBoard {
         this.category = category;
         this.color = color;
         this.image = image;
-        this.updatedAt = updatedAt;
+        //this.updatedAt = updatedAt;
     }
     
     //For New LeaderBoard
-    public LeaderBoard(String title, String description, int size, Date start_date, Date end_date, int category, String color, String image, Date updatedAt) {
+    public LeaderBoard(String title, String description, int size, Date start_date, Date end_date, int category, String color, String image) {
         this.title = title;
         this.description = description;
         this.size = size;
@@ -48,7 +48,7 @@ public class LeaderBoard {
         this.category = category;
         this.color = color;
         this.image = image;
-        this.updatedAt = updatedAt;
+        //this.updatedAt = updatedAt;
     }
     
     

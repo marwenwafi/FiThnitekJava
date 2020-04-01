@@ -6,27 +6,26 @@
 package fithnitek.controllers;
 
 import java.net.URL;
+import java.security.AccessController;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javax.security.auth.Subject;
 
-/**
- * FXML Controller class
- *
- * @author marwe
- */
-public class DashboardController implements Initializable {
+public class MainMenuController implements Initializable {
 
+    
     @FXML
     private Label welcomename;
-
-    /**
-     * Initializes the controller class.
-     */
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Preferences userPreferences = Preferences.userRoot();
+        String username = userPreferences.get("User","No User");
+        welcomename.setText(welcomename.getText()+" "+username);
     }    
     
 }

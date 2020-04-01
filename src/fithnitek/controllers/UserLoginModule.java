@@ -5,11 +5,13 @@
  */
 package fithnitek.controllers;
 
+import com.sun.security.auth.UserPrincipal;
 import java.io.IOException;
 import java.util.Map;
 
 import fithnitek.models.User;
 import fithnitek.utils.BCryptPasswordEncoder;
+import java.util.prefs.Preferences;
 
 import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
@@ -27,10 +29,12 @@ import javax.security.auth.spi.LoginModule;
  */
 public class UserLoginModule {
     
-    private Subject subject;
+    private String user;
     private CallbackHandler callbackHandler;
     private Map sharedState;
     private Map options;
+    private UserPrincipal userPrincipal;
+    private String username;
 
     private boolean succeeded = false;
 
@@ -45,6 +49,8 @@ public class UserLoginModule {
 
     public boolean commit() throws LoginException {
             System.out.println("Login Module - commit called");
+            Preferences userPreferences = Preferences.userRoot();
+            userPreferences.put("User",username);
             return succeeded;
     }
 
@@ -52,7 +58,6 @@ public class UserLoginModule {
                     Map<String, ?> options) {
 
             System.out.println("Login Module - initialize called");
-            this.subject = subject;
             this.callbackHandler = callbackHandler;
             this.sharedState = sharedState;
             this.options = options;
@@ -84,10 +89,12 @@ public class UserLoginModule {
             PasswordCallback passwordCallback = (PasswordCallback) callbacks[1];
 
             String name = nameCallback.getName();
+            this.username = name;
             String password = new String(passwordCallback.getPassword());
 
             UserController uc = new UserController();
             User u = uc.oneUser(name);
+            this.user = name;
             BCryptPasswordEncoder b = new BCryptPasswordEncoder();
             
             if (u.getUsername().equals(name) && b.checkPassword(password,u.getHashedPwd())) {

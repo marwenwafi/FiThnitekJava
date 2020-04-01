@@ -51,7 +51,7 @@ public class CategoryController {
     public void modifier(Category c) {
         try {
             String requete = "UPDATE category SET title='" + c.getTitle()+ "',description='" + c.getDescription()+ "',type='" + c.getType()+ "',"
-                    + "nature='"+ c.getNature()+"' WHERE id=" + c.getId_Category();
+                    + "nature='"+ c.getNature()+"' WHERE id_category=" + c.getId_Category();
             Statement st = cnx.createStatement();
             st.executeUpdate(requete);
             System.out.println("Category modifiée !");
