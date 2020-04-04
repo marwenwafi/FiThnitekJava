@@ -141,6 +141,5 @@ public class OffreCovoiturage {
     public void setNumber(String prenom) {
         this.number = number;
     }
-
    
 }

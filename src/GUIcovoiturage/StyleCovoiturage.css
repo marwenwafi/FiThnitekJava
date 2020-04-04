@@ -1,0 +1,210 @@
+#id_addoffre
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: green;
+    -fx-border-color : green ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #id_addoffre:hover{
+    -fx-background-color: green;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }
+#BCarsharingoffers
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: darkcyan;
+    -fx-border-color : darkcyan ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #BCarsharingoffers:hover{
+    -fx-background-color: darkcyan;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }
+#BYourReservation
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: darkcyan;
+    -fx-border-color : darkcyan ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #BYourReservation:hover{
+    -fx-background-color: darkcyan;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }
+ #id_modifier
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: #ffd526;
+    -fx-border-color : #ffd526 ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #id_modifier:hover{
+    -fx-background-color: #ffd526;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }  
+#Bbacktothemenu{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill:darkcyan ;
+    -fx-border-color : darkcyan ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #Bbacktothemenu:hover
+ {
+    -fx-background-color:darkcyan;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+ } 
+ 
+ 
+#id_suprimer:hover{
+    -fx-background-color: red;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+   }
+#id_suprimer{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: red;
+    -fx-border-color : red ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ; 
+   }   
+   
+#id_delete:hover{
+    -fx-background-color: red;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+   }
+#id_delete{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: red;
+    -fx-border-color : red ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ; 
+   }
+   
+   
+ .table-view 
+ {
+     -fx-border-color : #18a3bb ;
+     -fx-border-width: 2px;
+     
+ }
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: #A9F576;
+    -fx-border-color : #18a3bb ;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
+    -fx-text-fill: -fx-text-inner-color;
+}
+.table-view:focused .table-row-cell:filled:selected {
+    -fx-background-color: #A9F576;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
+    -fx-text-fill: -fx-selection-bar-text;
+    -fx-table-cell-border-color: #E0F2FF;
+}
+.table-view .column-header {
+ -fx-font-weight: bold;
+   
+}
+#id_affichecov 
+{
+    -fx-background-color: #FBFBFB;  
+}
+#id_anchorrescov
+{
+  -fx-background-color: #FBFBFB;   
+}
+#id_bordcov 
+{
+   -fx-background-color: #F9F9F9; 
+   -fx-border-color : #18a3bb ;
+   -fx-border-width: 2px;
+   
+}
+#id_carsharingoffer 
+{
+ -fx-background-color: #F9F9F9; 
+   -fx-border-color : #18a3bb ;
+   -fx-border-width: 2px;   
+}
+#id_carsharingoffers
+{
+-fx-background-color: #F9F9F9; 
+   -fx-border-color : #18a3bb ;
+   -fx-border-width: 2px;    
+}
+#id_destupdate,#id_depupdate,#id_nbrupdate,#id_priceupdate,#id_voitureupdate,#id_dateupdate
+{
+  -fx-border-color: grey ;
+ -fx-border-radius: 10px;
+ -fx-background-radius : 10  ; 
+}
+#anchsort 
+{
+    -fx-border-style: dotted;
+}
+#id_trie1,#id_trie2,#id_find
+{
+    -fx-background-color:darkcyan;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+}
+
+#id_reserve
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: green;
+    -fx-border-color : green ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+#id_reserve:hover{
+    -fx-background-color: green;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }
+
+
+
+
+
+

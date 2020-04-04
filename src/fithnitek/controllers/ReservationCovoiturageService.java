@@ -22,7 +22,7 @@ import java.util.List;
  * @author lenovo
  */
 public class ReservationCovoiturageService {
-    Connection cnx = DataSource.getInstance().getCnx();
+  Connection cnx = DataSource.getInstance().getCnx();
     
     public void ajouterrerservationocovoiturage(ReservationCovoiturage t) {
         try {
@@ -50,7 +50,7 @@ public class ReservationCovoiturageService {
             pst.setInt(1,idu);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new ReservationCovoiturage(rs.getInt("idreservationcov"),rs.getInt("idutilisateurr"),rs.getInt("idoffrer"),rs.getInt("nbrplacer"),rs.getInt("prixt"),rs.getString("destination"),rs.getString("depart"),rs.getString("date"),rs.getString("username"),rs.getInt("tel"),rs.getInt("nbrplaceo")));
+                list.add(new ReservationCovoiturage(rs.getInt("idreservationcov"),rs.getInt("idutilisateurr"),rs.getInt("idoffrer"),rs.getInt("nbrplacer"),rs.getInt("prixt"),rs.getString("destination"),rs.getString("depart"),rs.getString("date"),rs.getString("username"),rs.getInt("tel"),rs.getInt("nbrplaceo"),rs.getInt("idutilisateur")));
             }
 
         } catch (SQLException ex) {
@@ -71,5 +71,38 @@ public class ReservationCovoiturageService {
             System.err.println(ex.getMessage());
         }
     }
-    
+    public String selectnomuser(int idu) {
+       String mail = "";
+
+        try {
+            String requete = "SELECT username from fos_user where id = ?  ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+             pst.setInt(1,idu);
+            ResultSet rs = pst.executeQuery();
+            rs.next(); 
+            mail = rs.getString(1); 
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return mail;
+    }
+    public String selectprenomuser(int idu) {
+       String mail = "";
+
+        try {
+            String requete = "SELECT prenom from fos_user where id = ?  ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+             pst.setInt(1,idu);
+            ResultSet rs = pst.executeQuery();
+            rs.next(); 
+            mail = rs.getString(1); 
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return mail;
+    }
 }

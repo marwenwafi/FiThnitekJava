@@ -22,7 +22,7 @@ import java.util.Date;
  * @author lenovo
  */
 public class Covoiturage {
-    Connection cnx = DataSource.getInstance().getCnx();
+   Connection cnx = DataSource.getInstance().getCnx();
 
     
     public void ajouteroffrecovoiturage(OffreCovoiturage t) {
@@ -91,6 +91,23 @@ public List<OffreCovoiturage> afficheroffrecovoiturageback() {
         }
 
         return list;
+    }
+public String selectmailuser(int idu) {
+       String mail = "";
+
+        try {
+            String requete = "SELECT email from fos_user where id = ?  ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+             pst.setInt(1,idu);
+            ResultSet rs = pst.executeQuery();
+            rs.next(); 
+            mail = rs.getString(1); 
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return mail;
     }
 public List<OffreCovoiturage> afficherallcovoiturage(int idu) {
         List<OffreCovoiturage> list = new ArrayList<>();

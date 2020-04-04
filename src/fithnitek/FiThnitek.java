@@ -5,7 +5,11 @@
  */
 package fithnitek;
 
+import fithnitek.controllers.Covoiturage;
+import fithnitek.controllers.ReservationCovoiturageService;
 import fithnitek.controllers.UserController;
+import fithnitek.models.OffreCovoiturage;
+import fithnitek.models.ReservationCovoiturage;
 import fithnitek.models.User;
 import fithnitek.utils.DataSource;
 import java.sql.Connection;
@@ -24,24 +28,31 @@ public class FiThnitek extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        UserController uc = new UserController();
-        uc.afficher().forEach(System.out::println);
-        User u = new User("qsd@qsd", "1stJavaUser", "first", 1235678, new Date(1995,12,10));
-        u.setId(15);
-        System.out.println("--------------------");
-        //uc.ajouter(u);
-        uc.supprimer(u);
-        uc.afficher().forEach(System.out::println);
-    
-        /*
-        Parent root = FXMLLoader.load(getClass().getResource("mainLogin.fxml"));
+       Covoiturage sp = new Covoiturage();
+        OffreCovoiturage o = new OffreCovoiturage(5, "Tunisia","Paris","24-25-2020",5,10,"Bmw");
+        //sp.ajouteroffrecovoiturage(o);
+        //sp.supprimeroffrecovoiturage(151);
+        //sp.modifieroffrecovoiturage(148,5,"Tunis","Corona","25-25-2020",5,22,"Bmw");
+         System.out.println("-------Tous les covoiturages----------");        
+        sp.afficheroffrecovoiturageback().forEach(System.out::println);
+        System.out.println("--------Afficher covoiturage Front---------");
+        sp.afficherallcovoiturage(4).forEach(System.out::println);
+        System.out.println("-------Afficher les covoiturage de l'utilisateur---------");
+        sp.affichercovoiturageutilisateur(5).forEach(System.out::println);
+        System.out.println("--------Recherche---------");
+        sp. rechercheoffre(4,2,"2025-25-25","c","t").forEach(System.out::println);
+        System.out.println("--------Ordonner---------");
+        sp.Ordonneroffre(4).forEach(System.out::println);
+        System.out.println("--------Ordonner2---------");
+        sp.Ordonneroffre2(4).forEach(System.out::println);
+        System.out.println("--------Reservation---------"); 
+        ReservationCovoiturage r = new ReservationCovoiturage(5,127,2,10);
+        ReservationCovoiturageService sr = new ReservationCovoiturageService() ; 
         
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-        
-        */
+       // sr.ajouterrerservationocovoiturage(r);
+       //sr.afficherreservationcovoiturageutilisateur(5).forEach(System.out::println);
+      // sr.supprimerreservationcovoiturage(49);
+       sr.afficherreservationcovoiturageutilisateur(5).forEach(System.out::println);
     }
 
     /**
