@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.DashboardController">
-    
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.DashboardController">
+    <children>
+      <Pane layoutX="198.0" prefHeight="500.0" prefWidth="702.0">
+         <children>
+            <JFXListView layoutX="12.0" layoutY="14.0" prefHeight="475.0" prefWidth="681.0" />
+         </children></Pane>
+      <Pane prefHeight="501.0" prefWidth="200.0" style="-fx-background-color: #343a40;">
+         <children>
+            <JFXButton buttonType="RAISED" layoutY="14.0" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: Grey;" stylesheets="@stylesheet.css" text="List Categories">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+    </children>
 </AnchorPane>

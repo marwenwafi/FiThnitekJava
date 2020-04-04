@@ -49,8 +49,6 @@ public class UserLoginModule {
 
     public boolean commit() throws LoginException {
             System.out.println("Login Module - commit called");
-            Preferences userPreferences = Preferences.userRoot();
-            userPreferences.put("User",username);
             return succeeded;
     }
 

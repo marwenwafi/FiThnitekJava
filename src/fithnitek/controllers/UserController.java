@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.security.auth.Subject;
 import javax.security.auth.login.LoginContext;
 import javax.security.auth.login.LoginException;
 
@@ -112,7 +113,10 @@ public class UserController {
         System.setProperty("java.security.auth.login.config", "jaas.config");       
         try {
                 LoginContext lc = new LoginContext("User", new UserCallbackHandler(name, pass));
+                System.out.println(lc.toString());
                 lc.login();
+                Subject subject = lc.getSubject();
+                
         } catch (LoginException e) {
                 e.printStackTrace();
         }

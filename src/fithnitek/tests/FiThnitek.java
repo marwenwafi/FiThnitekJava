@@ -93,6 +93,7 @@ public class FiThnitek extends Application {
         */
         
         // ---- Test CRUD Objectif ----
+        /*
         ObjectifController oc = new ObjectifController();
         System.out.println("-------------->New Objectif");
         Objectif o = new Objectif("Atteindre 10000Dt ", "Ammasser 10000dt de revenues pendant les mois de Mars et Avril", "Revenues Totales", 10000, new Byte("1"), new Date(120,00,01), new Date(120,03,30));
@@ -106,7 +107,7 @@ public class FiThnitek extends Application {
         System.out.println("----------->Delete Objectif");
         oc.supprimer(o);
         oc.afficher().forEach(System.out::println);
-        
+        */
         
         
         Parent root = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
