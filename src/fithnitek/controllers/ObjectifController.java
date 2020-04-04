@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.input.KeyEvent;
 
 /**
  *
@@ -80,5 +82,15 @@ public class ObjectifController {
         }
 
         return list;
+    }
+    
+    @FXML 
+    public void processKeyEvent(KeyEvent ev) {
+        System.out.println("proce");
+        String c = ev.getCharacter();
+        if("1234567890".contains(c)) {}
+        else {
+            ev.consume();
+        }
     }
 }

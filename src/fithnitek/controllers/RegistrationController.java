@@ -84,7 +84,6 @@ public class RegistrationController implements Initializable{
         Scene scene = new Scene(next);
         stage.setScene(scene);
         stage.show();
-
     }
     
     @FXML 

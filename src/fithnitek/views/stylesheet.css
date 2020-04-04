@@ -4,3 +4,9 @@
     -jfx-focus-color:#4059a9;
     -jfx-unfocus-color: WHITE;
 }
+
+.jfx-button {
+     -jfx-button-type: RAISED;
+     -fx-background-color: blue;
+     -fx-text-fill: white;
+}

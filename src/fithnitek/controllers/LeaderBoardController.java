@@ -7,18 +7,31 @@ package fithnitek.controllers;
 
 import fithnitek.models.LeaderBoard;
 import fithnitek.utils.DataSource;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
 /**
  *
  * @author marwe
  */
 public class LeaderBoardController {
+    
+    private String ImageFile = "";
+    @FXML
+    private AnchorPane Pane;
+    
+    
+    
      Connection cnx = DataSource.getInstance().getCnx();
     
     public void ajouter(LeaderBoard l) {
@@ -81,5 +94,24 @@ public class LeaderBoardController {
         return list;
     }
     
+    @FXML 
+    public void processKeyEvent(KeyEvent ev) {
+        System.out.println("proce");
+        String c = ev.getCharacter();
+        if("1234567890".contains(c)) {}
+        else {
+            ev.consume();
+        }
+    }
+    
+    @FXML
+    private void uploadPicture(MouseEvent event) throws Exception {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.png"),
+                new FileChooser.ExtensionFilter("Pictures", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(Pane.getScene().getWindow());
+        ImageFile = selectedFile.getName();
+        System.out.println(selectedFile.getName());
+    }
     
 }

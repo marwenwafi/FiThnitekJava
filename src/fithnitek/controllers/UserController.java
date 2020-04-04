@@ -8,6 +8,7 @@ package fithnitek.controllers;
 import fithnitek.utils.DataSource;
 import fithnitek.models.User;
 import fithnitek.utils.BCryptPasswordEncoder;
+import java.security.Principal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -116,7 +117,8 @@ public class UserController {
                 System.out.println(lc.toString());
                 lc.login();
                 Subject subject = lc.getSubject();
-                
+                for( Principal p : subject.getPrincipals())
+                System.out.println("UserController ---->"+p.toString());
         } catch (LoginException e) {
                 e.printStackTrace();
         }

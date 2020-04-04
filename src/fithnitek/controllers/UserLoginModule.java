@@ -11,6 +11,7 @@ import java.util.Map;
 
 import fithnitek.models.User;
 import fithnitek.utils.BCryptPasswordEncoder;
+import java.security.Principal;
 import java.util.prefs.Preferences;
 
 import javax.security.auth.Subject;
@@ -30,10 +31,16 @@ import javax.security.auth.spi.LoginModule;
 public class UserLoginModule {
     
     private String user;
-    private CallbackHandler callbackHandler;
+    /*private CallbackHandler callbackHandler;
     private Map sharedState;
     private Map options;
-    private UserPrincipal userPrincipal;
+    private UserPrincipal userPrincipal;*/
+    private Subject subject;
+    private CallbackHandler callbackHandler;
+    private Map<String, ?> sharedState;
+    private Map<String, ?> options;
+     
+    private Principal userPrincipal;
     private String username;
 
     private boolean succeeded = false;
@@ -48,8 +55,12 @@ public class UserLoginModule {
     }
 
     public boolean commit() throws LoginException {
-            System.out.println("Login Module - commit called");
-            return succeeded;
+             if (!succeeded) {
+                return false;
+            }
+            userPrincipal = new UserPrincipal(username);
+            subject.getPrincipals().add(userPrincipal);
+            return true;
     }
 
     public void initialize(Subject subject, CallbackHandler callbackHandler, Map<String, ?> sharedState,
@@ -57,6 +68,7 @@ public class UserLoginModule {
 
             System.out.println("Login Module - initialize called");
             this.callbackHandler = callbackHandler;
+            this.subject = subject;
             this.sharedState = sharedState;
             this.options = options;
 
