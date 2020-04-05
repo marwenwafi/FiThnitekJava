@@ -180,7 +180,7 @@ public class LeaderBoardController implements Initializable {
         rowData.setDescription(description.getText());
         rowData.setSize(Integer.parseInt(size.getText()));
         rowData.setStart_date(java.sql.Date.valueOf(start_date.getValue()));
-        rowData.setStart_date(java.sql.Date.valueOf(end_date.getValue()));
+        rowData.setEnd_date(java.sql.Date.valueOf(end_date.getValue()));
         //Category c = cc.findByID(Integer.parseInt(category.getText()));
         //rowData.setCategory(category.getValue());
         modifier(rowData);

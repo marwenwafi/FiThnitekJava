@@ -186,7 +186,7 @@ public class CategoryController implements Initializable {
                 enableDelete();
             }
             if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                loadRowToMdify(rowData);
+                loadRowToModify(rowData);
             }
         });
         return row ;
@@ -195,7 +195,7 @@ public class CategoryController implements Initializable {
     
     
     
-    public void loadRowToMdify(Category c)
+    public void loadRowToModify(Category c)
     {
         title.setText(c.getTitle());
         description.setText(c.getDescription());
