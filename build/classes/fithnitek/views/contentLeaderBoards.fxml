@@ -6,15 +6,15 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.LeaderBoardController">
+<AnchorPane id="AnchorPane" fx:id="Pane" prefHeight="600.0" prefWidth="840.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.LeaderBoardController">
    <children>
-      <JFXTreeTableView layoutX="245.0" layoutY="54.0" prefHeight="470.0" prefWidth="570.0" />
       <Pane prefHeight="600.0" prefWidth="216.0" style="-fx-background-color: #e4e4e4;">
          <children>
             <Label layoutX="45.0" layoutY="14.0" text="Add/Modify">
@@ -22,34 +22,34 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="username" layoutX="19.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" promptText="Title">
+            <JFXTextField fx:id="title" layoutX="19.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="180.0" promptText="Title">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXTextArea layoutX="19.0" layoutY="139.0" prefHeight="90.0" prefWidth="180.0" promptText="Description" stylesheets="@stylesheet.css">
+            <JFXTextArea fx:id="description" layoutX="19.0" layoutY="139.0" prefHeight="90.0" prefWidth="180.0" promptText="Description" stylesheets="@stylesheet.css">
                <font>
                   <Font size="15.0" />
                </font>
             </JFXTextArea>
-            <JFXComboBox layoutX="18.0" layoutY="369.0" prefHeight="30.0" prefWidth="180.0" promptText="Category" />
-            <JFXButton layoutX="18.0" layoutY="507.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #ffffff;" text="Add" textAlignment="CENTER">
+            <JFXComboBox fx:id="category" layoutX="18.0" layoutY="369.0" prefHeight="30.0" prefWidth="180.0" promptText="Category" />
+            <JFXButton fx:id="add" layoutX="18.0" layoutY="507.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#addLeader" prefHeight="30.0" prefWidth="180.0" text="Add" textAlignment="CENTER">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="17.0" layoutY="551.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #ffffff;" text="Modify" textAlignment="CENTER">
+            <JFXButton fx:id="modify" layoutX="17.0" layoutY="551.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#modifyLeader" prefHeight="30.0" prefWidth="180.0" text="Modify" textAlignment="CENTER">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="username1" layoutX="19.0" layoutY="238.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Size">
+            <JFXTextField fx:id="size" layoutX="19.0" layoutY="238.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#processKeyEvent" prefHeight="30.0" prefWidth="180.0" promptText="Size">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXColorPicker layoutX="18.0" layoutY="415.0" prefHeight="30.0" prefWidth="180.0" />
-            <JFXButton fx:id="image" layoutX="45.0" layoutY="461.0" onMouseClicked="#uploadPicture" prefHeight="26.0" prefWidth="129.0" style="-fx-background-color: #cccdcf;" text="Upload banner" />
+            <JFXColorPicker fx:id="color" layoutX="18.0" layoutY="415.0" prefHeight="30.0" prefWidth="180.0" />
+            <JFXButton fx:id="banner" layoutX="45.0" layoutY="461.0" onMouseClicked="#uploadPicture" prefHeight="26.0" prefWidth="129.0" style="-fx-background-color: #cccdcf;" text="Upload banner" />
             <Label layoutX="45.0" layoutY="41.0" text="LeaderBoard">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -62,12 +62,23 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <JFXButton layoutX="245.0" layoutY="544.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #ffffff;" text="Delete" textAlignment="CENTER">
+      <JFXButton fx:id="delete" layoutX="245.0" layoutY="544.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#deleteLeader" prefHeight="40.0" prefWidth="180.0" text="Delete" textAlignment="CENTER">
          <font>
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </JFXButton>
-      <JFXDatePicker layoutX="19.0" layoutY="281.0" prefHeight="30.0" prefWidth="180.0" promptText="Start Date" />
-      <JFXDatePicker layoutX="18.0" layoutY="328.0" prefHeight="30.0" prefWidth="180.0" promptText="End Date" />
+      <JFXDatePicker fx:id="start_date" layoutX="19.0" layoutY="281.0" prefHeight="30.0" prefWidth="180.0" promptText="Start Date" />
+      <JFXDatePicker fx:id="end_date" layoutX="18.0" layoutY="328.0" prefHeight="30.0" prefWidth="180.0" promptText="End Date" />
+      <TableView fx:id="tableview" layoutX="228.0" layoutY="65.0" prefHeight="470.0" prefWidth="600.0">
+         <columns>
+            <TableColumn fx:id="id_c" prefWidth="40.0" text="Id" />
+            <TableColumn fx:id="title_c" prefWidth="110.0" text="Title" />
+            <TableColumn fx:id="desc_c" minWidth="160.0" prefWidth="160.0" text="Description" />
+            <TableColumn fx:id="size_c" prefWidth="40.0" text="Size" />
+            <TableColumn fx:id="start_c" minWidth="80.0" text="Start Date" />
+            <TableColumn fx:id="end_c" minWidth="80.0" text="End Date" />
+            <TableColumn fx:id="category_c" minWidth="90.0" prefWidth="90.0" text="Category" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

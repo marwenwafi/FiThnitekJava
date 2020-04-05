@@ -46,11 +46,11 @@
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="username" layoutX="62.0" layoutY="219.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Username" styleClass="jfx-text-field" unFocusColor="WHITE">
+            <JFXTextField fx:id="username" layoutX="62.0" layoutY="219.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Username" styleClass="jfx-text-field2" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font></JFXTextField>
-            <JFXPasswordField fx:id="password" layoutX="62.0" layoutY="279.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="jfx-password-field" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="password" layoutX="62.0" layoutY="279.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="jfx-password-field2" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -60,7 +60,7 @@
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
             </Text>
-            <JFXButton layoutX="62.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#attemptLogin" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #ffffff;" text="Sign in" textAlignment="CENTER">
+            <JFXButton layoutX="62.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#attemptLogin" prefHeight="40.0" prefWidth="250.0" text="Sign in" textAlignment="CENTER">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>

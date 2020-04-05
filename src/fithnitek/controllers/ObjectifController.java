@@ -8,20 +8,23 @@ package fithnitek.controllers;
 import fithnitek.models.Category;
 import fithnitek.utils.DataSource;
 import fithnitek.models.Objectif;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
 
 /**
  *
  * @author marwe
  */
-public class ObjectifController {
+public class ObjectifController implements Initializable {
     
     Connection cnx = DataSource.getInstance().getCnx();
     
@@ -92,5 +95,10 @@ public class ObjectifController {
         else {
             ev.consume();
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

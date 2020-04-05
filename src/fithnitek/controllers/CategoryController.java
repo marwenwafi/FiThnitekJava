@@ -72,7 +72,7 @@ public class CategoryController implements Initializable {
     private JFXButton delete;
     
     private ObservableList<Category> data = FXCollections.observableArrayList();
-    List<Category> list = this.afficher();
+    List<Category> list;
        
     
     
@@ -131,6 +131,22 @@ public class CategoryController implements Initializable {
         }
 
         return list;
+    }
+    
+    public Category findByID(int id) {
+        Category c = null;
+        try {
+            String requete = "SELECT * FROM category where id_category="+id+";";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            rs.next();
+                c = new Category(rs.getInt("id_category"), rs.getString("title"),rs.getString("description"),rs.getString("type"),rs.getString("nature"));
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+        return c;
     }
     
     
