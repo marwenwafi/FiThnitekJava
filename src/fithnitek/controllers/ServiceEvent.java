@@ -119,7 +119,7 @@ public class ServiceEvent implements IServiceEvent<Event> {
     public List<Event> afficher() {
         
         List<Event> events=new ArrayList<Event>();
-        String rqt="SELECT * FROM event";
+        String rqt="SELECT * FROM event ORDER BY id DESC";
         try {
             PreparedStatement ps=cnx.prepareStatement(rqt);
             ResultSet rs=ps.executeQuery();

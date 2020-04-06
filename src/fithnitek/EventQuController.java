@@ -5,28 +5,43 @@
  */
 package fithnitek;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import fithnitek.controllers.ServiceEvent;
 import fithnitek.models.Event;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import jdk.internal.dynalink.support.NameCodec;
+
 
 /**
  * FXML Controller class
@@ -54,6 +69,10 @@ public class EventQuController implements Initializable {
     private ChoiceBox<String> option;
     @FXML
     private Button image;
+    @FXML
+    Pagination pagination;
+    
+    
     
     @FXML
     private TableColumn<Event, String> titreCo;
@@ -80,6 +99,10 @@ public class EventQuController implements Initializable {
     @FXML
     private TableColumn<Event, Integer> idevent;
     
+    private final static int rowsPerPage = 11;
+    public static String rq;
+    
+    
 
     /**
      * Initializes the controller class.
@@ -104,18 +127,16 @@ public class EventQuController implements Initializable {
         //dateFin.setValue(LocalDate.parse(click.getDateFin().toString()));
         afficherEvent();
         tab.getSelectionModel().clearSelection();
-       
-        statusClick="0" ;
-        statusCode="0";
+        
         
       
 
     }    
 
     @FXML
-    private void ajouterEvent(ActionEvent event) {
+    private void ajouterEvent(ActionEvent event)  {
         
-        
+        QuestionnaireQuController c =new QuestionnaireQuController(); 
         Event e=new Event();
         e.setTitre(titre.getText());
         e.setOperation(option.getValue());//opeco.toString()
@@ -125,13 +146,33 @@ public class EventQuController implements Initializable {
         e.setUrl(url.getText());
         e.setDateDebut(Date.valueOf(dateDebut.getValue()));
        e.setDateFin(Date.valueOf(dateFin.getValue()));
-        sv.ajouter(e);
+       //System.out.println(e.getId());
+       // System.out.println(e.getOperation());
+       sv.ajouter(e);
+       rq=e.getTitre();
+       
+       if(e.getOperation().equals("Questionnaire"))
+       {
+            try {
+                gestquest(event);
+                //c.getIdevent().getItems().add(1);
+                
+                //System.out.println(sv.getidBytitre(e.getTitre()));
+            } catch (Exception ex) {
+                Logger.getLogger(EventQuController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+    
+           
+       }
+        
         afficherEvent();
         
     }
 
     @FXML
     private void modifierEvent(ActionEvent event) {
+        
          Event click = tab.getSelectionModel().getSelectedItems().get(0);
          System.out.println(click.getId());
         
@@ -145,10 +186,10 @@ public class EventQuController implements Initializable {
         e.setUrl(url.getText());
         e.setDateDebut(Date.valueOf(dateDebut.getValue()));
         e.setDateFin(Date.valueOf(dateFin.getValue()));
-        
-        System.out.println("update"+e );
+         System.out.println("update"+e );
          sv.modifier(e);
-        afficherEvent();
+         afficherEvent();
+       
       
     }
      
@@ -168,15 +209,29 @@ public class EventQuController implements Initializable {
     }
 
     private void afficherEvent() {
+        int x= (sv.afficher().size() / rowsPerPage + 1);
+        pagination.setPageCount(x);
+        pagination.setPageFactory((Integer param) ->createPage(param));
         
+      
+        
+    }
+    private Node createPage(int pageIndex) {
+        System.out.println("je suis ici");
         ObservableList<Event> eventData = FXCollections.observableArrayList();
-        List<Event> l=sv.afficher();
+        List  <Event> l=new ArrayList<Event>();
+                l=sv.afficher();
         for(Event e :l){
             eventData.add(e);
         } 
-        
-        tab.setItems(eventData);
-        
+        int fromIndex = pageIndex * rowsPerPage;
+        int toIndex = Math.min(fromIndex + rowsPerPage, eventData.size());
+        tab.setItems(FXCollections.observableArrayList(eventData.subList
+        (fromIndex, toIndex)
+        ));
+        System.out.println(tab);
+
+      return  tab;
     }
 
 
@@ -195,8 +250,42 @@ public class EventQuController implements Initializable {
         option.setValue(click.getOperation());
        
         
+       String fileName = generateUniqueFileName()+".pdf";
+       click.setImage(fileName);
+       System.out.println(click.getImage());
+       
         
+       
+           /* file->move($this->getParameter('events_directory'), $fileName);
+            event->setImage($fileName);
+            event->setEtat("En attente");*/
         
     }
-    
+    String generateUniqueFileName() {
+    String filename = "";
+    long millis = System.currentTimeMillis();
+    String datetime = new Date(System.currentTimeMillis()).toGMTString();
+    datetime = datetime.replace(" ", "");
+    datetime = datetime.replace(":", "");
+    double rndchars =Math.random();
+    double rndchars1 =Math.random();
+    filename = rndchars + "_" + datetime + "_" + millis +"_"+rndchars1;
+    return filename;
 }
+
+    @FXML
+    private void gestquest(ActionEvent event) 
+        throws Exception {               
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QuestionnaireQu.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));  
+        stage.show();
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
+}
+    
+

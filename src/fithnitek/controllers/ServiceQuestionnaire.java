@@ -46,7 +46,7 @@ public class ServiceQuestionnaire implements IServiceQuestionnaire<Questionnaire
 
     @Override
     public void supprimer(int id) {
-       String req="DELETE FROM questionnaire WHERE id=? ";
+       String req="DELETE FROM questionnaire WHERE id=?  ";
         try {
             PreparedStatement pst=cnx.prepareStatement(req);
             pst.setInt(1, id);
@@ -82,7 +82,7 @@ public class ServiceQuestionnaire implements IServiceQuestionnaire<Questionnaire
     @Override
     public List<Questionnaire> afficher() {
         List<Questionnaire> quest=new ArrayList<Questionnaire>();
-        String rqt="SELECT * FROM questionnaire";
+        String rqt="SELECT * FROM questionnaire ORDER BY id DESC";
         String rqtimb;
          
         try {
@@ -98,7 +98,7 @@ public class ServiceQuestionnaire implements IServiceQuestionnaire<Questionnaire
               
                if(rss.next())
                {
-                    x = new Event(rss.getString(9),rss.getDate(2),rss.getDate(3),
+                    x = new Event(rss.getInt(1),rss.getString(9),rss.getDate(2),rss.getDate(3),
                          rss.getString(4),rss.getInt(5),rss.getString(6),rss.getString(10)
                          ,rss.getString(7),rss.getString(8));
                    
@@ -108,6 +108,7 @@ public class ServiceQuestionnaire implements IServiceQuestionnaire<Questionnaire
                
                 
                quest.add(new Questionnaire(
+                       rs.getInt(1),
                        rs.getString(3),
                        rs.getString(4),
                        rs.getString(5),x
@@ -181,6 +182,36 @@ public class ServiceQuestionnaire implements IServiceQuestionnaire<Questionnaire
         return ques;      
     }
     
+    
+    
+    
+    public Event getEventBytitre(String titre){
+        
+         String rqtimb="SELECT * FROM event WHERE titre = ? ";
+         Event x=new Event();
+        PreparedStatement pss;
+        try {
+            pss = cnx.prepareStatement(rqtimb);
+             pss.setString(1,titre);
+               ResultSet rss=pss.executeQuery();
+               
+               
+              
+               if(rss.next())
+               {
+                    x = new Event(rss.getInt(1),rss.getString(9),rss.getDate(2),rss.getDate(3),
+                         rss.getString(4),rss.getInt(5),rss.getString(6),rss.getString(10)
+                         ,rss.getString(7),rss.getString(8));
+                   
+                   
+               }
+               
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return x;      
+    }
     }
     
     
