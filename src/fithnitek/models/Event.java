@@ -7,6 +7,7 @@ package fithnitek.models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Event implements Serializable {
     private String url ;    
     private String image ;
     private String operation ;
+    String dateFormat;
 
     public Event() {
     }
@@ -155,7 +157,16 @@ public class Event implements Serializable {
     }
     
     
-    
+     public String getDateFormat() {
+        Date date = getDateDebut();
+         SimpleDateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
+        String format = df.format(date);
+        return format;
+    }
+
+    public void setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
+    }
     
     
     

@@ -22,9 +22,9 @@ import javafx.stage.Stage;
  */
 public class FiThnitek extends Application {
     
-    @Override
+    /*@Override
     public void start(Stage stage) throws Exception {
-        UserController uc = new UserController();
+       /* UserController uc = new UserController();
         uc.afficher().forEach(System.out::println);
         User u = new User("qsd@qsd", "1stJavaUser", "first", 1235678, new Date(1995,12,10));
         u.setId(15);
@@ -33,15 +33,16 @@ public class FiThnitek extends Application {
         uc.supprimer(u);
         uc.afficher().forEach(System.out::println);
     
-        /*
-        Parent root = FXMLLoader.load(getClass().getResource("mainLogin.fxml"));
+     
+    }*/
+        @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("EventQu.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-        
-        */
     }
 
     /**

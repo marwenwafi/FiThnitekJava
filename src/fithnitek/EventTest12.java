@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  *
  * @author sourour
  */
-public class EventTest extends Application{
+public class EventTest12 extends Application{
     
     
      
@@ -38,7 +38,7 @@ public class EventTest extends Application{
      ServiceEvent sevent=new ServiceEvent();
          Date dated=new Date(System.currentTimeMillis()) ; 
          Date datef=new Date(System.currentTimeMillis()) ; 
-        Event e = new Event("JAVA FX22 11",dated,datef,"java test ",11,"www.java.com","image","Questionnaire");
+        Event e = new Event("JAVA FX22 121",dated,datef,"java test ",11,"www.java.com","image","Questionnaire");
        System.out.println(e);
         
        

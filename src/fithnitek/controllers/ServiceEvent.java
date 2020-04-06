@@ -31,6 +31,7 @@ public class ServiceEvent implements IServiceEvent<Event> {
 
     @Override
     public void ajouter(Event e) {
+        System.out.println("cc");
         String rqt="INSERT INTO event (titre,dateDebut,dateFin,description "
                 + ",promotion,etat,image,operation,url) Values (?,?,?,?,?,?,?,?,?)";
         try {
@@ -50,7 +51,7 @@ public class ServiceEvent implements IServiceEvent<Event> {
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(ServiceEvent.class.getName()).log(Level.SEVERE, null, ex);
+            ex.getMessage();
         }
         
         
@@ -94,12 +95,13 @@ public class ServiceEvent implements IServiceEvent<Event> {
             prd.setDate(2, e.getDateFin());
             prd.setString(3, e.getDescription());
             prd.setInt(4, e.getPromotion());
-            prd.setString(5 , e.getEtat());
+            prd.setString(5 , getEventById(e.getId()).getEtat());
             prd.setString(6, e.getImage());
             prd.setString(7, e.getOperation());
             prd.setString(8, e.getTitre());
             prd.setString(9, e.getUrl());
             prd.setInt(10, e.getId());
+            
             prd.executeUpdate();
             System.out.println("Evenement modifié");
             
@@ -126,7 +128,7 @@ public class ServiceEvent implements IServiceEvent<Event> {
                // System.out.println(rs.getString(9));
                 
                 
-                 events.add(new Event(rs.getString(9),rs.getDate(2),rs.getDate(3),
+                 events.add(new Event(rs.getInt(1),rs.getString(9),rs.getDate(2),rs.getDate(3),
                          rs.getString(4),rs.getInt(5),rs.getString(6),rs.getString(10)
                          ,rs.getString(7),rs.getString(8)
                  ));
@@ -175,6 +177,8 @@ public class ServiceEvent implements IServiceEvent<Event> {
         }
         return x;      
     }
+    
+    
     
     public void activerEvent(int id) 
     {
