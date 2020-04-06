@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="605.0" prefWidth="1002.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewsColis.AjouterOffreController">
+    <stylesheets>
+        <URL value="@ajouteroffre.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="-4.0" prefHeight="610.0" prefWidth="234.0" style="-fx-background-color: #3498db;" />
+      <Button id="#buttonAjoutColis" fx:id="ajouter" layoutX="14.0" layoutY="536.0" mnemonicParsing="false" onAction="#clickAjouter" prefHeight="25.0" prefWidth="56.0" text="Add" />
+      <TextField fx:id="arrive" layoutX="24.0" layoutY="153.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField fx:id="prix" layoutX="24.0" layoutY="210.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField fx:id="hauteur" layoutX="24.0" layoutY="270.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField fx:id="largeur" layoutX="25.0" layoutY="329.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField fx:id="longueur" layoutX="24.0" layoutY="378.0" prefHeight="25.0" prefWidth="180.0" />
+      <Label layoutX="82.0" layoutY="75.0" text="Lieu Depart">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="102.0" layoutY="186.0" text="Prix">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="91.0" layoutY="303.0" text="Largeur">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="84.0" layoutY="128.0" text="Lieu Arrive">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="90.0" layoutY="242.0" text="Hauteur">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="90.0" layoutY="354.0" text="Longeur">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="99.0" layoutY="411.0" text="Date">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="voiture" layoutX="29.0" layoutY="481.0" prefHeight="25.0" prefWidth="180.0" />
+      <Label layoutX="92.0" layoutY="464.0" text="Voiture">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="depart" layoutX="23.0" layoutY="100.0" prefHeight="25.0" prefWidth="180.0" />
+      <Button fx:id="modifier" layoutX="81.0" layoutY="536.0" mnemonicParsing="false" onAction="#modifierOffre" prefHeight="25.0" prefWidth="61.0" text="Update" />
+      <Button fx:id="supprimer" layoutX="156.0" layoutY="536.0" mnemonicParsing="false" onAction="#SupprimerOffre" prefHeight="25.0" prefWidth="61.0" text="Delete" />
+      <Separator layoutX="231.0" layoutY="203.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Separator layoutX="231.0" layoutY="406.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Separator layoutX="231.0" orientation="VERTICAL" prefHeight="200.0" />
+      <Label layoutX="24.0" layoutY="11.0" prefHeight="50.0" prefWidth="200.0" text="COLIS OFFRE">
+         <font>
+            <Font size="32.0" />
+         </font></Label>
+      <TableView fx:id="afficher" layoutX="257.0" layoutY="68.0" prefHeight="470.0" prefWidth="743.0" AnchorPane.rightAnchor="2.0">
+        <columns>
+          <TableColumn fx:id="TDate" prefWidth="75.0" text="Date" />
+          <TableColumn fx:id="TDepart" prefWidth="75.0" text="Depart" />
+            <TableColumn fx:id="TArrive" prefWidth="75.0" text="Arrive" />
+            <TableColumn fx:id="TPrix" prefWidth="75.0" text="Prix" />
+            <TableColumn fx:id="THauteur" prefWidth="75.0" text="Hauteur" />
+            <TableColumn fx:id="TLargeur" prefWidth="75.0" text="Largeur" />
+            <TableColumn fx:id="TLongueur" prefWidth="75.0" text="Longueur" />
+            <TableColumn fx:id="TVoiture" prefWidth="75.0" text="Voiture" />
+            <TableColumn fx:id="TId" prefWidth="75.0" text="Id Offre" />
+        </columns>
+      </TableView>
+      <Button layoutX="257.0" layoutY="561.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="128.0" text="Colis Offre" />
+      <Button fx:id="Reservation" layoutX="556.0" layoutY="561.0" mnemonicParsing="false" onAction="#GoToReservation" prefHeight="36.0" prefWidth="128.0" text="Your Reservations" />
+      <Button layoutX="821.0" layoutY="561.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="128.0" text="Back To Menu" />
+      <DatePicker fx:id="Datep" layoutX="27.0" layoutY="428.0" prefHeight="25.0" prefWidth="180.0" />
+      <Label layoutX="556.0" layoutY="14.0" prefHeight="53.0" prefWidth="200.0" text="My Offre" textFill="#3498db">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

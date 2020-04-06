@@ -6,9 +6,14 @@
 package fithnitek.controllers;
 import fithnitek.models.*;
 
+import fithnitek.models.Reservation_Colis;
 import fithnitek.utils.DataSource;
-
-
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -37,14 +42,11 @@ public class ServiceReservationColis implements IReservation<Reservation_Colis> 
         List<Reservation_Colis> list = new ArrayList<>();
 
         try {
-            String requete = "SELECT * FROM reservation_colis where idUR="+id+"";
+            String requete = "SELECT * FROM reservation_colis where idUR ="+id+"";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
 
-            //    System.out.print(rs.getInt(1));
-             //   System.out.println("/n");
-                    //public Reservation_Colis( int id, int id_Offre, double HauteurResv, double LargeurResv, double LongueurResv, int PrixResv) {
                list.add(new Reservation_Colis(rs.getInt(1),rs.getDouble(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getInt(6),rs.getDouble(7)));
             }
 
@@ -64,9 +66,6 @@ public class ServiceReservationColis implements IReservation<Reservation_Colis> 
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
 
-            //    System.out.print(rs.getInt(1));
-             //   System.out.println("/n");
-                    //public Reservation_Colis( int id, int id_Offre, double HauteurResv, double LargeurResv, double LongueurResv, int PrixResv) {
                list.add(new Reservation_Colis(rs.getInt(1),rs.getDouble(2),rs.getDouble(3),rs.getDouble(4),rs.getInt(5),rs.getInt(6),rs.getDouble(7)));
             }
 
@@ -102,20 +101,27 @@ public class ServiceReservationColis implements IReservation<Reservation_Colis> 
                      pst1.executeUpdate();
 
             System.out.println("Reservation ajoutée !");
-            
+             String qrCodeText = "Hauteur="+O.getHauteurResv()+",Largeur="+O.getLargeurResv()+",idOffre="+O.getId_Offre()+",idU="+O.getId()+",Longueur="+O.getLongueurResv()+"Prix="+PrixR+"";
+		String filePath = "qrcode.png";
+		int size = 400;
+		String fileType = "png";
+		File qrFile = new File(filePath);
+
+               createQRImage(qrFile,qrCodeText, size,fileType); 
             }
             else
             {
                 System.out.println("leeee");
             }
 //////////////
+
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        } /*     catch (WriterException ex) {   
+        }      catch (WriterException ex) {   
                     Logger.getLogger(ServiceReservationColis.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
                     Logger.getLogger(ServiceReservationColis.class.getName()).log(Level.SEVERE, null, ex);
-                }  */ 
+                }   
         ////////////////
     }
 
@@ -149,14 +155,18 @@ public class ServiceReservationColis implements IReservation<Reservation_Colis> 
         }
     }
         @Override
-    public void supprimerOffreReservation(int id) {
+    public void supprimerOffreReservation(Reservation_Colis O) {
           try {
-            String requete = "DELETE FROM Reservation_Colis  WHERE  id_Reservation_colis="+id+" ";
+            String requete = "DELETE FROM Reservation_Colis  WHERE  id_Reservation_colis=? ";
             PreparedStatement pst = cnx.prepareStatement(requete);
-      //      pst.setInt(1, id);
+         pst.setInt(1, O.getId_ReservationCol());
             pst.executeUpdate();
             System.out.println("Reservation  supprimée !");
+            
+ String requete1 = "UPDATE  offre_colis SET Largeur=Round("+(GetLargeur(O.getId_Offre())+O.getLargeurResv())+",2),Longueur=Round("+(GetLongueur(O.getId_Offre())+O.getLongueurResv())+",2) WHERE id_Offre_Col="+O.getId_Offre()+"";
+          PreparedStatement pst1 = cnx.prepareStatement(requete1);
 
+                     pst1.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
@@ -193,6 +203,32 @@ public class ServiceReservationColis implements IReservation<Reservation_Colis> 
      
     }
       
- 
+ public void createQRImage(File qrFile, String qrCodeText, int size, String fileType)
+			throws WriterException, IOException {
+		// Create the ByteMatrix for the QR-Code that encodes the given String
+		Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<>();
+		hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+		QRCodeWriter qrCodeWriter = new QRCodeWriter();
+		BitMatrix byteMatrix = qrCodeWriter.encode(qrCodeText, BarcodeFormat.QR_CODE, size, size, hintMap);
+		// Make the BufferedImage that are to hold the QRCode
+		int matrixWidth = byteMatrix.getWidth();
+		BufferedImage image = new BufferedImage(matrixWidth, matrixWidth, BufferedImage.TYPE_INT_RGB);
+		image.createGraphics();
+
+		Graphics2D graphics = (Graphics2D) image.getGraphics();
+		graphics.setColor(Color.WHITE);
+		graphics.fillRect(0, 0, matrixWidth, matrixWidth);
+		// Paint and save the image using the ByteMatrix
+		graphics.setColor(Color.BLACK);
+
+		for (int i = 0; i < matrixWidth; i++) {
+			for (int j = 0; j < matrixWidth; j++) {
+				if (byteMatrix.get(i, j)) {
+					graphics.fillRect(i, j, 1, 1);
+				}
+			}
+		}
+		ImageIO.write(image, fileType, qrFile);
+	}
     
 }

@@ -13,16 +13,19 @@ import java.util.List;
  *
  * @author USER
  */
+import fithnitek.models.Reservation_Colis;
+import java.util.List;
+
+/**
+ *
+ * @author USER
+ */
 public interface IReservation <T>{
-        //public List<T> afficherOffreColis();
-   // public void ajouterOffreColis(T o);
-     //  public void supprimerOffreColis(T o);
-     // public void modifierOffreColis(Offre_Colis t);
-   //          public List<T> RechercheOffreColis(int Prix);
+   
     public List<Reservation_Colis> afficherReservationColis(int id);
     public void  ajouterOffreReservation(Reservation_Colis O);
      public void modifierOffreReservation(Reservation_Colis O);
-     public void supprimerOffreReservation(int id);
+    public void supprimerOffreReservation(Reservation_Colis O) ;
        //  public List<Reservation_Colis> afficherReservationColisAll() ;
     public List<Reservation_Colis> afficherReservationColisAll() ;
 

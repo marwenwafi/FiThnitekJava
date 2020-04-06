@@ -14,6 +14,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fithnitek.models.Offre_Colis;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -21,7 +29,23 @@ import java.util.List;
  */
 public class ServiceColis implements IColis<Offre_Colis> {
         Connection cnx = DataSource.getInstance().getCnx();
+     @Override
+    public List<Offre_Colis> afficherOffremshColis(int id) {
+        List<Offre_Colis> list = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM offre_colis where   idU != "+id+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+     list.add(new Offre_Colis(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDouble(6),rs.getDouble(7),rs.getString(8),rs.getInt(9),rs.getDouble(10)));                       
+            }
 
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
+    }
      @Override
     public List<Offre_Colis> afficherOffreColis(int id) {
         List<Offre_Colis> list = new ArrayList<>();
@@ -120,11 +144,13 @@ public class ServiceColis implements IColis<Offre_Colis> {
 
  
 
-       @Override
-    public List<Offre_Colis> RechercheOffreColis(String Date) {
+    
+      @Override
+    public List<Offre_Colis> RechercheOffreColisDepartArrive(String Depart,String Arrive,int id,String Date) {
         List<Offre_Colis> list = new ArrayList<>();
+
         try {
-            String requete = "SELECT * FROM offre_colis  where  Date_col > "+Date+"  ";
+            String requete = "SELECT * FROM offre_colis  where  Lieu_Depart like '%"+Depart+"%' AND Lieu_Arrive like '%"+Arrive+"%' AND idU != "+id+" AND Date_col >= '"+Date+"'  ";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -138,12 +164,12 @@ public class ServiceColis implements IColis<Offre_Colis> {
 
         return list;
     }
-      @Override
-    public List<Offre_Colis> RechercheOffreColisDepartArrive(String Depart,String Arrive,int id) {
+     @Override
+     public List<Offre_Colis> RechercheOffreColisAdmin(Double Hauteur,Double Largeur,Double Longueur,String car,String Date) {
         List<Offre_Colis> list = new ArrayList<>();
 
         try {
-            String requete = "SELECT * FROM offre_colis  where  Lieu_Depart like '%"+Depart+"%' AND Lieu_Arrive like '%"+Arrive+"%' AND idU != "+id+" ";
+            String requete = "SELECT * FROM offre_colis  where  Voiture like '%"+car+"%' AND Hauteur >= '"+Hauteur+"' AND Largeur >= '"+Largeur+"'AND Longueur >= '"+Longueur+"'  AND Date_col >= '"+Date+"'  ";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -163,6 +189,25 @@ public class ServiceColis implements IColis<Offre_Colis> {
 
         try {
             String requete = "SELECT * FROM offre_colis  ORDER BY Date_col ASC   ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+     list.add(new Offre_Colis(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDouble(6),rs.getDouble(7),rs.getString(8),rs.getInt(9),rs.getDouble(10)));                       
+                     
+            }
+                               
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
+    }
+      @Override
+     public List<Offre_Colis> TrierOffreColisPrix() {
+        List<Offre_Colis> list = new ArrayList<>();
+
+        try {
+            String requete = "SELECT * FROM offre_colis  ORDER BY Prix ASC   ";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
