@@ -11,7 +11,7 @@ package fithnitek.utils;
  */
 public class BCryptPasswordEncoder {
   	// Define the BCrypt workload to use when generating password hashes. 10-31 is a valid value.
-	private static int workload = 15;
+	private static int workload = 12;
 
 	/**
 	 * This method can be used to generate a string representing an account password

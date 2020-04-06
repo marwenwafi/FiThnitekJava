@@ -24,9 +24,11 @@ public class User {
     protected int nbroffre;
     protected int points;
     protected String image;
+    protected int enabled;
+    protected String roles;
 
     //For new user
-    public User(String email,String username, String prenom, String hashedPwd, int tel, Date datedenaissance, String image) {
+    public User(String email,String username, String prenom, String hashedPwd, int tel, Date datedenaissance, String image,int enabled, String roles) {
         this.email = email;
         this.username = username;
         this.prenom = prenom;
@@ -38,10 +40,12 @@ public class User {
         this.points = 0;
         this.nbroffre = 0;
         this.image = image;
+        this.enabled = enabled;
+        this.roles = roles;
     }
 
     //For retrieving a user from DB
-    public User(int id,String email, String username, String prenom, String hashedPwd, int tel, Date datedenaissance, Date registrationdate, int nbroffre, int points, String image) {
+    public User(int id,String email, String username, String prenom, String hashedPwd, int tel, Date datedenaissance, Date registrationdate, int nbroffre, int points, String image,int enabled, String roles) {
         this.id = id;
         this.email = email;
         this.username = username;
@@ -53,6 +57,8 @@ public class User {
         this.nbroffre = nbroffre;
         this.points = points;
         this.image = image;
+        this.enabled = enabled;
+        this.roles = roles;
     }
     
     
@@ -146,6 +152,23 @@ public class User {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+    
     
     
        @Override

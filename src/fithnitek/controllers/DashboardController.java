@@ -5,6 +5,7 @@
  */
 package fithnitek.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -24,6 +25,14 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Pane content;
+    @FXML
+    private JFXButton categories;
+    @FXML
+    private JFXButton leaderboards;
+    @FXML
+    private JFXButton objectifs;
+    @FXML
+    private JFXButton users;
 
     /**
      * Initializes the controller class.
@@ -53,5 +62,14 @@ public class DashboardController implements Initializable {
         content.getChildren().removeAll();
         content.getChildren().setAll(objectifs);
     }
+
+    @FXML
+    private void loadUsers(MouseEvent event) throws Exception {
+        Parent users = FXMLLoader.load(getClass().getResource("/fithnitek/views/contentUsers.fxml"));
+        content.getChildren().removeAll();
+        content.getChildren().setAll(users);
+    }
+    
+    
     
 }

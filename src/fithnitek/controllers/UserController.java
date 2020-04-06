@@ -8,7 +8,6 @@ package fithnitek.controllers;
 import fithnitek.utils.DataSource;
 import fithnitek.models.User;
 import fithnitek.utils.BCryptPasswordEncoder;
-import java.security.Principal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -16,15 +15,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.security.auth.Subject;
-import javax.security.auth.login.LoginContext;
-import javax.security.auth.login.LoginException;
+
 
 /**
  *
  * @author marwe
  */
 public class UserController {
+    
+    
     
     Connection cnx = DataSource.getInstance().getCnx();
     
@@ -82,7 +81,7 @@ public class UserController {
             while (rs.next()) {
                 list.add(new User(rs.getInt("id"), rs. getString("email"),rs.getString("username"),rs.getString("prenom"),
                         rs.getString("password"),rs.getInt("tel"), rs.getDate("datedenaissance"),rs.getDate("registrationdate"),
-                        rs.getInt("nbroffre"),rs.getInt("points"),rs.getString("image")));
+                        rs.getInt("nbroffre"),rs.getInt("points"),rs.getString("image"),rs.getInt("enabled"),rs.getString("roles")));
             }
 
         } catch (SQLException ex) {
@@ -92,7 +91,7 @@ public class UserController {
         return list;
     }
     
-    public User oneUser(String username) {
+    public User findOneUser(String username) {
         User u = null;
         try {
             String requete = "SELECT * FROM fos_user where username='"+username+"';";
@@ -101,7 +100,7 @@ public class UserController {
             rs.next();
                 u = new User(rs.getInt("id"), rs. getString("email"),rs.getString("username"),rs.getString("prenom"),
                         rs.getString("password"),rs.getInt("tel"), rs.getDate("datedenaissance"),rs.getDate("registrationdate"),
-                        rs.getInt("nbroffre"),rs.getInt("points"),rs.getString("image"));
+                        rs.getInt("nbroffre"),rs.getInt("points"),rs.getString("image"),rs.getInt("enabled"),rs.getString("roles"));
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -110,21 +109,39 @@ public class UserController {
         return u;
     }
     
-    public void attemptLogin(String name, String pass) {
-        System.setProperty("java.security.auth.login.config", "jaas.config");       
+    public User findByUsername(String username) {
+        User u = null;
         try {
-                LoginContext lc = new LoginContext("User", new UserCallbackHandler(name, pass));
-                System.out.println(lc.toString());
-                lc.login();
-                Subject subject = lc.getSubject();
-                for( Principal p : subject.getPrincipals())
-                System.out.println("UserController ---->"+p.toString());
-        } catch (LoginException e) {
-                e.printStackTrace();
+            String requete = "SELECT id,username,enabled FROM fos_user where username='"+username+"';";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            rs.next();
+                u = new User(rs.getInt("id"),null,rs.getString("username"),null,
+                        null,0, null,null,0,0,null,rs.getInt("enabled"),null);
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return u;
+    }
+    
+    public void enableDisable(String username, int state)
+    {
+        try {
+            String requete = "UPDATE fos_user SET enabled="+state+" WHERE username=" + username;
+            Statement st = cnx.createStatement();
+            st.executeUpdate(requete);
+            System.out.println("User modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
         }
     }
     
+    
     public void attemptRegistration(String username, String email, String password, String confirm, String surname, int tel, Date birthdate, String image) throws IllegalArgumentException{
+        
+        /*
         if (!password.equals(confirm))
         {
             throw new IllegalArgumentException("Password confirmation missmatch");
@@ -138,6 +155,7 @@ public class UserController {
             attemptLogin(username, password);
             System.out.println("User Added Successfully");
         }
+        */
     }
     
 }

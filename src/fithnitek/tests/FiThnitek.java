@@ -5,11 +5,7 @@
  */
 package fithnitek.tests;
 
-import fithnitek.controllers.CategoryController;
-import fithnitek.controllers.LeaderBoardController;
-import fithnitek.controllers.ObjectifController;
-import fithnitek.controllers.UserCallbackHandler;
-import fithnitek.controllers.UserController;
+import fithnitek.controllers.*;
 import fithnitek.models.*;
 import fithnitek.utils.BCryptPasswordEncoder;
 import fithnitek.utils.DataSource;
@@ -21,8 +17,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javax.security.auth.login.LoginContext;
-import javax.security.auth.login.LoginException;
 
 /**
  *
@@ -109,8 +103,7 @@ public class FiThnitek extends Application {
         oc.afficher().forEach(System.out::println);
         */
         
-        
-        Parent root = FXMLLoader.load(getClass().getResource("/fithnitek/views/dashboard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

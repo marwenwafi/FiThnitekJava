@@ -222,7 +222,6 @@ public class CategoryController implements Initializable {
         modify.setDisable(true);
         add.setDisable(false);
         delete.setDisable(true);
-
     }
 
     private void enableDelete() {

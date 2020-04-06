@@ -5,6 +5,8 @@
  */
 package fithnitek.controllers;
 
+import fithnitek.utils.BCryptPasswordEncoder;
+import fithnitek.models.*;
 import java.net.URL;
 import java.io.File;
 import java.sql.Date;
@@ -50,6 +52,8 @@ public class RegistrationController implements Initializable{
     
     private String ImageFile = "";
     
+    BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+
     
 
     @Override
@@ -70,7 +74,9 @@ public class RegistrationController implements Initializable{
     
     @FXML
     private void register(MouseEvent event) throws Exception {
+        
         UserController uc = new UserController();
+        MainLoginController mlc = new MainLoginController();
         String un = username.getText();
         String em = email.getText();
         String pass = password.getText();
@@ -79,11 +85,26 @@ public class RegistrationController implements Initializable{
         int te = Integer.parseInt(tel.getText());
         Date bd = java.sql.Date.valueOf(birthdate.getValue());
         uc.attemptRegistration(un,em,pass,conf,sur,te,bd,ImageFile);
+        
+        if (!password.equals(confirm))
+        {
+            throw new IllegalArgumentException("Password confirmation missmatch");
+        }
+        else
+        {
+            String hashedpass = b.hashPassword(password);
+            User u = new User(email,username,surname,hashedpass,tel,birthdate,image);
+            uc.ajouter(u);
+            //mlc.att(username, password);
+            System.out.println("User Added Successfully");
+        }
         Parent next = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainMenu.fxml"));
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(next);
         stage.setScene(scene);
         stage.show();
+        
+        
     }
     
     @FXML 

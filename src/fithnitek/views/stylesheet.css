@@ -16,3 +16,10 @@
      -fx-background-color: blue;
      -fx-text-fill: white;
 }
+
+.jfx-date-picker {
+    -fx-prompt-text-fill: #cccdcf;
+    -fx-text-inner-color: white;
+    -jfx-focus-color:#4059a9;
+    -jfx-unfocus-color: WHITE;
+}
