@@ -1,0 +1,248 @@
+
+
+#pane_top{
+	-fx-background-color: #4d5463;
+}
+#label_title{
+	-fx-text-fill: white;
+
+}
+#anchorpane_center, #anchorpane_left, #anchorpane_right , #anchorpane_backhome{
+	-fx-border-style: dotted;
+}
+#anchorpane_backhome{
+   /* -fx-background-image:url("../images/taxi.jfif");
+    -fx-background-size: 100% 100%;*/
+    
+    
+}
+#btn_back ,#btn_back1 , #btn_pdf
+{-fx-background-color: grey;
+          -fx-font-weight: bold;
+         -fx-background-radius: 30;
+         
+      
+    -fx-text-fill: white;
+   
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;}
+
+
+#btn_back1:hover 
+{    -fx-font-weight: bold;
+    
+    -fx-background-color: White;
+     -fx-background-radius: 30;
+         
+      
+    -fx-text-fill: grey;
+    -fx-border-width:3;
+     -fx-border-color : grey;
+      -fx-border-radius:20;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+    
+     
+    /*
+     -fx-background-color: white;
+         -fx-background-radius: 30;
+          -fx-background-radious :22;
+        -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: forestgreen;
+     
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+     -fx-border-width:3;
+      -fx-font-weight: bold;*/
+}
+
+#btn_back:hover
+{    -fx-font-weight: bold;
+    
+    -fx-background-color: White;
+     -fx-background-radius: 30;
+         
+      
+    -fx-text-fill: grey;
+    -fx-border-width:3;
+     -fx-border-color : grey;
+      -fx-border-radius:20;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+    
+     
+    /*
+     -fx-background-color: white;
+         -fx-background-radius: 30;
+          -fx-background-radious :22;
+        -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: forestgreen;
+     
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+     -fx-border-width:3;
+      -fx-font-weight: bold;*/
+}
+#btn_save, #btn_add_new{
+	-fx-background-color: forestgreen;
+          -fx-font-weight: bold;
+         -fx-background-radius: 30;
+         
+      
+    -fx-text-fill: white;
+   
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+    
+
+}
+
+#btn_save:hover
+{    -fx-font-weight: bold;
+    
+    -fx-background-color: White;
+     -fx-background-radius: 30;
+         
+      
+    -fx-text-fill: forestgreen;
+    -fx-border-width:3;
+     -fx-border-color : forestgreen;
+      -fx-border-radius:20;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+    
+     
+    /*
+     -fx-background-color: white;
+         -fx-background-radius: 30;
+          -fx-background-radious :22;
+        -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: forestgreen;
+     
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+     -fx-border-width:3;
+      -fx-font-weight: bold;*/
+}
+#btn_save:pressed
+{
+  	   -fx-font-weight: bold;
+    
+    -fx-background-color: White;
+     -fx-background-radius: 30;
+         
+      
+    -fx-text-fill: forestgreen;
+    -fx-border-width:3;
+     -fx-border-color : forestgreen;
+      -fx-border-radius:20;
+      -fx-padding: 10 20 10 20;
+    -fx-font-size: 15px;
+    -fx-rotate : 15
+        
+    
+    
+    
+}
+#btn_edit{
+    
+    
+    -fx-background-color: orange;
+          -fx-font-weight: bold;
+         -fx-background-radius: 30;
+         -fx-padding: 10 20 10 20;
+      
+    -fx-text-fill: white;
+   
+    -fx-font-size: 15px;
+   
+    /*
+	  -fx-background-color: 
+     orange;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;*/
+}
+#btn_edit:hover
+{
+      -fx-font-weight: bold;
+    
+    -fx-background-color: White;
+     -fx-background-radius: 30;
+         -fx-padding: 10 20 10 20;
+      
+    -fx-text-fill: orange;
+    -fx-border-width:3;
+     -fx-border-color : orange;
+      -fx-border-radius:20;
+    -fx-font-size: 15px;
+    
+    
+}
+#btn_delete{
+	  -fx-font-weight: bold;
+    
+    -fx-background-color: red;
+     -fx-background-radius: 30;
+         
+      
+    -fx-text-fill: white;
+    -fx-border-width:3;
+     -fx-border-color : red;
+      -fx-border-radius:20;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;
+}
+#btn_delete:hover
+{
+      -fx-font-weight: bold;
+    
+    -fx-background-color: white;
+     -fx-background-radius: 30;
+         
+      -fx-padding: 10 20 10 20;
+    -fx-text-fill: red;
+    -fx-border-width:3;
+     -fx-border-color : red;
+      -fx-border-radius:20;
+    -fx-font-size: 15px;
+}
+#btn_search,#btn_sort {
+	-fx-background-color: 	darkcyan;
+}
+#btn_print_preview{
+	-fx-background-color: rgb(54,119,171);
+}
+
+.jfx-button{
+	-fx-opacity: 0.9;
+	-fx-text-fill: white;
+}
+.jfx-button:hover{
+	-fx-opacity: 1;
+}
+#btn_position{
+	-fx-text-fill: black;
+}
+
+#demandeTableView ,#reservationTableView ,#tablereseration
+{
+    -fx-background-color: rgba(0, 150, 0, 0.8);
+      
+
+   
+
+}
+
+
+#demandeTableView-row:focused ,#demandeTableView-cell:selected,#reservationTableView:focused , #reservationTableView:selected ,#tablereseration:focused , #tablereseration:selected
+{
+    -fx-background-color:  rgba(0, 150, 0, 0.8)  ;
+    -fx-table-cell-border-color:  rgba(0, 150, 0, 0.8);
+}
