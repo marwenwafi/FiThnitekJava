@@ -80,7 +80,7 @@
             <TableColumn fx:id="point_c" minWidth="90.0" prefWidth="90.0" text="Points" />
          </columns>
       </TableView>
-      <JFXButton fx:id="enable" layoutX="245.0" layoutY="543.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#deleteObjectif" prefHeight="40.0" prefWidth="180.0" text="Enable/Disable" textAlignment="CENTER">
+      <JFXButton fx:id="enable" layoutX="245.0" layoutY="543.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#enable" prefHeight="40.0" prefWidth="180.0" text="Enable/Disable" textAlignment="CENTER">
          <font>
             <Font name="Ebrima Bold" size="16.0" />
          </font>

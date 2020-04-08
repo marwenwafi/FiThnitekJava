@@ -34,7 +34,7 @@ public class UserController {
             String requete = "INSERT INTO fos_user (email,email_canonical, username, username_canonical, prenom, tel, datedenaissance, registrationdate, nbroffre,points,enabled,password,roles,image) "
                     + "VALUES ('" +u.getEmail()+"','" +u.getEmail()+"','" + u.getUsername() + "','"+ u.getUsername()+"','" + u.getPrenom() + "','" + u.getTel() 
                     + "','" + u.getDatedenaissance() + "','" + u.getRegistrationdate() + "','" + u.getNbroffre() 
-                    + "','" + u.getPoints()+ "',1,'"+u.getHashedPwd()+"','a:0:{}','"+u.getImage()+"')";
+                    + "','" + u.getPoints()+ "',"+u.getEnabled()+",'"+u.getHashedPwd()+"','"+u.getRoles()+"','"+u.getImage()+"')";
             Statement st = cnx.createStatement();
             st.executeUpdate(requete);
             System.out.println("User ajoutée !");
@@ -136,26 +136,6 @@ public class UserController {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-    }
-    
-    
-    public void attemptRegistration(String username, String email, String password, String confirm, String surname, int tel, Date birthdate, String image) throws IllegalArgumentException{
-        
-        /*
-        if (!password.equals(confirm))
-        {
-            throw new IllegalArgumentException("Password confirmation missmatch");
-        }
-        else
-        {
-            BCryptPasswordEncoder b = new BCryptPasswordEncoder();
-            String hashedpass = b.hashPassword(password);
-            User u = new User(email,username,surname,hashedpass,tel,birthdate,image);
-            ajouter(u);
-            attemptLogin(username, password);
-            System.out.println("User Added Successfully");
-        }
-        */
     }
     
 }

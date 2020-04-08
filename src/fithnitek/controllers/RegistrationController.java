@@ -10,13 +10,18 @@ import fithnitek.models.*;
 import java.net.URL;
 import java.io.File;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -52,7 +57,8 @@ public class RegistrationController implements Initializable{
     
     private String ImageFile = "";
     
-    BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+    BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+    Alert alert;
 
     
 
@@ -82,29 +88,57 @@ public class RegistrationController implements Initializable{
         String pass = password.getText();
         String conf = confirm.getText();
         String sur = surname.getText();
-        int te = Integer.parseInt(tel.getText());
-        Date bd = java.sql.Date.valueOf(birthdate.getValue());
-        uc.attemptRegistration(un,em,pass,conf,sur,te,bd,ImageFile);
+        String te = tel.getText();
         
-        if (!password.equals(confirm))
+        User u = uc.findByUsername(un);    
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        
+        if (un=="")
         {
-            throw new IllegalArgumentException("Password confirmation missmatch");
+            alert = new Alert(Alert.AlertType.ERROR, "You Have to insert username", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        if (u!=null)
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Username already used!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (!isValid(em))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Email format Invalid!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (!pass.equals(conf) || pass=="" )
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Password missmatch!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (birthdate.getValue()==null || java.sql.Date.valueOf(birthdate.getValue()).after(new java.sql.Date(Calendar.getInstance().getTime().getTime())))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Invalid Birthdate!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (te=="")
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Input Telephone number!", ButtonType.CANCEL);
+            alert.showAndWait();
         }
         else
         {
-            String hashedpass = b.hashPassword(password);
-            User u = new User(email,username,surname,hashedpass,tel,birthdate,image);
+            Date bd = java.sql.Date.valueOf(birthdate.getValue());
+            String hashedpass = bcrypt.hashPassword(password.getText());
+            u = new User(em,un,sur,hashedpass,Integer.parseInt(te),bd,ImageFile,1,"a:0:{}");
             uc.ajouter(u);
             //mlc.att(username, password);
             System.out.println("User Added Successfully");
+            Parent next = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(next);
+            stage.setScene(scene);
+            stage.show();
         }
-        Parent next = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainMenu.fxml"));
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(next);
-        stage.setScene(scene);
-        stage.show();
-        
-        
+
     }
     
     @FXML 
@@ -115,6 +149,17 @@ public class RegistrationController implements Initializable{
         else {
             ev.consume();
         }
+    }
+    
+    public static boolean isValid(String email) 
+    { 
+        String emailRegex = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex);
+        System.out.println(email);
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
     }
     
     

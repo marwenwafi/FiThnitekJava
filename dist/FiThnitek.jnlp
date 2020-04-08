@@ -8,18 +8,13 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="FiThnitek.jar" size="109537" download="eager" />
-    <jar href="lib\cglib-2.2.2.jar" size="287192" download="eager" />
-    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="FiThnitek.jar" size="114530" download="eager" />
+    <jar href="lib\fxgraphics2d-1.6.jar" size="20619" download="eager" />
+    <jar href="lib\jcommon-1.0.17.jar" size="506386" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
+    <jar href="lib\jfreechart-1.5.0.jar" size="1559088" download="eager" />
+    <jar href="lib\jfreechart-fx-1.0.0.jar" size="27962" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
-    <jar href="lib\spring-asm-3.1.0.RELEASE.jar" size="53079" download="eager" />
-    <jar href="lib\spring-beans-3.1.0.RELEASE.jar" size="589253" download="eager" />
-    <jar href="lib\spring-context-3.1.0.RELEASE.jar" size="829601" download="eager" />
-    <jar href="lib\spring-core-3.1.0.RELEASE.jar" size="442400" download="eager" />
-    <jar href="lib\spring-expression-3.1.0.RELEASE.jar" size="176283" download="eager" />
-    <jar href="lib\spring-security-config-3.1.0.RELEASE.jar" size="202754" download="eager" />
-    <jar href="lib\spring-security-core-3.1.0.RELEASE.jar" size="348567" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="FiThnitek" >
     <param name="requiredFXVersion" value="8.0+"/>
