@@ -304,6 +304,35 @@ public class ServiceEvent implements IServiceEvent<Event> {
         
         
     }
+    
+    public int getidBytitre(String titre){
+        
+         String rqtimb="SELECT id FROM event WHERE titre = ? ";
+         int x=0;
+        PreparedStatement pss;
+        try {
+            pss = cnx.prepareStatement(rqtimb);
+             pss.setString(1,titre);
+             ResultSet rss=pss.executeQuery();
+               
+               
+              
+               if(rss.next())
+               {
+                    x = rss.getInt(1);
+                    
+                   
+                   
+               }
+               
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return x;      
+    }
+    
+    
  
  
     

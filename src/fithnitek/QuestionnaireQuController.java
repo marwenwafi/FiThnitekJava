@@ -26,7 +26,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -60,6 +62,8 @@ public class QuestionnaireQuController implements Initializable {
     ServiceQuestionnaire sv= new ServiceQuestionnaire();
     private final static int rowsPerPage = 11;
     public  String titre;
+    @FXML
+    private TextField idevvv;
 
     /**
      * Initializes the controller class.
@@ -74,37 +78,62 @@ public class QuestionnaireQuController implements Initializable {
         afficherQuestionnaire();
         tab.getSelectionModel().clearSelection();
         titre=EventQuController.rq;
+        getEvent();
         System.err.println(EventQuController.rq);
         
         
         
     }    
+    public void getEvent()
+    {
+        Event e=sv.getEventBytitre(titre);
+        System.err.println(e.getId());
+        idevvv.setText(""+e.getId());
+        
+    }
 
     @FXML
     private void ajouterEvent(ActionEvent event) {
+       // try{
+        Event e=sv.getEventBytitre(titre);
         Questionnaire q=new Questionnaire();
         q.setQuestion(question.getText());
         q.setReponse1(reponse1.getText());
         q.setReponse2(reponse2.getText());
-        Event e=sv.getEventBytitre(titre);
         q.setIdevent(e);
+        if(verifier("Vous devez remlir tous les champs !")==true){
+           sv.ajouter(q);
+        afficherQuestionnaire(); 
+        }
         
-        sv.ajouter(q);
-        afficherQuestionnaire();
+       /* }catch(NullPointerException e)
+        {
+            verifier("Vous devez remlir tous les champs !");
+        }*/
+        
     }
 
     @FXML
     private void modifierEvent(ActionEvent event) {
-         Questionnaire click = tab.getSelectionModel().getSelectedItems().get(0);
+        Questionnaire click = tab.getSelectionModel().getSelectedItems().get(0);
+        
+            
+        
+         System.out.println(click.getId());
          System.out.println(click.getId());
         Questionnaire q=new Questionnaire();
         q.setQuestion(question.getText());
         q.setReponse1(reponse1.getText());
         q.setReponse2(reponse2.getText());
         q.setIdevent(click.getIdevent());
+        
         q.setId(click.getId());
-        sv.modifier(q);
+        if(verifier("Vous devez remlir tous les champs !")==true){
+            sv.modifier(q);
         afficherQuestionnaire();
+        }
+        
+        
         
     }
 
@@ -125,6 +154,7 @@ public class QuestionnaireQuController implements Initializable {
         question.setText(click.getQuestion());
         reponse1.setText(click.getReponse1());
         reponse2.setText(click.getReponse2());
+        idevvv.setText(""+click.getIdevent().getId());
        
         
        
@@ -157,6 +187,39 @@ public class QuestionnaireQuController implements Initializable {
 
       return  tab;
     }
+     public boolean verifier(String s){
+        if(!s.equals(""))
+        {
+            if(question.getText().equals("")|| reponse1.getText().equals("") 
+                    || reponse2.getText().equals("") )
+            {
+            Alert alert = new Alert(Alert.AlertType.ERROR,s);
+        alert.initStyle(StageStyle.DECORATED.UTILITY);
+        alert.setTitle("Attention");
+        alert.showAndWait();
+        return false;
+        }
+        }
+        if(question.getText().length()<5)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Le champ question doit contient au mois 5 caractères ");
+        alert.initStyle(StageStyle.DECORATED.UTILITY);
+        alert.setTitle("Attention");
+        alert.showAndWait();
+        return false;
+            }
+        if(idevvv.getText().equals("0") || idevvv.getText().equals(0))
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR,"il faut ajouter un évènement d'abord");
+        alert.initStyle(StageStyle.DECORATED.UTILITY);
+        alert.setTitle("Attention");
+        alert.showAndWait();
+        return false;
+            
+        }
+        return true;
+        
+     }
 
    
      
