@@ -5,6 +5,7 @@
  */
 package fithnitek.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import fithnitek.utils.BCryptPasswordEncoder;
 import fithnitek.models.*;
 import java.net.URL;
@@ -54,6 +55,8 @@ public class RegistrationController implements Initializable{
     private TextField tel;
     @FXML
     private DatePicker birthdate;
+    @FXML
+    private JFXButton image;
     
     private String ImageFile = "";
     
@@ -75,7 +78,7 @@ public class RegistrationController implements Initializable{
                 new FileChooser.ExtensionFilter("Pictures", "*.jpg"));
         File selectedFile = fileChooser.showOpenDialog(Pane.getScene().getWindow());
         ImageFile = selectedFile.getName();
-        System.out.println(selectedFile.getName());
+        image.setText(selectedFile.getName());
     }
     
     @FXML
@@ -94,12 +97,12 @@ public class RegistrationController implements Initializable{
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         
-        if (un=="")
+        if (un.equals(""))
         {
             alert = new Alert(Alert.AlertType.ERROR, "You Have to insert username", ButtonType.CANCEL);
             alert.showAndWait();
         }
-        if (u!=null)
+        else if (u!=null)
         {
             alert = new Alert(Alert.AlertType.ERROR, "Username already used!", ButtonType.CANCEL);
             alert.showAndWait();
@@ -109,9 +112,14 @@ public class RegistrationController implements Initializable{
             alert = new Alert(Alert.AlertType.ERROR, "Email format Invalid!", ButtonType.CANCEL);
             alert.showAndWait();
         }
-        else if (!pass.equals(conf) || pass=="" )
+        else if (!pass.equals(conf) || pass.equals(""))
         {
             alert = new Alert(Alert.AlertType.ERROR, "Password missmatch!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (sur.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Surname missing!", ButtonType.CANCEL);
             alert.showAndWait();
         }
         else if (birthdate.getValue()==null || java.sql.Date.valueOf(birthdate.getValue()).after(new java.sql.Date(Calendar.getInstance().getTime().getTime())))
@@ -119,9 +127,14 @@ public class RegistrationController implements Initializable{
             alert = new Alert(Alert.AlertType.ERROR, "Invalid Birthdate!", ButtonType.CANCEL);
             alert.showAndWait();
         }
-        else if (te=="")
+        else if (te.equals(""))
         {
             alert = new Alert(Alert.AlertType.ERROR, "Input Telephone number!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (ImageFile.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "You have to add an image!", ButtonType.CANCEL);
             alert.showAndWait();
         }
         else

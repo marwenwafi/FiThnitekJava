@@ -128,7 +128,7 @@ public class UserController {
     public void enableDisable(String username, int state)
     {
         try {
-            String requete = "UPDATE fos_user SET enabled="+state+" WHERE username=" + username;
+            String requete = "UPDATE fos_user SET enabled="+state+" WHERE username='" + username+"'";
             Statement st = cnx.createStatement();
             st.executeUpdate(requete);
             System.out.println("User modifiée !");

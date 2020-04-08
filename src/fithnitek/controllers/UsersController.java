@@ -138,7 +138,11 @@ public class UsersController implements Initializable {
 
     @FXML
     private void enable(MouseEvent event) {
-        
+        if (rowData.getEnabled()==0)
+            uc.enableDisable(rowData.getUsername(), 1);
+        else
+            uc.enableDisable(rowData.getUsername(), 0);
+        refresh();
     }
     
     private void enableEnableButton() {

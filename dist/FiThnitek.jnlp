@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="FiThnitek.jar" size="114530" download="eager" />
+    <jar href="FiThnitek.jar" size="114777" download="eager" />
     <jar href="lib\fxgraphics2d-1.6.jar" size="20619" download="eager" />
     <jar href="lib\jcommon-1.0.17.jar" size="506386" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
