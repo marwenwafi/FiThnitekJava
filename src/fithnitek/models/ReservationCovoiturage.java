@@ -11,7 +11,7 @@ package fithnitek.models;
  */
 public class ReservationCovoiturage {
     
-     private int idreservationcov ; 
+    private int idreservationcov ; 
     private int idutilisateurr ; 
     private int idoffrer ; 
     private int numberplacer ; 
@@ -20,6 +20,7 @@ public class ReservationCovoiturage {
     private String depart ; 
     private String date ; 
     private String username ; 
+    private String username2 ; 
     private int number  ; 
     private int numberplaceo;
     private int idutilisateur ; 
@@ -30,7 +31,7 @@ public class ReservationCovoiturage {
         this.numberplacer = numberplacer;
         this.prixt = prixt;
     }
-public ReservationCovoiturage(int idreservationcov, int idutilisateurr, int idoffrer, int numberplacer, float prixt,String destination,String depart,String date,String username,int number,int numberplaceo,int idutilisateur) {
+public ReservationCovoiturage(int idreservationcov, int idutilisateurr, int idoffrer, int numberplacer, float prixt,String destination,String depart,String date,String username,int number,int numberplaceo,int idutilisateur,String username2) {
         this.idreservationcov = idreservationcov;
         this.idutilisateurr = idutilisateurr;
         this.idoffrer = idoffrer;
@@ -43,6 +44,7 @@ public ReservationCovoiturage(int idreservationcov, int idutilisateurr, int idof
         this.number = number ; 
         this.numberplaceo = numberplaceo;
         this.idutilisateur = idutilisateur ; 
+        this.username2 = username2 ; 
                 }
     public ReservationCovoiturage(int idutilisateurr, int idoffrer, int numberplacer, float prixt) {
         this.idutilisateurr = idutilisateurr;
@@ -83,6 +85,14 @@ public ReservationCovoiturage(int idreservationcov, int idutilisateurr, int idof
         this.idoffrer = idoffrer;
     }
 
+    public String getUsername2() {
+        return username2;
+    }
+
+    public void setUsername2(String username2) {
+        this.username2 = username2;
+    }
+
     public void setNumberplacer(int numberplacer) {
         this.numberplacer = numberplacer;
     }
@@ -117,8 +127,10 @@ public ReservationCovoiturage(int idreservationcov, int idutilisateurr, int idof
 
     @Override
     public String toString() {
-        return "ReservationCovoiturage{" + "idreservationcov=" + idreservationcov + ", idutilisateurr=" + idutilisateurr + ", idoffrer=" + idoffrer + ", numberplacer=" + numberplacer + ", prixt=" + prixt + ", destination=" + destination + ", depart=" + depart + ", date=" + date + ", username=" + username + ", number=" + number + ", numberplaceo=" + numberplaceo + ", idutilisateur=" + idutilisateur + '}';
+        return "ReservationCovoiturage{" + "idreservationcov=" + idreservationcov + ", idutilisateurr=" + idutilisateurr + ", idoffrer=" + idoffrer + ", numberplacer=" + numberplacer + ", prixt=" + prixt + ", destination=" + destination + ", depart=" + depart + ", date=" + date + ", username=" + username + ", username2=" + username2 + ", number=" + number + ", numberplaceo=" + numberplaceo + ", idutilisateur=" + idutilisateur + '}';
     }
+
+    
 
     public int getIdutilisateur() {
         return idutilisateur;
@@ -155,7 +167,6 @@ public ReservationCovoiturage(int idreservationcov, int idutilisateurr, int idof
     public void setNumberplaceo(int numberplaceo) {
         this.numberplaceo = numberplaceo;
     }
-
     
     
 

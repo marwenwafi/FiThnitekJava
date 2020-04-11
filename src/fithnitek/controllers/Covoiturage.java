@@ -6,6 +6,7 @@
 package fithnitek.controllers;
 
 import fithnitek.models.OffreCovoiturage;
+import fithnitek.models.User;
 import fithnitek.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ import java.util.Date;
  * @author lenovo
  */
 public class Covoiturage {
-   Connection cnx = DataSource.getInstance().getCnx();
+  Connection cnx = DataSource.getInstance().getCnx();
 
     
     public void ajouteroffrecovoiturage(OffreCovoiturage t) {
@@ -77,13 +78,13 @@ public void modifieroffrecovoiturage(int id,int idutilisateur,String depart ,Str
     }
 public List<OffreCovoiturage> afficheroffrecovoiturageback() {
         List<OffreCovoiturage> list = new ArrayList<>();
-
+  
         try {
-            String requete = "SELECT * from offre_covoiturage ";
+            String requete = "SELECT * from offre_covoiturage inner join fos_user on offre_covoiturage.idutilisateur = fos_user.id ORDER BY date,nbrplaceo  ";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture")));
+                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture"),rs.getString("email"),rs.getInt("tel")));
             }
 
         } catch (SQLException ex) {
@@ -109,6 +110,42 @@ public String selectmailuser(int idu) {
 
         return mail;
     }
+public int selectUser (String email )
+{int id = 0 ; 
+try {
+            String requete = "SELECT id from fos_user where email = ?  ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+             pst.setString(1,email);
+            ResultSet rs = pst.executeQuery();
+            rs.next(); 
+            id = rs.getInt("id"); 
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return id;
+}
+public List <User> selectallusers ()
+{System.out.println("famech");
+  List<User> list = new ArrayList<>();
+
+   try {
+            String requete = "SELECT * from fos_user ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+          
+            while (rs.next()) {
+                list.add(new User(rs.getString("email")));
+            
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
+}
 public List<OffreCovoiturage> afficherallcovoiturage(int idu) {
         List<OffreCovoiturage> list = new ArrayList<>();
 Date actuelle = new Date();
@@ -135,12 +172,12 @@ public List<OffreCovoiturage> affichercovoiturageutilisateur(int idu) {
         List<OffreCovoiturage> list = new ArrayList<>();
 
         try {
-            String requete = "SELECT * from offre_covoiturage where idutilisateur = ? ";
+            String requete = "SELECT * from offre_covoiturage inner join fos_user on offre_covoiturage.idutilisateur = fos_user.id where idutilisateur = ? ";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1,idu);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture")));
+                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture"),rs.getString("username"),rs.getInt("nbroffre")));
             }
 
         } catch (SQLException ex) {
@@ -153,7 +190,7 @@ public List<OffreCovoiturage> rechercheoffre(int idu,int nbrplace,String Date,St
         List<OffreCovoiturage> list = new ArrayList<>();
 
         try {
-            String requete = "select * from offre_covoiturage  where nbrplaceo >= ? and idutilisateur != ? and date = ? and destination LIKE ? and depart LIKE ?";
+            String requete = "select * from offre_covoiturage o  inner join fos_user x on o.idutilisateur=x.id  where nbrplaceo >= ? and idutilisateur != ? and date = ? and destination LIKE ? and depart LIKE ?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1,nbrplace);
             pst.setInt(2,idu);
@@ -162,7 +199,7 @@ public List<OffreCovoiturage> rechercheoffre(int idu,int nbrplace,String Date,St
             pst.setString(5,"%"+depart+"%");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture")));
+                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture"),rs.getString("username"),rs.getInt("tel")));
             }
 
         } catch (SQLException ex) {
@@ -177,7 +214,7 @@ Date actuelle = new Date();
  DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
  String dat = dateFormat.format(actuelle);
         try {
-            String requete = "SELECT * from offre_covoiturage where idutilisateur != ? and nbrplaceo != 0 and date > ? ORDER BY prix DESC ";
+            String requete = "SELECT * from offre_covoiturage o inner join fos_user x on o.idutilisateur=x.id where idutilisateur != ? and nbrplaceo != 0 and date > ? ORDER BY prix DESC ";
             PreparedStatement pst = cnx.prepareStatement(requete);
             
             pst.setInt(1,idu);
@@ -185,7 +222,7 @@ Date actuelle = new Date();
            
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture")));
+                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture"),rs.getString("username"),rs.getInt("tel")));
             }
 
         } catch (SQLException ex) {
@@ -201,7 +238,7 @@ Date actuelle = new Date();
  DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
  String dat = dateFormat.format(actuelle);
         try {
-            String requete = "SELECT * from offre_covoiturage where idutilisateur != ? and nbrplaceo != 0 and date > ? ORDER BY prix ASC ";
+            String requete = "SELECT * from offre_covoiturage o inner join fos_user x on o.idutilisateur=x.id where idutilisateur != ? and nbrplaceo != 0 and date > ? ORDER BY prix ASC ";
             PreparedStatement pst = cnx.prepareStatement(requete);
             
             pst.setInt(1,idu);
@@ -209,7 +246,7 @@ Date actuelle = new Date();
            
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture")));
+                list.add(new OffreCovoiturage(rs.getInt("idoffrecovoiturage"),rs.getInt("idutilisateur"), rs.getString("destination"), rs.getString("depart"),rs.getString("date"),rs.getInt("nbrplaceo"),rs.getFloat("prix"),rs.getString("voiture"),rs.getString("username"),rs.getInt("tel")));
             }
 
         } catch (SQLException ex) {
@@ -230,6 +267,23 @@ public void updateplacesoffrecovoiturage(int id,int nbr) {
             
             pst.executeUpdate();
             System.out.println("Offre modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+public void updateplacesoffreuser(int id,int nbr) {
+        try {
+            String requete = "UPDATE fos_user SET nbroffre=? WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(2,id);
+            
+           
+             pst.setInt(1,nbr);
+             
+            
+            pst.executeUpdate();
+            System.out.println("nbrOffre modifiée !");
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

@@ -153,7 +153,7 @@ public class AfficherOffreCovoiturageController implements Initializable {
 String email = sp.selectmailuser(e.getIdutilisateur());
 String text = "You carsharing offer has been deleted : The details of the Offre are :" +" \n Destination "+e.getDestination()+" \n Departure "+e.getDepart()+" \n Date "+e.getDate()+"\n Price "+e.getPrix()+" \n Places "+e.getNbrplace()+"\n Car "+e.getVoiture() ;
        test.SendMail(email,"Carsharing Deleted",text);
-       notification("You have Deleted an carpooling offer");
+     notification("You have Deleted an carpooling offer","src/GUIcovoiturage/deleteoffre.wav");
         //productTable.getItems().clear();
   
         id_afficheroffre.getItems().clear();
@@ -251,7 +251,8 @@ else
 String email = sp.selectmailuser(e.getIdutilisateur());
 String text = "You carsharing offer has been update : The details of the Offre are : "+"\n Old Destination "+e.getDestination()+" New Destination :  "+id_destupdate.getText()+" \n Old Departure : "+e.getDepart()+"New Departure : "+id_depupdate.getText() +"\n Old Date :  "+e.getDate()+" New Date : "+dateoffre+" \n Old Price :  "+e.getPrix()+"New Price : "+id_priceupdate.getText()+" \n Old Places : "+e.getNbrplace()+" New places : "+id_nbrupdate.getText()+" \n Old Car : "+e.getVoiture() + "New Car : "+id_voitureupdate.getText() ;
        mail.SendMail(email,"Carsharing Updated",text);
-             id_afficheroffre.getItems().clear();
+      notification("You have updated an offer ","src/GUIcovoiturage/updateoffre.wav");   
+       id_afficheroffre.getItems().clear();
         refresh();
         }
            
@@ -306,12 +307,17 @@ else
             Covoiturage sp = new Covoiturage();	
             
             sp.ajouteroffrecovoiturage(o1);
+            int nbrinit = o1.getNumber() ; 
+            int jdid = nbrinit+1 ;
+            System.out.println(o1.getIdutilisateur());
+            sp.updateplacesoffreuser(o1.getIdutilisateur(),jdid);
+            
             JavaMail mail = new JavaMail();
 String email = sp.selectmailuser(o1.getIdutilisateur());
 String text = "You have just added an offer : The details of the Offre are :" +" \n Destination "+id_destupdate.getText()+" \n Departure "+id_depupdate.getText()+" \n Date "+dateoffre+"\n Price "+id_priceupdate.getText()+" \n Places "+id_nbrupdate.getText()+"\n Car "+id_voitureupdate.getText() ;
        mail.SendMail(email,"Carsharing Offer ",text);
-       notification("You have added an offer of carpooling");
-           // playmusic("src/GUI/addoffer.wav");
+       notification("You have added an offer of carpooling","src/GUIcovoiturage/addedoffre.wav");
+          
            id_afficheroffre.getItems().clear();
         refresh();
          
@@ -368,7 +374,7 @@ catch (IOException e)
     System.out.print("error");
 }
 }
-public void notification (String text){
+public void notification (String text,String path){
 Image check = new Image("GUIcovoiturage/logosghir.png");
      Notifications notificationBuilder= Notifications.create()
              .title("Carpooling Notification")
@@ -382,6 +388,7 @@ Image check = new Image("GUIcovoiturage/logosghir.png");
                 System.out.println("enti nzelt ");
             }
         });
+     playmusic(path);
       // notificationBuilder;
      notificationBuilder.show();
 }

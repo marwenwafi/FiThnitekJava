@@ -8,6 +8,7 @@ package fithnitek.controllers;
 
 
 import fithnitek.models.ReservationCovoiturage;
+import fithnitek.models.User;
 import fithnitek.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,7 +41,48 @@ public class ReservationCovoiturageService {
             System.err.println(ex.getMessage());
         }
     }
-    
+     public List<ReservationCovoiturage> afficherreservationcovoiturageall()
+     {
+     List<ReservationCovoiturage> list = new ArrayList<>();
+
+        try {
+            String requete = "SELECT * from reservation_covoiturage  Inner join offre_covoiturage on reservation_covoiturage.idoffrer = offre_covoiturage.idoffrecovoiturage Inner join fos_user on reservation_covoiturage.idutilisateurr = fos_user.id ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+           // pst.setInt(1,idu);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                list.add(new ReservationCovoiturage(rs.getInt("idreservationcov"),rs.getInt("idutilisateurr"),rs.getInt("idoffrer"),rs.getInt("nbrplacer"),rs.getInt("prixt"),rs.getString("destination"),rs.getString("depart"),rs.getString("date"),rs.getString("username"),rs.getInt("tel"),rs.getInt("nbrplaceo"),rs.getInt("idutilisateur"),rs.getString("username")));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
+     }
+     public List <User> selectuser (int idu) 
+     {
+     System.out.println("famech");
+  List<User> list = new ArrayList<>();
+
+   try {
+            String requete = "SELECT * from fos_user  where id = ?";
+            
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, idu);
+            ResultSet rs = pst.executeQuery();
+          
+            while (rs.next()) {
+                list.add(new User(rs.getString("email"),rs.getString("username"),rs.getInt("tel")));
+            
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
+     }
     public List<ReservationCovoiturage> afficherreservationcovoiturageutilisateur(int idu) {
         List<ReservationCovoiturage> list = new ArrayList<>();
 
@@ -50,7 +92,7 @@ public class ReservationCovoiturageService {
             pst.setInt(1,idu);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new ReservationCovoiturage(rs.getInt("idreservationcov"),rs.getInt("idutilisateurr"),rs.getInt("idoffrer"),rs.getInt("nbrplacer"),rs.getInt("prixt"),rs.getString("destination"),rs.getString("depart"),rs.getString("date"),rs.getString("username"),rs.getInt("tel"),rs.getInt("nbrplaceo"),rs.getInt("idutilisateur")));
+                list.add(new ReservationCovoiturage(rs.getInt("idreservationcov"),rs.getInt("idutilisateurr"),rs.getInt("idoffrer"),rs.getInt("nbrplacer"),rs.getInt("prixt"),rs.getString("destination"),rs.getString("depart"),rs.getString("date"),rs.getString("username"),rs.getInt("tel"),rs.getInt("nbrplaceo"),rs.getInt("idutilisateur"),rs.getString("username")));
             }
 
         } catch (SQLException ex) {

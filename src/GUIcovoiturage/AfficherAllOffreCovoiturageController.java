@@ -10,18 +10,26 @@ import fithnitek.models.ReservationCovoiturage;
 import fithnitek.controllers.Covoiturage;
 import fithnitek.controllers.ReservationCovoiturageService;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -34,6 +42,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 /**
  * FXML Controller class
@@ -55,6 +67,8 @@ public class AfficherAllOffreCovoiturageController implements Initializable {
          
     @FXML
     private TableView<OffreCovoiturage> id_afficheroffre;
+    @FXML
+    private TableView<OffreCovoiturage> id_afficheroffreback;
     @FXML
     private TableColumn<OffreCovoiturage, String> id_destination;
     @FXML
@@ -94,6 +108,7 @@ private ObservableList<OffreCovoiturage> data = FXCollections.observableArrayLis
         id_car.setCellValueFactory(new PropertyValueFactory<>("voiture"));
         id_drivername.setCellValueFactory(new PropertyValueFactory<>("username"));
         id_afficheroffre.setItems(data);
+       // id_afficheroffreback.setItems(data);
         File file = new File("src/GUIcovoiturage/logo.png");
         Image image = new Image(file.toURI().toString());
         imagelogo.setImage(image);
@@ -116,6 +131,7 @@ private ObservableList<OffreCovoiturage> data = FXCollections.observableArrayLis
         id_car.setCellValueFactory(new PropertyValueFactory<>("voiture"));
         id_drivername.setCellValueFactory(new PropertyValueFactory<>("username"));
         id_afficheroffre.setItems(data);
+//        id_afficheroffreback.setItems(data);
     }
     public void ordonner1(ActionEvent event)
     {id_afficheroffre.getItems().clear();
@@ -145,17 +161,38 @@ private ObservableList<OffreCovoiturage> data = FXCollections.observableArrayLis
         id_nbr.setCellValueFactory(new PropertyValueFactory<>("nbrplace"));
         id_price.setCellValueFactory(new PropertyValueFactory<>("prix"));
         id_car.setCellValueFactory(new PropertyValueFactory<>("voiture"));
-          id_drivername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        id_drivername.setCellValueFactory(new PropertyValueFactory<>("username"));
+          
         id_afficheroffre.setItems(data);
         
     }
     public void rechercheoffrecovoiturage(ActionEvent event)
     {id_afficheroffre.getItems().clear();
-    LocalDate test = id_datefind.getValue();
-    String dateoffre = test.toString();
+    
+    
     Covoiturage c = new Covoiturage();
-  // ev = c.rechercheoffre(4,2,"2025-25-25","c","t");
-
+ 
+ if(id_datefind.getValue() == null || "".equals(id_nbrfind.getText()) || "".equals(id_destfind.getText()) || "".equals(id_depfind.getText()) ) 
+ {
+ Alert alert = new Alert(Alert.AlertType.ERROR);
+       alert.setTitle("Error Dialog");
+       alert.setHeaderText("Please enter all the informations  ");
+         alert.showAndWait();
+         refresh(); 
+ }
+ else 
+ {
+ try 
+ {LocalDate test = id_datefind.getValue();
+ String dateoffre = test.toString();
+     Date actuelle = new Date();
+  DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+  String dat = dateFormat.format(actuelle);
+  ZoneId defaultZoneId = ZoneId.systemDefault();
+  Date date = Date.from(test.atStartOfDay(defaultZoneId).toInstant());
+ int numSms = Integer.parseInt(id_nbrfind.getText());
+  if (Integer.valueOf(id_nbrfind.getText()) > 0 && date.after(actuelle))
+        {
         ev = c.rechercheoffre(5,Integer.valueOf(id_nbrfind.getText()),dateoffre,id_destfind.getText(),id_depfind.getText());
         System.out.print(ev);
         data.addAll(ev);
@@ -167,8 +204,30 @@ private ObservableList<OffreCovoiturage> data = FXCollections.observableArrayLis
         id_car.setCellValueFactory(new PropertyValueFactory<>("voiture"));
           id_drivername.setCellValueFactory(new PropertyValueFactory<>("username"));
         id_afficheroffre.setItems(data);
-        
-    }
+        }
+        else 
+        {
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+       alert.setTitle("Error Dialog");
+       alert.setHeaderText("Please enter a positive number and a recent date  ");
+         alert.showAndWait();
+         refresh(); 
+        }
+ }
+ catch(NumberFormatException e)
+         {
+         Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("The number of places must be a number");
+            alert.showAndWait();
+         refresh();
+         }
+ }
+ 
+ }
+       
+    
+    
     public void ajoutreservationcovoiturage(ActionEvent event) throws Exception
     {
        OffreCovoiturage e = id_afficheroffre.getSelectionModel().getSelectedItem(); 
@@ -183,7 +242,7 @@ private ObservableList<OffreCovoiturage> data = FXCollections.observableArrayLis
                {
                    ReservationCovoiturageService cr = new ReservationCovoiturageService() ;
        Covoiturage c = new Covoiturage(); 
-       if(e.getNbrplace() >= Integer.valueOf(id_nbrreserv.getText()))
+       if(e.getNbrplace() >= Integer.valueOf(id_nbrreserv.getText()) && Integer.valueOf(id_nbrreserv.getText()) > 0 )
        {
        float pricet = Integer.valueOf(id_nbrreserv.getText())*e.getPrix();
        int nnbr = e.getNbrplace()-Integer.valueOf(id_nbrreserv.getText());
@@ -200,6 +259,8 @@ private ObservableList<OffreCovoiturage> data = FXCollections.observableArrayLis
        String email2=c.selectmailuser(r.getIdutilisateurr());
        String text2 = "You Have just reserved : "+id_nbrreserv.getText()+" places for this offer"+"\n Destination : "+e.getDestination()+"\n Departure : "+e.getDepart()+"\n Date : "+e.getDate()+" \n Price : "+pricet+"\n Drive name : "+e.getUsername()+"\n Driver Number : "+e.getNumber() ;
        test.SendMail(email2,"Carsharing Reservation",text2);
+       String not = "You have reserved "+id_nbrreserv.getText()+"places";
+       notification(not,"src/GUIcovoiturage/addres.wav");
        refresh();
        }
        else 
@@ -228,6 +289,20 @@ private ObservableList<OffreCovoiturage> data = FXCollections.observableArrayLis
        stage.close();
     
     }
+     public void redirectionversreservationback(ActionEvent event) throws IOException
+    {
+     
+           Parent root = FXMLLoader.load(getClass().getResource("AffichageReservationBack.fxml"));
+           Scene scene = new Scene(root);
+           Stage newWindow = new Stage();
+           newWindow.setTitle("Carpolling ");
+           newWindow.setScene(scene);
+           newWindow.show();
+        final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
+    
+    }
     public void redirectionveroffre(ActionEvent event) throws IOException
     {
      
@@ -242,6 +317,52 @@ private ObservableList<OffreCovoiturage> data = FXCollections.observableArrayLis
        stage.close();
     
     }
+    public void redirectionveroffreback(ActionEvent event) throws IOException
+    {
+     
+           Parent root = FXMLLoader.load(getClass().getResource("AfficherOffreCovoiturageBack.fxml"));
+           Scene scene = new Scene(root);
+           Stage newWindow = new Stage();
+           newWindow.setTitle("Carpolling ");
+           newWindow.setScene(scene);
+           newWindow.show();
+        final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
+    
+    }
+    public void playmusic(String filepath) 
+{
+  InputStream in ; 
+try 
+{
+in = new FileInputStream(new File(filepath));
+AudioStream audios  = new AudioStream(in); 
+AudioPlayer.player.start(audios);
+}
+catch (IOException e)
+{
+    System.out.print("error");
+}
+}
+    public void notification (String text,String path){
+Image check = new Image("GUIcovoiturage/logosghir.png");
+     Notifications notificationBuilder= Notifications.create()
+             .title("Carpooling Notification")
+             .text(text)
+              .graphic(new ImageView(check))
+              .hideAfter(Duration.seconds(9)) 
+             .position(Pos.BOTTOM_RIGHT)
+             .onAction(new  EventHandler<ActionEvent>( ) {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("enti nzelt ");
+            }
+        });
+      // notificationBuilder;
+      playmusic(path);
+     notificationBuilder.show();
+}
     
     
 }

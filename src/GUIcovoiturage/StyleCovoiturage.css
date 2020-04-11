@@ -167,7 +167,7 @@
    -fx-border-color : #18a3bb ;
    -fx-border-width: 2px;    
 }
-#id_destupdate,#id_depupdate,#id_nbrupdate,#id_priceupdate,#id_voitureupdate,#id_dateupdate
+#id_destupdate,#id_depupdate,#id_nbrupdate,#id_priceupdate,#id_voitureupdate,#id_dateupdate,#user
 {
   -fx-border-color: grey ;
  -fx-border-radius: 10px;
@@ -202,6 +202,36 @@
     -fx-text-fill: white;
      
    }
+ #Bbacktothemenuback,#BYourReservationback,#BCarsharingoffersback{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill:black ;
+    -fx-border-color : black ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #Bbacktothemenuback:hover,#BYourReservationback:hover,#BCarsharingoffersback:hover
+ {
+    -fx-background-color:Black;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+ } 
+ #id_afficheroffreback 
+ {
+  -fx-border-color : black ;
+     -fx-border-width: 2px;   
+ }
+#id_carsharingofferback,#id_carsharingoffersback 
+{
+   -fx-background-color: #F9F9F9; 
+   -fx-border-color : black ;
+   -fx-border-width: 2px;
+   
+}
+
 
 
 

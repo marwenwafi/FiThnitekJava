@@ -20,6 +20,7 @@ public class OffreCovoiturage {
     private String voiture ; 
     private String username ; 
     private int number ; 
+    
 
     public OffreCovoiturage(int idutilisateur, String destination, String depart, String date, int nbrplace, float prix, String voiture) {
         //this.id = id;
@@ -141,5 +142,6 @@ public class OffreCovoiturage {
     public void setNumber(String prenom) {
         this.number = number;
     }
+
    
 }

@@ -10,7 +10,9 @@ import fithnitek.models.ReservationCovoiturage;
 import fithnitek.controllers.Covoiturage;
 import fithnitek.controllers.ReservationCovoiturageService;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,9 +26,11 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,6 +42,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 /**
  * FXML Controller class
@@ -47,6 +55,7 @@ import javafx.stage.Stage;
 public class AfficherReservationCovoiturageController implements Initializable {
 @FXML
     private TableView<ReservationCovoiturage> id_afficherres;
+
     @FXML
     private TableColumn<ReservationCovoiturage, Integer> id_numberofplaces;
     @FXML
@@ -83,7 +92,7 @@ public class AfficherReservationCovoiturageController implements Initializable {
         id_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         id_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         id_number.setCellValueFactory(new PropertyValueFactory<>("number"));
-        File file = new File("src/GUI/logo.png");
+        File file = new File("src/GUIcovoiturage/logo.png");
         Image image = new Image(file.toURI().toString());
         imagelogo.setImage(image);
         id_afficherres.setItems(data);
@@ -117,6 +126,7 @@ ReservationCovoiturage e = id_afficherres.getSelectionModel().getSelectedItem();
         if(result.get() == ButtonType.OK)
         { ReservationCovoiturageService sr = new ReservationCovoiturageService();
           sr.supprimerreservationcovoiturage(e.getIdreservationcov());
+           notification("You have deleted an reservation","src/GUIcovoiturage/deleteres.wav");
           id_afficherres.getItems().clear();
           refresh();   
         }
@@ -144,6 +154,7 @@ ReservationCovoiturage e = id_afficherres.getSelectionModel().getSelectedItem();
        String email2=sc.selectmailuser(e.getIdutilisateurr());
        String text2 = "You have canceled a reservation " ;
        test.SendMail(email2,"Carsharing Reservation",text2);
+       notification("You have deleted an reservation","src/GUIcovoiturage/deleteres.wav");
          id_afficherres.getItems().clear();
          refresh();
         }
@@ -173,6 +184,7 @@ public void refresh()
         id_number.setCellValueFactory(new PropertyValueFactory<>("number"));
         id_afficherres.setItems(data); 
     }
+
   public void redirectionversafficherallofre(ActionEvent event) throws IOException
     {
      
@@ -200,4 +212,36 @@ public void refresh()
            stage.close();
     
     }
+  public void playmusic(String filepath) 
+{
+  InputStream in ; 
+try 
+{
+in = new FileInputStream(new File(filepath));
+AudioStream audios  = new AudioStream(in); 
+AudioPlayer.player.start(audios);
+}
+catch (IOException e)
+{
+    System.out.print("error");
+}
+}
+  public void notification (String text,String path){
+Image check = new Image("GUIcovoiturage/logosghir.png");
+     Notifications notificationBuilder= Notifications.create()
+             .title("Carpooling Notification")
+             .text(text)
+              .graphic(new ImageView(check))
+              .hideAfter(Duration.seconds(9)) 
+             .position(Pos.BOTTOM_RIGHT)
+             .onAction(new  EventHandler<ActionEvent>( ) {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("enti nzelt ");
+            }
+        });
+      // notificationBuilder;
+      playmusic(path);
+     notificationBuilder.show();
+}
 }
