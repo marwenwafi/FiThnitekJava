@@ -7,7 +7,7 @@
 	-fx-text-fill: white;
 
 }
-#anchorpane_center, #anchorpane_left, #anchorpane_right , #anchorpane_backhome{
+#anchorpane_center, #anchorpane_left, #anchorpane_right , #anchorpane_backhome , #anchorpane_left1 , #anchorpane_right1{
 	-fx-border-style: dotted;
 }
 #anchorpane_backhome{
@@ -27,6 +27,16 @@
     -fx-font-size: 15px;
     -fx-padding: 10 20 10 20;}
 
+#btn_backnoir ,#btn_noir1 , #btn_noire2 
+{-fx-background-color: black;
+          -fx-font-weight: bold;
+         -fx-background-radius: 30;
+         
+      
+    -fx-text-fill: white;
+   
+    -fx-font-size: 15px;
+    -fx-padding: 10 20 10 20;}
 
 #btn_back1:hover 
 {    -fx-font-weight: bold;
@@ -213,9 +223,39 @@
       -fx-border-radius:20;
     -fx-font-size: 15px;
 }
-#btn_search,#btn_sort {
-	-fx-background-color: 	darkcyan;
+#btn_search,#btn_sort ,#btn_pdffront ,#btn_sort1, #btn_sort3 , #upadateprofile , #logout {
+	
+        -fx-font-weight: bold;
+    
+    -fx-background-color: darkcyan;
+     -fx-background-radius: 30;
+         
+      -fx-padding: 10 20 10 20;
+    -fx-text-fill: white;
+    -fx-border-width:3;
+     -fx-border-color : white;
+      -fx-border-radius:20;
+    -fx-font-size: 15px;
+        
 }
+/*
+#btn_search:hover , #btn_sort:hover
+
+{ -fx-font-weight: bold;
+    
+    -fx-background-color: white;
+     -fx-background-radius: 30;
+         
+      -fx-padding: 10 20 10 20;
+    -fx-text-fill: darkcyan;
+    -fx-border-width:3;
+     -fx-border-color : darkcyan;
+      -fx-border-radius:20;
+    -fx-font-size: 15px;
+    
+    
+    
+}*/
 #btn_print_preview{
 	-fx-background-color: rgb(54,119,171);
 }
