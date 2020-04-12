@@ -125,10 +125,38 @@ public class UserController {
         return u;
     }
     
+    public User findByEmail(String email) {
+        User u = null;
+        try {
+            String requete = "SELECT id,username,email FROM fos_user where email='"+email+"';";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            rs.next();
+                u = new User(rs.getInt("id"),rs.getString("email"),rs.getString("username"),null,
+                        null,0, null,null,0,0,null,0,null);
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return u;
+    }
+    
     public void enableDisable(String username, int state)
     {
         try {
             String requete = "UPDATE fos_user SET enabled="+state+" WHERE username='" + username+"'";
+            Statement st = cnx.createStatement();
+            st.executeUpdate(requete);
+            System.out.println("User modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+    public void updatePassword(String username, String pwd)
+    {
+        try {
+            String requete = "UPDATE fos_user SET password='"+pwd+"' WHERE username='" + username+"'";
             Statement st = cnx.createStatement();
             st.executeUpdate(requete);
             System.out.println("User modifiée !");

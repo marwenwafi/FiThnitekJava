@@ -8,12 +8,15 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="FiThnitek.jar" size="114777" download="eager" />
+    <jar href="FiThnitek.jar" size="126374" download="eager" />
+    <jar href="lib\activation-1.1.jar" size="62983" download="eager" />
+    <jar href="lib\commons-io-2.4.jar" size="185140" download="eager" />
     <jar href="lib\fxgraphics2d-1.6.jar" size="20619" download="eager" />
     <jar href="lib\jcommon-1.0.17.jar" size="506386" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
     <jar href="lib\jfreechart-1.5.0.jar" size="1559088" download="eager" />
     <jar href="lib\jfreechart-fx-1.0.0.jar" size="27962" download="eager" />
+    <jar href="lib\mail-1.4.7.jar" size="521157" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="FiThnitek" >

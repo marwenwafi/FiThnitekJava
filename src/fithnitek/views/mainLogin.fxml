@@ -5,7 +5,9 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -55,10 +57,16 @@
                   <Font size="16.0" />
                </font>
             </JFXPasswordField>
-            <Text fill="#2d9cfc" layoutX="195.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot password?">
+            <Text fill="#2d9cfc" layoutX="195.0" layoutY="349.0" onMouseClicked="#showforgot" strokeType="OUTSIDE" strokeWidth="0.0" text="Forgot password?">
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
             </Text>
             <JFXButton layoutX="62.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#attemptLogin" prefHeight="40.0" prefWidth="250.0" text="Sign in" textAlignment="CENTER">
                <font>
@@ -69,6 +77,12 @@
                <font>
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.4" />
+               </effect>
             </Text>
 
          </children>

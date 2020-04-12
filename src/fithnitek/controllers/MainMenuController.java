@@ -16,8 +16,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+
 
 public class MainMenuController implements Initializable {
     
@@ -31,6 +34,8 @@ public class MainMenuController implements Initializable {
     private Label usernameLabel;
     @FXML
     private JFXButton dashboard;
+    @FXML
+    private ImageView profilePic;
     
     
     
@@ -39,9 +44,10 @@ public class MainMenuController implements Initializable {
         return currentUser;
     }
 
-    public void setCurrentUser(User currentUser, boolean isAdmin) {
+    public void setCurrentUser(User currentUser, boolean isAdmin, Image pic) {
         this.currentUser = currentUser;
         this.welcomename.setText("Welcome: ");
+        this.profilePic.setImage(pic);
         this.usernameLabel.setText(currentUser.getUsername());
         this.dashboard.setVisible(isAdmin);
     }

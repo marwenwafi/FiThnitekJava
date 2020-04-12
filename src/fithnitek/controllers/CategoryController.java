@@ -47,8 +47,6 @@ public class CategoryController implements Initializable {
     @FXML
     private TableView<Category> tableview;
     @FXML
-    private TableColumn<Category, Number> id_c;
-    @FXML
     private TableColumn<Category, String> title_c;
     @FXML
     private TableColumn<Category, String> desc_c;
@@ -194,7 +192,6 @@ public class CategoryController implements Initializable {
     }
     
     
-    
     public void loadRowToModify(Category c)
     {
         title.setText(c.getTitle());
@@ -209,7 +206,6 @@ public class CategoryController implements Initializable {
     {tableview.getItems().clear();
         list = this.afficher();
         data.addAll(list);
-        id_c.setCellValueFactory(new PropertyValueFactory<>("id_Category"));
         title_c.setCellValueFactory(new PropertyValueFactory<>("title"));
         desc_c.setCellValueFactory(new PropertyValueFactory<>("description"));
         type_c.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -222,6 +218,7 @@ public class CategoryController implements Initializable {
         modify.setDisable(true);
         add.setDisable(false);
         delete.setDisable(true);
+        
     }
 
     private void enableDelete() {

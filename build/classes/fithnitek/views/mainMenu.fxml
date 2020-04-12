@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -22,5 +23,6 @@
             <Font name="Ebrima Bold" size="16.0" />
          </font>
       </JFXButton>
+      <ImageView fx:id="profilePic" fitHeight="120.0" fitWidth="150.0" layoutX="358.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

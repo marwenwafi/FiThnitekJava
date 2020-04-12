@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" style="-fx-background-color: #343a40;" styleClass="container" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.ForgotPwdController">
+    <children>
+            <JFXTextField fx:id="email" layoutX="75.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Email" styleClass="jfx-password-field2" unFocusColor="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="send" layoutX="74.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#sendcode" prefHeight="40.0" prefWidth="250.0" text="Send verification code" textAlignment="CENTER">
+               <font>
+                  <Font name="Ebrima Bold" size="16.0" />
+               </font>
+            </JFXButton>
+      <Text fx:id="label" fill="#c2c2c2" layoutX="64.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your email address">
+         <font>
+            <Font name="Ebrima Bold" size="18.0" />
+         </font>
+      </Text>
+      <JFXPasswordField fx:id="password" layoutX="72.0" layoutY="278.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="New Password" styleClass="jfx-password-field2" unFocusColor="WHITE" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXPasswordField fx:id="confirmp" layoutX="72.0" layoutY="332.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Confirm password" styleClass="jfx-password-field2" unFocusColor="WHITE" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXButton fx:id="confirm" layoutX="72.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#confirmNewPwd" prefHeight="40.0" prefWidth="250.0" text="Confirm" textAlignment="CENTER" visible="false">
+         <font>
+            <Font name="Ebrima Bold" size="16.0" />
+         </font>
+      </JFXButton>
+    </children>
+</AnchorPane>

@@ -94,10 +94,9 @@
          </children></Pane>
       <TableView fx:id="tableview" layoutX="238.0" layoutY="52.0" prefHeight="259.0" prefWidth="593.0">
          <columns>
-            <TableColumn fx:id="id_c" prefWidth="40.0" text="Id" />
             <TableColumn fx:id="title_c" prefWidth="110.0" text="Title" />
-            <TableColumn fx:id="desc_c" minWidth="160.0" prefWidth="160.0" text="Description" />
-            <TableColumn fx:id="but_c" prefWidth="40.0" text="But" />
+            <TableColumn fx:id="desc_c" minWidth="170.0" prefWidth="170.0" text="Description" />
+            <TableColumn fx:id="but_c" prefWidth="50.0" text="But" />
             <TableColumn fx:id="start_c" minWidth="80.0" text="Start Date" />
             <TableColumn fx:id="end_c" minWidth="80.0" text="End Date" />
             <TableColumn fx:id="type_c" minWidth="90.0" prefWidth="90.0" text="Type" />

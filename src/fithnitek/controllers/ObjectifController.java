@@ -87,8 +87,6 @@ public class ObjectifController implements Initializable {
     @FXML
     private TableView<Objectif> tableview;
     @FXML
-    private TableColumn<Objectif, Number> id_c;
-    @FXML
     private TableColumn<Objectif, String> title_c;
     @FXML
     private TableColumn<Objectif, String> desc_c;
@@ -114,7 +112,7 @@ public class ObjectifController implements Initializable {
     
     private ObservableList<Objectif> data = FXCollections.observableArrayList();
     List<Objectif> list;
-    Objectif rowData;
+    Objectif rowData = null;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     
     public void ajouter(Objectif o) {
@@ -320,7 +318,6 @@ public class ObjectifController implements Initializable {
     {tableview.getItems().clear();
         list = this.afficher();
         data.addAll(list);
-        id_c.setCellValueFactory(new PropertyValueFactory<>("idOjectif"));
         title_c.setCellValueFactory(new PropertyValueFactory<>("titre"));
         desc_c.setCellValueFactory(new PropertyValueFactory<>("description"));
         start_c.setCellValueFactory(new PropertyValueFactory<>("start_date"));
@@ -334,6 +331,8 @@ public class ObjectifController implements Initializable {
         type.getSelectionModel().select(0);
         start_date.setValue(null);
         end_date.setValue(null);
+        nature = "";
+        rowData = null;
         modify.setDisable(true);
         add.setDisable(false);
         delete.setDisable(true);

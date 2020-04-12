@@ -71,12 +71,11 @@
       <JFXDatePicker fx:id="end_date" layoutX="18.0" layoutY="328.0" prefHeight="30.0" prefWidth="180.0" promptText="End Date" />
       <TableView fx:id="tableview" layoutX="228.0" layoutY="65.0" prefHeight="470.0" prefWidth="600.0">
          <columns>
-            <TableColumn fx:id="id_c" prefWidth="40.0" text="Id" />
-            <TableColumn fx:id="title_c" prefWidth="110.0" text="Title" />
-            <TableColumn fx:id="desc_c" minWidth="160.0" prefWidth="160.0" text="Description" />
+            <TableColumn fx:id="title_c" prefWidth="120.0" text="Title" />
+            <TableColumn fx:id="desc_c" minWidth="160.0" prefWidth="170.0" text="Description" />
             <TableColumn fx:id="size_c" prefWidth="40.0" text="Size" />
-            <TableColumn fx:id="start_c" minWidth="80.0" text="Start Date" />
-            <TableColumn fx:id="end_c" minWidth="80.0" text="End Date" />
+            <TableColumn fx:id="start_c" minWidth="80.0" prefWidth="90.0" text="Start Date" />
+            <TableColumn fx:id="end_c" minWidth="80.0" prefWidth="90.0" text="End Date" />
             <TableColumn fx:id="category_c" minWidth="90.0" prefWidth="90.0" text="Category" />
          </columns>
       </TableView>

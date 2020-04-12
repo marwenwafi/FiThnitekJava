@@ -13,19 +13,19 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="840.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.UsersController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="216.0" style="-fx-background-color: #e4e4e4;">
+      <Pane fx:id="pane" prefHeight="600.0" prefWidth="216.0" style="-fx-background-color: #e4e4e4;">
          <children>
             <Label layoutX="32.0" layoutY="14.0" text="Add/Modify User">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="add" layoutX="18.0" layoutY="494.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#addObjectif" prefHeight="40.0" prefWidth="180.0" text="Add" textAlignment="CENTER">
+            <JFXButton fx:id="add" layoutX="18.0" layoutY="494.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#addUser" prefHeight="40.0" prefWidth="180.0" text="Add" textAlignment="CENTER">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="modify" layoutX="17.0" layoutY="543.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#modifyObjectif" prefHeight="40.0" prefWidth="180.0" text="Modify" textAlignment="CENTER">
+            <JFXButton fx:id="modify" layoutX="17.0" layoutY="543.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#modifyUser" prefHeight="40.0" prefWidth="180.0" text="Modify" textAlignment="CENTER">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
@@ -55,7 +55,7 @@
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="tel" layoutX="14.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#processKeyEvent" prefHeight="35.0" prefWidth="188.0" promptText="Telephone" styleClass="jfx-password-field2" unFocusColor="WHITE">
+            <JFXTextField fx:id="tel" layoutX="14.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#processKeyEvent" onKeyTyped="#processKeyEvent" prefHeight="35.0" prefWidth="188.0" promptText="Telephone" styleClass="jfx-password-field2" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -71,11 +71,10 @@
       </Label>
       <TableView fx:id="tableview" layoutX="238.0" layoutY="52.0" prefHeight="430.0" prefWidth="594.0">
          <columns>
-            <TableColumn fx:id="id_c" prefWidth="40.0" text="Id" />
             <TableColumn fx:id="username_c" prefWidth="110.0" text="Username" />
             <TableColumn fx:id="email_c" minWidth="160.0" prefWidth="160.0" text="Email" />
             <TableColumn fx:id="enabled_c" prefWidth="50.0" text="Enabled" />
-            <TableColumn fx:id="tel_c" minWidth="80.0" text="Telephone" />
+            <TableColumn fx:id="tel_c" minWidth="100.0" prefWidth="100.0" text="Telephone" />
             <TableColumn fx:id="nbrOffre_c" minWidth="80.0" text="Nbr Offre" />
             <TableColumn fx:id="point_c" minWidth="90.0" prefWidth="90.0" text="Points" />
          </columns>

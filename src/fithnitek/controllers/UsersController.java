@@ -10,20 +10,41 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import static fithnitek.controllers.RegistrationController.isValid;
+import fithnitek.utils.BCryptPasswordEncoder;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * FXML Controller class
@@ -31,7 +52,9 @@ import javafx.scene.input.MouseEvent;
  * @author marwe
  */
 public class UsersController implements Initializable {
-
+    
+    @FXML
+    private Pane pane;
     @FXML
     private JFXButton add;
     @FXML
@@ -55,8 +78,6 @@ public class UsersController implements Initializable {
     @FXML
     private TableView<User> tableview;
     @FXML
-    private TableColumn<User, Number> id_c;
-    @FXML
     private TableColumn<User, String> username_c;
     @FXML
     private TableColumn<User, String> email_c;
@@ -75,6 +96,12 @@ public class UsersController implements Initializable {
     private UserController uc = new UserController();
     private List<User> list;
     private User rowData;
+    BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    Alert alert;
+    File selectedFile = null;
+    private String ImageFile = "";
+    
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,35 +114,176 @@ public class UsersController implements Initializable {
                 enableEnableButton();
             }
             if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                //loadRowToModify(rowData);
+                loadRowToModify(rowData);
             }
         });
         return row ;
         });
     }    
 
-    @FXML
-    private void addObjectif(MouseEvent event) {
+     @FXML
+    private void addUser(MouseEvent event) throws IOException {
+        String un = username.getText();
+        String em = email.getText();
+        String pass = password.getText();
+        String conf = confirm.getText();
+        String sur = surname.getText();
+        String te = tel.getText();
+        
+        User u = uc.findByUsername(un);    
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        
+        if (un.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "You Have to insert username", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (u!=null)
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Username already used!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (!isValid(em))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Email format Invalid!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (!pass.equals(conf) || pass.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Password missmatch!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (sur.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Surname missing!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (birthdate.getValue()==null || java.sql.Date.valueOf(birthdate.getValue()).after(new java.sql.Date(Calendar.getInstance().getTime().getTime())))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Invalid Birthdate!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (te.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Input Telephone number!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (ImageFile.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "You have to add an image!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else
+        {
+            Date bd = java.sql.Date.valueOf(birthdate.getValue());
+            BufferedImage bImage = ImageIO.read(selectedFile);
+            String hashedpass = bcrypt.hashPassword(password.getText());
+            String extension = FilenameUtils.getExtension(ImageFile);
+            ImageIO.write(bImage, extension, new File("C://wamp64/www/PiDev/web/uploads/profiles/"+un+"."+extension));
+            u = new User(em,un,sur,hashedpass,Integer.parseInt(te),bd,un+"."+extension,1,"a:0:{}");
+            uc.ajouter(u);
+            refresh();        
+        }
         
     }
 
     @FXML
-    private void modifyObjectif(MouseEvent event) {
+    private void modifyUser(MouseEvent event) throws IOException {
+        String un = username.getText();
+        String em = email.getText();
+        String pass = password.getText();
+        String conf = confirm.getText();
+        String sur = surname.getText();
+        String te = tel.getText();
+        
+        User u = uc.findByUsername(un);    
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        
+        if (un.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "You Have to insert username", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (!u.getUsername().equals(rowData.getUsername()))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Username already used!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (!isValid(em))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Email format Invalid!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (!pass.equals(conf))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Password missmatch!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (sur.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Surname missing!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (birthdate.getValue()==null || java.sql.Date.valueOf(birthdate.getValue()).after(new java.sql.Date(Calendar.getInstance().getTime().getTime())))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Invalid Birthdate!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (te.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "Input Telephone number!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else if (ImageFile.equals(""))
+        {
+            alert = new Alert(Alert.AlertType.ERROR, "You have to add an image!", ButtonType.CANCEL);
+            alert.showAndWait();
+        }
+        else
+        {
+            Date bd = java.sql.Date.valueOf(birthdate.getValue());
+            BufferedImage bImage = ImageIO.read(selectedFile);
+            String hashedpass = rowData.getHashedPwd();
+            if(!pass.equals(""))
+                hashedpass = bcrypt.hashPassword(pass);
+            String extension = FilenameUtils.getExtension(ImageFile);
+            ImageIO.write(bImage, extension, new File("C://wamp64/www/PiDev/web/uploads/profiles/"+un+"."+extension));
+            u = new User(em,un,sur,hashedpass,Integer.parseInt(te),bd,un+"."+extension,1,"a:0:{}");
+            uc.modifier(u);
+            refresh();        
+        }
+        
+    }
+    
+
+    @FXML 
+    public void processKeyEvent(KeyEvent ev) {
+        System.out.println("proce");
+        String c = ev.getCharacter();
+        if("1234567890".contains(c)) {}
+        else {
+            ev.consume();
+        }
     }
 
     @FXML
-    private void processKeyEvent(KeyEvent event) {
-    }
-
-    @FXML
-    private void uploadPicture(MouseEvent event) {
+    private void uploadPicture(MouseEvent event) throws Exception {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.png","*.jpg"));
+        selectedFile = fileChooser.showOpenDialog(pane.getScene().getWindow());
+        if (selectedFile != null)
+        {
+            ImageFile = selectedFile.getName();
+            image.setText(selectedFile.getName());
+        }
     }
 
     public void refresh ()
     {tableview.getItems().clear();
         list = uc.afficher();
         data.addAll(list);
-        id_c.setCellValueFactory(new PropertyValueFactory<>("id"));
         username_c.setCellValueFactory(new PropertyValueFactory<>("username"));
         email_c.setCellValueFactory(new PropertyValueFactory<>("email"));
         enabled_c.setCellValueFactory(new PropertyValueFactory<>("enabled"));
@@ -134,8 +302,25 @@ public class UsersController implements Initializable {
         modify.setDisable(true);
         add.setDisable(false);
         enable.setDisable(true);
+        rowData = null;
     }
 
+    public void loadRowToModify(User u)
+    {
+        username.setText(u.getUsername());
+        email.setText(u.getEmail());
+        surname.setText(u.getPrenom());
+        tel.setText(u.getTel()+"");
+        LocalDate mm = LocalDate.parse(u.getDatedenaissance().toString(), formatter);
+        birthdate.setValue(mm);
+        image.setText(u.getImage());
+        ImageFile = u.getImage();
+        selectedFile = new File("C://wamp64/www/PiDev/web/uploads/profiles/"+u.getImage());
+        modify.setDisable(false);
+        add.setDisable(true);
+    }
+    
+    
     @FXML
     private void enable(MouseEvent event) {
         if (rowData.getEnabled()==0)
@@ -147,6 +332,18 @@ public class UsersController implements Initializable {
     
     private void enableEnableButton() {
         enable.setDisable(false);
+    }
+
+    
+    public static boolean isValid(String email) 
+    { 
+        String emailRegex = "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex);
+        System.out.println(email);
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
     }
     
 }

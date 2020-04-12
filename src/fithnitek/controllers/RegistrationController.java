@@ -8,11 +8,15 @@ package fithnitek.controllers;
 import com.jfoenix.controls.JFXButton;
 import fithnitek.utils.BCryptPasswordEncoder;
 import fithnitek.models.*;
+import fithnitek.utils.EmailVerification;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Properties;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import javafx.fxml.FXML;
@@ -26,17 +30,19 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
+import org.apache.commons.io.FilenameUtils;
+import javax.mail.*;  
+import javax.mail.internet.*;  
+import javax.activation.*;
 
 
-/**
- *
- * @author marwe
- */
 public class RegistrationController implements Initializable{
 
     @FXML
@@ -62,6 +68,8 @@ public class RegistrationController implements Initializable{
     
     BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
     Alert alert;
+    File selectedFile;
+    User newUser = null;
 
     
 
@@ -69,16 +77,6 @@ public class RegistrationController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @FXML
-    private void uploadPicture(MouseEvent event) throws Exception {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.png"),
-                new FileChooser.ExtensionFilter("Pictures", "*.jpg"));
-        File selectedFile = fileChooser.showOpenDialog(Pane.getScene().getWindow());
-        ImageFile = selectedFile.getName();
-        image.setText(selectedFile.getName());
     }
     
     @FXML
@@ -96,6 +94,8 @@ public class RegistrationController implements Initializable{
         User u = uc.findByUsername(un);    
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        TextInputDialog verif = new TextInputDialog("Enter verification code");
+        verif.setHeaderText("A verification code was sent to your email");
         
         if (un.equals(""))
         {
@@ -139,20 +139,43 @@ public class RegistrationController implements Initializable{
         }
         else
         {
-            Date bd = java.sql.Date.valueOf(birthdate.getValue());
-            String hashedpass = bcrypt.hashPassword(password.getText());
-            u = new User(em,un,sur,hashedpass,Integer.parseInt(te),bd,ImageFile,1,"a:0:{}");
-            uc.ajouter(u);
-            //mlc.att(username, password);
-            System.out.println("User Added Successfully");
-            Parent next = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
-            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(next);
-            stage.setScene(scene);
-            stage.show();
+            EmailVerification ev = new EmailVerification();
+            String code = ev.generateCode();
+            ev.sendMail(code,em);            
+            verif.showAndWait();
+            
+            if (verif.getEditor().getText().equals(code))
+            {
+                Date bd = java.sql.Date.valueOf(birthdate.getValue());
+                BufferedImage bImage = ImageIO.read(selectedFile);
+                String hashedpass = bcrypt.hashPassword(password.getText());
+                String extension = FilenameUtils.getExtension(ImageFile);
+                ImageIO.write(bImage, extension, new File("C://wamp64/www/PiDev/web/uploads/profiles/"+un+"."+extension));
+                u = new User(em,un,sur,hashedpass,Integer.parseInt(te),bd,un+"."+extension,1,"a:0:{}");
+                uc.ajouter(u);
+                System.out.println("User Added Successfully");
+                Parent next = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(next);
+                stage.setScene(scene);
+                stage.show();
+            }
         }
 
     }
+    
+    @FXML
+    private void uploadPicture(MouseEvent event) throws Exception {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Pictures", "*.png","*.jpg"));
+        selectedFile = fileChooser.showOpenDialog(Pane.getScene().getWindow());
+        if (selectedFile != null)
+        {
+            ImageFile = selectedFile.getName();
+            image.setText(selectedFile.getName());
+        }
+    }
+    
     
     @FXML 
     public void processKeyEvent(KeyEvent ev) {

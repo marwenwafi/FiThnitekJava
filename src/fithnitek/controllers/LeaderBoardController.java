@@ -75,8 +75,6 @@ public class LeaderBoardController implements Initializable {
     @FXML
     private TableView<LeaderBoard> tableview;
     @FXML
-    private TableColumn<LeaderBoard, Number> id_c;
-    @FXML
     private TableColumn<LeaderBoard, String> title_c;
     @FXML
     private TableColumn<LeaderBoard, String> desc_c;
@@ -191,7 +189,6 @@ public class LeaderBoardController implements Initializable {
     {tableview.getItems().clear();
         list = this.afficher();
         data.addAll(list);
-        id_c.setCellValueFactory(new PropertyValueFactory<>("idleaderboard"));
         title_c.setCellValueFactory(new PropertyValueFactory<>("title"));
         desc_c.setCellValueFactory(new PropertyValueFactory<>("description"));
         size_c.setCellValueFactory(new PropertyValueFactory<>("size"));
@@ -246,14 +243,14 @@ public class LeaderBoardController implements Initializable {
                 enableDelete();
             }
             if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                loadRowToMdify(rowData);
+                loadRowToModify(rowData);
             }
         });
         return row ;
         });    
     }
     
-    public void loadRowToMdify(LeaderBoard l)
+    public void loadRowToModify(LeaderBoard l)
     {
         title.setText(l.getTitle());
         description.setText(l.getDescription());
