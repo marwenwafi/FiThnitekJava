@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="762.0" styleClass="backgroundsrc" stylesheets="@css/sourour.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Events.ParticiperController">
+   <children>
+      <ImageView fitHeight="63.0" fitWidth="86.0" layoutX="2.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="43.0" layoutY="87.0" prefHeight="478.0" prefWidth="676.0" style="-fx-background-radius: 50;" styleClass="buttonignorer">
+         <children>
+            <Label fx:id="datefin" ellipsisString="" layoutX="45.0" layoutY="21.0" text="01/11/2011" underline="true" wrapText="true" />
+            <VBox alignment="CENTER" minHeight="478.0" minWidth="676.0">
+               <children>
+                  <Label fx:id="Titreevent" ellipsisString="" styleClass="labelTitre" stylesheets="@css/sourour.css" text="Lavage" wrapText="true" />
+                  <ImageView fx:id="imagevent" fitHeight="222.0" fitWidth="371.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="Descriptionevent" ellipsisString="" prefHeight="93.0" prefWidth="505.0" styleClass="labelDesc" stylesheets="@css/sourour.css" text="Bonjour,  Le questionnaire auquel vous allez parti..Bonjour,  Le questionnaire auquel vous allez parti..Bonjour,  Le questionnaire auquel vous allez parti..Bonjour,  Le questionnaire auquel vous allez parti.." wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <Button layoutX="200.0" layoutY="593.0" mnemonicParsing="false" onAction="#Participer" prefHeight="43.0" prefWidth="143.0" style="-fx-border-radius: 30;" styleClass="buttonignorer2" text="Particpate" />
+      <Button layoutX="380.0" layoutY="593.0" mnemonicParsing="false" onAction="#ignorer" prefHeight="43.0" prefWidth="143.0" styleClass="buttonparticiper" text="Cancel" />
+   </children>
+</AnchorPane>

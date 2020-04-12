@@ -13,7 +13,7 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-text-fill: Black;
     -fx-opacity: 0.6;
 }
 
@@ -257,7 +257,23 @@
     -fx-opacity: 0.6;
 	-fx-font-weight: bold
 }
+.labelTitre2 {
+    -fx-font-size: 20 ;
+    -fx-font-family: "Helvetica";
+    -fx-text-fill: white; /*#*/
+    -fx-opacity: 0.6;
+	-fx-font-weight: bold
+}
+.vboxro {
+    
 	
+    -fx-background-color: linear-gradient(#283747    , #154360);
+    
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+
+	
+}	
 
 
 	

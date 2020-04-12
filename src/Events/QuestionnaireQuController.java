@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fithnitek;
+package Events;
 
 import fithnitek.controllers.ServiceQuestionnaire;
 import java.net.URL;
@@ -23,11 +23,17 @@ import fithnitek.models.Questionnaire;
 import fithnitek.models.Event;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
@@ -187,6 +193,9 @@ public class QuestionnaireQuController implements Initializable {
 
       return  tab;
     }
+     
+     
+     
      public boolean verifier(String s){
         if(!s.equals(""))
         {
@@ -221,7 +230,40 @@ public class QuestionnaireQuController implements Initializable {
         
      }
 
-   
+    @FXML
+    private void back(ActionEvent event) {
+        closeButtonAction(event);
+        try {
+            toFront(event);
+        } catch (Exception ex) {
+            Logger.getLogger(QuestionnaireQuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+   /******************* REDIRECT **************************/
+    private void closeButtonAction(ActionEvent e){
+  
+       // Platform.exit();
+       final Node source = (Node) e.getSource();
+    final Stage stage = (Stage) source.getScene().getWindow();
+    stage.close();
+ 
+}
+    @FXML
+    private void toFront(ActionEvent event) throws Exception {               
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EventQu.fxml"));
+        
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));  
+        stage.show();
+       
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+    }
+    
      
     
 }

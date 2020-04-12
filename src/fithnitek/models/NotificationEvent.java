@@ -16,12 +16,12 @@ import java.util.Calendar;
  */
 public class NotificationEvent {
     private int id;
-    private Event idevent;
+    private int idevent;
     private String title;
     private String description;
     private String icon;
     private String route;
-    private ArrayList route_parameters;
+    private String route_parameters;
     private Date notification_date ;
     private boolean seen;
 
@@ -31,6 +31,19 @@ public class NotificationEvent {
        // route_parameters=new ArrayList();
         
     }
+
+    public NotificationEvent(int id, String title, String description, Date notification_date) {
+        this.id = id;
+        this.notification_date = notification_date;
+        this.title = title;
+        this.description = description;
+        this.route = route;
+       
+    }
+
+    
+    
+    
     
 
     public String getRoute() {
@@ -51,13 +64,15 @@ public class NotificationEvent {
         this.id = id;
     }
 
-    public Event getIdevent() {
+    public int getIdevent() {
         return idevent;
     }
 
-    public void setIdevent(Event idevent) {
+    public void setIdevent(int idevent) {
         this.idevent = idevent;
     }
+
+   
 
     public String getTitle() {
         return title;
@@ -83,13 +98,15 @@ public class NotificationEvent {
         this.icon = icon;
     }
 
-    public ArrayList getRoute_parameters() {
+    public String getRoute_parameters() {
         return route_parameters;
     }
 
-    public void setRoute_parameters(ArrayList route_parameters) {
+    public void setRoute_parameters(String route_parameters) {
         this.route_parameters = route_parameters;
     }
+
+    
 
     public Date getNotification_date() {
         return notification_date;

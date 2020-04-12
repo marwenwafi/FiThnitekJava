@@ -112,17 +112,8 @@ public class ServiceQuestionnaire implements IServiceQuestionnaire<Questionnaire
                        rs.getString(3),
                        rs.getString(4),
                        rs.getString(5),x
-               ));
-                
-                
-            }
-            
-            
-           
-                    
-            
-            
-            
+               ));  
+            }           
         } catch (SQLException ex) {
             Logger.getLogger(ServiceEvent.class.getName()).log(Level.SEVERE, null, ex);
         }

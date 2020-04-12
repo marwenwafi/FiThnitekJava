@@ -150,50 +150,13 @@ public class ServiceEvent implements IServiceEvent<Event> {
     /*************************************************/
     /*************** Calcul **************************/
     /************************************************/
-    public Event getEventById(int id){
-        
-         String rqtimb="SELECT * FROM event WHERE id = ? ";
-         Event x=new Event();
-        PreparedStatement pss;
-        try {
-            pss = cnx.prepareStatement(rqtimb);
-             pss.setInt(1,id);
-               ResultSet rss=pss.executeQuery();
-               
-               
-              
-               if(rss.next())
-               {
-                    x = new Event(id,rss.getString(9),rss.getDate(2),rss.getDate(3),
-                         rss.getString(4),rss.getInt(5),rss.getString(6),rss.getString(10)
-                         ,rss.getString(7),rss.getString(8));
-                   
-                   
-               }
-               
-        
-        } catch (SQLException ex) {
-            Logger.getLogger(ServiceEvent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return x;      
-    }
-    
-    
-    
-    public void activerEvent(int id) 
+     public void activerEvent(int id) 
     {
-        Event event=this.getEventById(id);
-        //java.sql.Array x=null ;
-        
-        
+        Event event=this.getEventById(id);      
         String rqt="UPDATE event SET etat='Visible' where id=?";
-        //String rqtNotif="INERT INTO notification_event (idevent,title,description) VALUES (?,?,?)";
         String q="INSERT INTO notification_event( idevent, title, description ,"
-                + " notification_date, seen ,route) VALUES (?,?,?,?,?,?)";
-        
-        
-        
-        try {
+                + " notification_date, seen ,route,route_parameters) VALUES (?,?,?,?,?,?,?)";
+         try {
             
             PreparedStatement prd=cnx.prepareStatement(rqt);
             prd.setInt(1, id);
@@ -204,25 +167,15 @@ public class ServiceEvent implements IServiceEvent<Event> {
             prdNotif.setDate(4,new Date(System.currentTimeMillis()));
             prdNotif.setBoolean(5, false);
             prdNotif.setString(6, "fi_thnitek_readoneevent");
-           // prdNotif.setString(4, "teeeessstttt");
-           // prdNotif.setArray(5,  x);
-            
-            
-            
-            
+            prdNotif.setString(7,"a:1:{s:2:\"id\";i:"+id+";}");
             prd.executeUpdate();
             prdNotif.executeUpdate();
-            
-            System.out.println("Evénement activé !");
+           System.out.println("Evénement activé !");
             
         } catch (SQLException ex) {
             Logger.getLogger(ServiceEvent.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        
-    }
+     }
     
     public void desactiverEvent(int id)
     {
@@ -248,66 +201,11 @@ public class ServiceEvent implements IServiceEvent<Event> {
         
     }
     
-    public void participer(int id,int iduser){
-        //ici je vais récupéré l utilisateur courant et éliminer le parametre iduser
-    /* User usr=new User(33,"", "username","prenom", 7777, new Date(2000,15,10)
-             , new Date(2000,15,10), 1, 100000);*/
-     
-     
-     Event event=this.getEventById(id);
-       
-        
-        String rqt="UPDATE fos_user SET points=? WHERE id=?";
-        String points="SELECT points FROM fos_user WHERE id=? ";
-        PreparedStatement ps,ps2,ps3;
-        try {
-            ps2=cnx.prepareStatement(points);
-            ps2.setInt(1, iduser);
-            ResultSet rs=ps2.executeQuery();
-            int pt=0;
-            if(rs.next())
-            {
-                 pt= rs.getInt(1);
-            }
-            
-            
-            
-            ps=cnx.prepareStatement(rqt);
-            
-            ps.setInt(2, iduser);
-            ps.setInt(1, pt+event.getPromotion());
-            ps.executeUpdate();
-            
-            
-            String participation="INSERT INTO participe_event (participe,userId,eventId)"
-                    + " VALUES (?,?,?)";
-            ps3=cnx.prepareStatement(participation);
-            
-            ps3.setBoolean(1, true);
-            ps3.setInt(2, iduser);
-            ps3.setInt(3, id);
-            ps3.executeUpdate();
-            //done
-            
-            System.out.println("vous avez participé à l'évènement "+event.getTitre());
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ServiceEvent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
-        
-        
-    }
     
-    public void repondre(){
-        
-        
-    }
-    
+    /*********************Operations Get******************************/
     public int getidBytitre(String titre){
         
-         String rqtimb="SELECT id FROM event WHERE titre = ? ";
+         String rqtimb="SELECT id FROM event WHERE titre =? ";
          int x=0;
         PreparedStatement pss;
         try {
@@ -331,7 +229,33 @@ public class ServiceEvent implements IServiceEvent<Event> {
         }
         return x;      
     }
-    
+    /*******************************************/
+    public Event getEventById(int id){
+        
+         Event cadx=new Event();
+        String rqt="SELECT `id`, `dateDebut`, `dateFin`, `description`, `promotion`, `etat`, `image`,"
+                + " `operation`, `titre`, `url`, `iduser` FROM `event` WHERE `id`="+id;
+        
+        try {
+            PreparedStatement ps=cnx.prepareStatement(rqt);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+               
+                System.out.println("dans EventPart  " +rs.getDate(3));
+                cadx=new Event(id, rs.getString(9),rs.getDate(2) ,rs.getDate(3),
+                        rs.getString(4), rs.getInt(5), rs.getString(6)
+                        , rs.getString(10),rs.getString(7), rs.getString(8));
+                              
+                
+                
+                
+            }
+         } catch (SQLException ex) {
+            ex.getMessage();
+        }
+       return cadx; 
+        
+    }
     
  
  

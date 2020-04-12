@@ -35,6 +35,12 @@ public class Questionnaire implements Serializable{
         this.reponse2 = reponse2;
         this.idevent = idevent;
     }
+
+    public Questionnaire(String question, String reponse1, String reponse2) {
+        this.question = question;
+        this.reponse1 = reponse1;
+        this.reponse2 = reponse2;
+    }
     
     
     

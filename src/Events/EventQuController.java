@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fithnitek;
+package Events;
 
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
@@ -166,9 +166,9 @@ public class EventQuController implements Initializable {
         e.setTitre(titre.getText());
         e.setOperation(option.getValue());
        e.setPromotion(Integer.parseInt(promotion.getText()));
-        e.setImage(generateUniqueFileName()+fileLocation.getText());
+        e.setImage("4a25b8170ccea9092ab1f80265e65b8e.jpeg"); //generateUniqueFileName()+fileLocation.getText()
         e.setDescription(description.getText());
-        e.setUrl(url.getText());
+        e.setUrl("http://"+url.getText());
         e.setDateDebut(Date.valueOf(dateDebut.getValue()));
        e.setDateFin(Date.valueOf(dateFin.getValue()));
        if(verifier("")==true)
@@ -215,7 +215,7 @@ public class EventQuController implements Initializable {
         e.setTitre(titre.getText());
         e.setOperation(option.getValue());
         e.setPromotion(Integer.parseInt(promotion.getText()));
-        e.setImage(fileLocation.getText());
+        e.setImage("4a25b8170ccea9092ab1f80265e65b8e.jpeg");
         e.setDescription(description.getText());
         e.setUrl(url.getText());
         e.setDateDebut(Date.valueOf(dateDebut.getValue()));
@@ -317,20 +317,7 @@ public class EventQuController implements Initializable {
     return filename;
 }
 
-    @FXML
-    private void gestquest(ActionEvent event) 
-        throws Exception {               
-    try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QuestionnaireQu.fxml"));
-        //
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));  
-        stage.show();
-    } catch(Exception e) {
-        e.printStackTrace();
-    }
-}
+   
 
     @FXML
     private void desactiverEvent(ActionEvent event) {
@@ -350,27 +337,12 @@ public class EventQuController implements Initializable {
         afficherEvent();
         
         try {
-            Participer(event);
+            notificationEtFidelite(event);
         } catch (Exception ex) {
             Logger.getLogger(EventQuController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-       // return id;
+
     }
-    private void Participer(ActionEvent event) 
-        throws Exception {               
-    try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Participer.fxml"));
-        //QuestionnaireQu.fxml
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root1));  
-        stage.show();
-    } catch(Exception e) {
-        e.printStackTrace();
-    }
-}
     
     @FXML
     private void ChoisirImage(ActionEvent event) {
@@ -441,8 +413,89 @@ public class EventQuController implements Initializable {
     
         
     }
+
+   
+    
+    
+    /********************MENU**************************/
+     @FXML
+    private void notificationEtFidelite(ActionEvent event) throws Exception {               
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Notificationetfid.fxml"));
+        //
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));  
+        stage.show();
+        closeButtonAction(event);
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
         
-}        
+    }
+    
+    
+    
+    
+    
+     @FXML
+    private void gestquest(ActionEvent event) 
+        throws Exception {               
+    try {
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QuestionnaireQu.fxml"));
+        
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));  
+        stage.show();
+        closeButtonAction(event);
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
+
+    @FXML
+    private void toEvents(ActionEvent event) throws Exception {               
+    try {
+        
+        
+        closeButtonAction(event);
+        toFront(event);
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+    }
+    
+     /******************* REDIRECT **************************/
+    private void closeButtonAction(ActionEvent e){
+  
+       // Platform.exit();
+       final Node source = (Node) e.getSource();
+    final Stage stage = (Stage) source.getScene().getWindow();
+    stage.close();
+ 
+}
+    @FXML
+    private void toFront(ActionEvent event) throws Exception {               
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EventQu.fxml"));
+        
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));  
+        stage.show();
+       
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+    }
+    
+    
+    
+   }
+        
+       
 
     
 

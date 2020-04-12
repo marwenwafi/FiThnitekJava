@@ -68,6 +68,20 @@ public class Event implements Serializable {
         this.operation = operation;
     }
 
+    public Event(int id, String titre, Date dateFin, String description, int promotion, String etat, String url, String image, String operation) {
+        this.id = id;
+        this.titre = titre;
+        this.dateFin = dateFin;
+        this.description = description;
+        this.promotion = promotion;
+        this.etat = etat;
+        this.url = url;
+        this.image = image;
+        this.operation = operation;
+    }
+     
+     
+
     public int getId() {
         return id;
     }
