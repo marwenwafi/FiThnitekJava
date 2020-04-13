@@ -109,6 +109,8 @@ public class EventQuController implements Initializable {
     private TableView<Event> tab;
     String statusClick ,statusCode;
      ServiceEvent sv= new ServiceEvent();
+     String extension=null;
+     
     @FXML
     private TableColumn<Event, Integer> idevent;
     
@@ -141,6 +143,7 @@ public class EventQuController implements Initializable {
             option.getItems().add("Questionnaire");
             option.getItems().add("Publicité");
             idevent.setCellValueFactory(new PropertyValueFactory<>("id"));
+            
             // Date d=new Date(System.currentTimeMillis());
             //dateDebut.setValue(LocalDate.parse(d.toString());
             //dateFin.setValue(LocalDate.parse(click.getDateFin().toString()));
@@ -166,7 +169,8 @@ public class EventQuController implements Initializable {
         e.setTitre(titre.getText());
         e.setOperation(option.getValue());
        e.setPromotion(Integer.parseInt(promotion.getText()));
-        e.setImage("4a25b8170ccea9092ab1f80265e65b8e.jpeg"); //generateUniqueFileName()+fileLocation.getText()
+        e.setImage(fileLocation.getText()+"."+extension); //generateUniqueFileName()+fileLocation.getText()
+        
         e.setDescription(description.getText());
         e.setUrl("http://"+url.getText());
         e.setDateDebut(Date.valueOf(dateDebut.getValue()));
@@ -210,13 +214,15 @@ public class EventQuController implements Initializable {
          Event click = tab.getSelectionModel().getSelectedItems().get(0);
          System.out.println(click.getId());
         
-        Event e=new Event();
+        Event e=click;
         e.setId(click.getId());
         e.setTitre(titre.getText());
         e.setOperation(option.getValue());
         e.setPromotion(Integer.parseInt(promotion.getText()));
-        e.setImage("4a25b8170ccea9092ab1f80265e65b8e.jpeg");
-        e.setDescription(description.getText());
+        if( !((fileLocation.getText()+extension).equals(click.getImage()))){
+                e.setImage(fileLocation.getText()+"."+extension);
+        } 
+       e.setDescription(description.getText());
         e.setUrl(url.getText());
         e.setDateDebut(Date.valueOf(dateDebut.getValue()));
         e.setDateFin(Date.valueOf(dateFin.getValue()));
@@ -296,9 +302,6 @@ public class EventQuController implements Initializable {
         option.setValue(click.getOperation());
         fileLocation.setText(click.getImage());
        
-        
-       String fileName = generateUniqueFileName()+".pdf";
-       click.setImage(fileName);
        System.out.println(click.getImage());
        
         
@@ -306,14 +309,14 @@ public class EventQuController implements Initializable {
         
     }
     String generateUniqueFileName() {
-    String filename = "";
-    long millis = System.currentTimeMillis();
+    String filename = "fe";
+    //long millis = System.currentTimeMillis();
     String datetime = new Date(System.currentTimeMillis()).toGMTString();
     datetime = datetime.replace(" ", "");
     datetime = datetime.replace(":", "");
-    double rndchars =Math.random();
-    double rndchars1 =Math.random();
-    filename = rndchars + "_" + datetime + "_" + millis +"_"+rndchars1;
+    String rndchars =""+Math.random();
+    rndchars=rndchars.replace(".", "fe");
+    filename = rndchars + "_" + datetime ;
     return filename;
 }
 
@@ -346,6 +349,7 @@ public class EventQuController implements Initializable {
     
     @FXML
     private void ChoisirImage(ActionEvent event) {
+        
         List<String> extentions=new ArrayList();
         extentions.add("*.png");
         extentions.add("*.jpeg");
@@ -359,16 +363,28 @@ public class EventQuController implements Initializable {
         
     if(file2 != null)
     {
-        fileLocation.setText(file2.getName());
-        System.err.println(file2.getName());
+        fileLocation.setText(generateUniqueFileName());
+         extension =file2.getName().substring(file2.getName().lastIndexOf(".")+1);
+         System.out.println("exten"+extension);
+        fileLocation.setText(generateUniqueFileName());
         
+        System.out.println(file2.getName());
+        BufferedImage bImage;
+        //fileLocation.setText(generateUniqueFileName()+);
+            try {
+                bImage = ImageIO.read(file2);
+                ImageIO.write(bImage, extension, new File("C://wamp64/www/PiDev/web/uploads/eventsImages/"+fileLocation.getText()+"."+extension));
+            } catch (IOException ex) {
+                Logger.getLogger(EventQuController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
 
     }
     
        
     }
     
-    public static void saveToFile(Image image) {
+   public static void saveToFile(Image image) {
     File outputFile = new File("C:\\wamp64\\www\\PiDev\\web\\uploads\\eventsImages\\");
         BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
     try {
