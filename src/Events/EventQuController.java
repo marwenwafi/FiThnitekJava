@@ -143,18 +143,9 @@ public class EventQuController implements Initializable {
             option.getItems().add("Questionnaire");
             option.getItems().add("Publicité");
             idevent.setCellValueFactory(new PropertyValueFactory<>("id"));
-            
-            // Date d=new Date(System.currentTimeMillis());
-            //dateDebut.setValue(LocalDate.parse(d.toString());
-            //dateFin.setValue(LocalDate.parse(click.getDateFin().toString()));
             afficherEvent();
             tab.getSelectionModel().clearSelection();
-            //file.setInitialDirectory(new File("C:\\wamp64\\www\\PiDev\\web\\uploads\\eventsImages"));
-           /* image2 = new Image(new FileInputStream("C:\\Users\\sourour\\Documents\\FiThnitekJava\\src\\fithnitek\\css\\phoy.jpeg"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(EventQuController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        saveToFile(image2);*/
+            
       
 
     }    
@@ -219,11 +210,14 @@ public class EventQuController implements Initializable {
         e.setTitre(titre.getText());
         e.setOperation(option.getValue());
         e.setPromotion(Integer.parseInt(promotion.getText()));
-        if( !((fileLocation.getText()+extension).equals(click.getImage()))){
+        if( !((fileLocation.getText()+"."+extension).equals(click.getImage()))){
                 e.setImage(fileLocation.getText()+"."+extension);
         } 
        e.setDescription(description.getText());
-        e.setUrl(url.getText());
+       if(!((url.getText()).equals(click.getUrl()))){
+           e.setUrl("http://"+url.getText());
+       }
+        
         e.setDateDebut(Date.valueOf(dateDebut.getValue()));
         e.setDateFin(Date.valueOf(dateFin.getValue()));
          System.out.println("update"+e );
