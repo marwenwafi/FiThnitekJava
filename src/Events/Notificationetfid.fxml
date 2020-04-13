@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Events.NotificationetfidController">
+   <children>
+      <TableView fx:id="notifications" layoutX="35.0" layoutY="167.0" onMousePressed="#geteventt" prefHeight="269.0" prefWidth="274.0">
+         <columns>
+            <TableColumn fx:id="titre" prefWidth="75.0" text="Event" />
+            <TableColumn fx:id="desc" prefWidth="89.0" text="Points " />
+            <TableColumn fx:id="dateNotification" prefWidth="109.0" text="NotificationDate" />
+         </columns>
+      </TableView>
+      <Pagination fx:id="pagination" layoutX="35.0" layoutY="166.0" prefHeight="315.0" prefWidth="274.0" />
+      <Label layoutX="35.0" layoutY="98.0" prefHeight="63.0" prefWidth="289.0" text="Notifications" textAlignment="CENTER" textFill="#2f3740" textOverrun="WORD_ELLIPSIS" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="45.0" />
+         </font>
+      </Label>
+      <TableView fx:id="participants" layoutX="323.0" layoutY="167.0" onMousePressed="#geteventt" prefHeight="269.0" prefWidth="274.0">
+         <columns>
+            <TableColumn fx:id="eventTitle" prefWidth="151.0" text="Event Title" />
+            <TableColumn fx:id="username" prefWidth="122.0" text="Username" />
+         </columns>
+      </TableView>
+      <Pagination fx:id="pagination1" layoutX="323.0" layoutY="166.0" prefHeight="315.0" prefWidth="274.0" />
+      <Label layoutX="323.0" layoutY="98.0" prefHeight="63.0" prefWidth="289.0" text="Participants" textAlignment="CENTER" textFill="#607286" textOverrun="WORD_ELLIPSIS" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="45.0" />
+         </font>
+      </Label>
+      <TableView fx:id="cadeauxx" layoutX="611.0" layoutY="167.0" onMousePressed="#geteventt" prefHeight="269.0" prefWidth="274.0">
+         <columns>
+            <TableColumn fx:id="userid" prefWidth="134.0" text="Username" />
+            <TableColumn fx:id="cadeaux" prefWidth="139.0" text="Cadeaux" />
+         </columns>
+      </TableView>
+      <Pagination fx:id="pagination2" layoutX="611.0" layoutY="166.0" prefHeight="315.0" prefWidth="274.0" />
+      <Label layoutX="637.0" layoutY="98.0" prefHeight="63.0" prefWidth="193.0" text="Gifts" textAlignment="CENTER" textFill="#2b3b4d" textOverrun="WORD_ELLIPSIS" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="45.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="80.0" fitWidth="101.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="222.0" layoutY="35.0" prefHeight="63.0" prefWidth="535.0" text="Notifications and Gifts" textAlignment="CENTER" textFill="#5285c3" textOverrun="WORD_ELLIPSIS" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="45.0" />
+         </font>
+      </Label>
+      <Button layoutX="734.0" layoutY="8.0" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="127.0" style="-fx-border-radius: 50;" styleClass="buttonignorer2" stylesheets="@css/sourour.css" text="&lt;&lt; Back" />
+   </children>
+</AnchorPane>

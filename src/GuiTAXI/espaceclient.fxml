@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="570.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.EspaceclientController">
+   <children>
+      <JFXButton id="btn_pdffront" fx:id="btn_pdffront" layoutX="878.0" layoutY="24.0" onAction="#pdftry1" prefHeight="47.0" prefWidth="101.0" text="PDF" />
+      <AnchorPane id="anchorpane_left" layoutX="21.0" layoutY="82.0" prefHeight="405.0" prefWidth="302.0">
+         <children>
+            <JFXComboBox id="region" fx:id="regiona" layoutX="32.0" layoutY="34.0" prefHeight="31.0" prefWidth="188.0" promptText="Region" />
+            <JFXTextField id="lieua" fx:id="destinationa" layoutX="34.0" layoutY="172.0" prefHeight="31.0" prefWidth="188.0" promptText="Destination " />
+            <JFXDatePicker id="date" fx:id="datea" layoutX="34.0" layoutY="230.0" promptText="Date" />
+            <JFXTimePicker id="periode" fx:id="periodea" layoutX="34.0" layoutY="286.0" promptText="Time to Go " />
+            <JFXTextField fx:id="departa" layoutX="34.0" layoutY="104.0" prefHeight="31.0" prefWidth="188.0" promptText="Departure" />
+            <JFXTimePicker id="periodetime" fx:id="periodetime" layoutX="37.0" layoutY="348.0" promptText="Time To arrive " />
+         </children>
+      </AnchorPane>
+      <TableView id="demandeTableView" fx:id="demandeTableView" layoutX="342.0" layoutY="85.0" onMousePressed="#esm" prefHeight="396.0" prefWidth="640.0">
+        <columns>
+            <TableColumn id="regiontab" fx:id="regiontab" prefWidth="102.0" text="Region" />
+          <TableColumn id="depart" fx:id="depart" prefWidth="99.0" text="Departure" />
+          <TableColumn id="destination" fx:id="destination" prefWidth="94.0" text="Destination" />
+            <TableColumn id="periode" fx:id="periode" prefWidth="89.0" text="Time" />
+            <TableColumn id="dated" fx:id="dated" prefWidth="111.0" text="Date" />
+            <TableColumn id="etat" fx:id="etat" prefWidth="54.0" text="State" />
+            <TableColumn id="price" fx:id="price" prefWidth="90.0" text="Price" />
+        </columns>
+      </TableView>
+      <JFXButton id="btn_noir1" fx:id="btn_noir" layoutX="618.0" layoutY="504.0" onAction="#menu" prefHeight="47.0" prefWidth="101.0" text="Back" />
+      <JFXButton id="btn_save" layoutX="12.0" layoutY="505.0" onAction="#ajouterDemande" prefHeight="47.0" prefWidth="92.0" text="Add" />
+      <JFXButton id="btn_delete" layoutX="127.0" layoutY="505.0" onAction="#deleteDemande" prefHeight="41.0" prefWidth="92.0" text="Delete" />
+      <JFXButton id="btn_edit" layoutX="234.0" layoutY="508.0" onAction="#modifier" prefHeight="47.0" prefWidth="101.0" text="Update" />
+      <ImageView id="taswira" fx:id="taswira" fitHeight="70.0" fitWidth="509.0" layoutX="44.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/clientfront.png" />
+         </image>
+      </ImageView>
+      <JFXButton id="btn_sort3" fx:id="btn_sort3" layoutX="535.0" layoutY="24.0" onAction="#trierselonetat0" text="Request Unreserved" />
+      <JFXButton id="btn_sort1" fx:id="btn_sortreserver" layoutX="337.0" layoutY="24.0" onAction="#trierselonetat1" text="Request Reserved " />
+      <JFXComboBox id="statepdf" fx:id="statepdf" layoutX="746.0" layoutY="32.0" promptText="STATE" />
+   </children>
+</AnchorPane>

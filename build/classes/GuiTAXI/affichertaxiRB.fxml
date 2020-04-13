@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.AffichageReservationTaxiBController">
+   <children>
+      <Pane id="pane_top" prefHeight="67.0" prefWidth="950.0">
+         <children>
+            <JFXButton id="btn_pdf" fx:id="btn_pdf" layoutX="846.0" layoutY="18.0" onAction="#pdftry1" text="PDF" />
+            <Text layoutX="101.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALL RESERVATION">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <TableView id="tablereseration" fx:id="reservationTableView" layoutX="153.0" layoutY="80.0" prefHeight="393.0" prefWidth="783.0">
+        <columns>
+            <TableColumn id="region" fx:id="region" prefWidth="83.0" text="Region" />
+          <TableColumn id="depart" fx:id="depart" prefWidth="106.0" text="Departure" />
+          <TableColumn id="destination" fx:id="destination" prefWidth="129.0" text="Destination" />
+            <TableColumn id="periode" fx:id="periode" prefWidth="113.0" text="Time" />
+            <TableColumn id="dated" fx:id="dated" prefWidth="97.0" text="Date" />
+            <TableColumn id="prix" fx:id="prix" prefWidth="134.0" text="prix" />
+            <TableColumn id="client" fx:id="client" prefWidth="120.0" text="Client" />
+        </columns>
+      </TableView>
+      <JFXButton id="btn_delete" layoutX="29.0" layoutY="309.0" onAction="#deleteReservation" prefHeight="47.0" prefWidth="92.0" text="Delete" />
+      <JFXButton fx:id="btn_back1" layoutX="475.0" layoutY="500.0" onAction="#menu" text="Menu" />
+      <JFXButton fx:id="btn_back" layoutX="712.0" layoutY="500.0" onAction="#taxi" text="Go Back" />
+      <ImageView fitHeight="119.0" fitWidth="153.0" layoutX="5.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../FiThnitek/src/images/siwar.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="14.0" layoutY="396.0">
+         <image>
+            <Image url="@../../../FiThnitek/src/images/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

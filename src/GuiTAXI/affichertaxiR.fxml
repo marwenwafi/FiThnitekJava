@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.AffichageReservationTaxiController">
+   <children>
+      <JFXButton id="btn_pdf" fx:id="btn_pdf" layoutX="50.0" layoutY="29.0" onAction="#pdftry1" text="PDF" />
+      <JFXButton fx:id="btn_back" layoutX="738.0" layoutY="490.0" onAction="#taxi" text="Go Back" />
+      <TableView id="tablereseration" fx:id="reservationTableView" layoutX="171.0" layoutY="74.0" prefHeight="393.0" prefWidth="783.0">
+        <columns>
+            <TableColumn id="region" fx:id="region" prefWidth="83.0" text="Region" />
+          <TableColumn id="depart" fx:id="depart" prefWidth="106.0" text="Departure" />
+          <TableColumn id="destination" fx:id="destination" prefWidth="129.0" text="Destination" />
+            <TableColumn id="periode" fx:id="periode" prefWidth="113.0" text="Time" />
+            <TableColumn id="dated" fx:id="dated" prefWidth="97.0" text="Date" />
+            <TableColumn id="prix" fx:id="prix" prefWidth="134.0" text="Price" />
+            <TableColumn id="client" fx:id="client" prefWidth="120.0" text="Client" />
+        </columns>
+      </TableView>
+      <JFXButton id="btn_delete" layoutX="38.0" layoutY="294.0" onAction="#deleteReservation" prefHeight="47.0" prefWidth="92.0" text="Delete" />
+      <JFXButton fx:id="btn_back1" layoutX="493.0" layoutY="490.0" onAction="#menu" text="Menu" />
+      <ImageView fitHeight="100.0" fitWidth="145.0" layoutX="24.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="129.0" fitWidth="144.0" layoutX="12.0" layoutY="142.0">
+         <image>
+            <Image url="@../images/siwar.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="290.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YOUR RESERVATIONS" wrappingWidth="511.4462890625">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

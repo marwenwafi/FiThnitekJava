@@ -1,0 +1,235 @@
+#ajouter,#ReserveOffre
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: green;
+    -fx-border-color : green ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #ajouter:hover,ReserveOffre:hover{
+    -fx-background-color: green;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }
+#ColisOffre
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: darkcyan;
+    -fx-border-color : darkcyan ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #ColisOffre:hover{
+    -fx-background-color: darkcyan;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }
+#BYourReservation
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: darkcyan;
+    -fx-border-color : darkcyan ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #BYourReservation:hover{
+    -fx-background-color: darkcyan;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }
+ #modifier
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: #ffd526;
+    -fx-border-color : #ffd526 ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #modifier:hover{
+    -fx-background-color: #ffd526;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }  
+#Reservation,#AddReservation,#GoToOffre,#ADDOffre,#MyReservation{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill:darkcyan ;
+    -fx-border-color : darkcyan ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #Reservation:hover,#AddReservation:hover,#GoToOffre:hover,#ADDOffre:hover,#MyReservation:hover
+ {
+    -fx-background-color:darkcyan;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+ } 
+ 
+ 
+#supprimer:hover,#SupprimerReservation:hover{
+    -fx-background-color: red;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+   }
+#supprimer,#SupprimerReservation{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: red;
+    -fx-border-color : red ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ; 
+   }   
+   
+#id_delete:hover{
+    -fx-background-color: red;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+   }
+#id_delete{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: red;
+    -fx-border-color : red ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ; 
+   }
+   
+   
+ .table-view 
+ {
+     -fx-border-color : #18a3bb ;
+     -fx-border-width: 2px;
+     
+ }
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: #A9F576;
+    -fx-border-color : #18a3bb ;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
+    -fx-text-fill: -fx-text-inner-color;
+}
+.table-view:focused .table-row-cell:filled:selected {
+    -fx-background-color: #A9F576;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
+    -fx-text-fill: -fx-selection-bar-text;
+    -fx-table-cell-border-color: #E0F2FF;
+}
+.table-view .column-header {
+ -fx-font-weight: bold;
+   
+}
+#id_affichecov 
+{
+    -fx-background-color: #FBFBFB;  
+}
+#id_anchorrescov
+{
+  -fx-background-color: #FBFBFB;   
+}
+#ColisOffreAnchor
+{
+   -fx-background-color: #F9F9F9; 
+   -fx-border-color : #18a3bb ;
+   -fx-border-width: 2px;
+   
+}
+#id_carsharingoffer 
+{
+ -fx-background-color: #F9F9F9; 
+   -fx-border-color : #18a3bb ;
+   -fx-border-width: 2px;   
+}
+#id_carsharingoffers
+{
+-fx-background-color: #F9F9F9; 
+   -fx-border-color : #18a3bb ;
+   -fx-border-width: 2px;    
+}
+
+#anchortrie
+{
+    -fx-border-style: dotted;
+}
+#Triprix,#Trie,#Recherche,#rechercheDate
+{
+    -fx-background-color:darkcyan;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+}
+
+#id_reserve
+{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: green;
+    -fx-border-color : green ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+#id_reserve:hover{
+    -fx-background-color: green;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+   }
+ #gocolisoffre,#Reservation2,#backtomenuback,#GoToOffreback,#AddReservationback,#ADDOffre,#MyReservation{
+    -fx-background-color: whitesmoke;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill:black ;
+    -fx-border-color : black ;
+    -fx-border-radius : 4 ; 
+    -fx-border-insets : 2 ;
+   }
+ #backtomenuback:hover,#GoToOffreback:hover,#AddReservationback:hover,#ADDOffre:hover,#MyReservation:hover,#ADDOffre:hover,#gocolisoffre:hover,#Reservation2:hover
+ {
+    -fx-background-color:Black;
+    -fx-background-radius: 4;
+    -fx-background-insets: 2;
+    -fx-text-fill: white;
+     
+ } 
+ #id_afficheroffreback 
+ {
+  -fx-border-color : black ;
+     -fx-border-width: 2px;   
+ }
+#id_carsharingofferback,#id_carsharingoffersback 
+{
+   -fx-background-color: #F9F9F9; 
+   -fx-border-color : black ;
+   -fx-border-width: 2px;
+   
+}
+
+
+
+
+
+
+

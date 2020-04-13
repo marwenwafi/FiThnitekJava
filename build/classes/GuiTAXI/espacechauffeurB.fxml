@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.espacechauffeurBController">
+   <children>
+      <AnchorPane id="anchorpane_center" layoutX="5.0" layoutY="5.0" prefHeight="489.0" prefWidth="990.0">
+         <children>
+            <AnchorPane id="anchorpane_left" layoutX="17.0" layoutY="23.0" prefHeight="47.0" prefWidth="805.0">
+               <children>
+                  <JFXComboBox fx:id="Region" layoutX="34.0" layoutY="10.0" prefHeight="31.0" prefWidth="118.0" promptText="Region" />
+                  <JFXDatePicker id="daterech" fx:id="daterech" layoutX="453.0" layoutY="10.0" />
+                  <JFXButton id="btn_search" fx:id="recherche" layoutX="677.0" layoutY="2.0" onAction="#recherchedateRegion" prefHeight="47.0" prefWidth="106.0" text="Search" />
+                  <JFXTextField id="departrech" fx:id="departrech" focusColor="#1f3d97" layoutX="205.0" layoutY="10.0" promptText="Deparature" unFocusColor="#4d4d4d" />
+               </children>
+            </AnchorPane>
+            <TableView id="reservationTableView" fx:id="reservationTableView" layoutX="215.0" layoutY="95.0" prefHeight="316.0" prefWidth="763.0">
+              <columns>
+                  <TableColumn id="regiont" fx:id="regiont" prefWidth="81.0" text="Region" />
+                <TableColumn id="depart" fx:id="depart" prefWidth="143.0" text="Departure" />
+                <TableColumn id="destination" fx:id="destination" prefWidth="124.0" text="Destination" />
+                  <TableColumn id="periode" fx:id="periode" minWidth="0.0" prefWidth="100.0" text="Time" />
+                  <TableColumn id="dated" fx:id="dated" prefWidth="122.0" text="Date" />
+                  <TableColumn id="prix" fx:id="prix" minWidth="0.0" prefWidth="88.0" text="Prix" />
+                  <TableColumn id="nomclient" fx:id="nomclient" minWidth="0.0" prefWidth="104.0" text="Client" />
+              </columns>
+            </TableView>
+            <JFXButton id="btn_save" layoutX="60.0" layoutY="246.0" onAction="#ajouter" prefHeight="49.0" prefWidth="91.0" text="Add" />
+            <JFXButton id="btn_back1" fx:id="btn_back1" layoutX="324.0" layoutY="434.0" onAction="#menu" text="Menu" />
+            <JFXButton fx:id="btn_back" layoutX="480.0" layoutY="434.0" onAction="#taxi" text="Taxi Reservation" />
+            <AnchorPane id="anchorpane_right" layoutX="829.0" layoutY="23.0" prefHeight="41.0" prefWidth="169.0">
+               <children>
+                  <JFXButton id="btn_sort" fx:id="sorttime" layoutX="16.0" layoutY="5.0" onAction="#triedatePrixHeure" prefHeight="31.0" prefWidth="145.0" text="Sort by Time" />
+               </children>
+            </AnchorPane>
+            <JFXButton id="btn_back1" fx:id="btn_backrequest" layoutX="708.0" layoutY="434.0" onAction="#request" text="Taxi Request " />
+            <ImageView id="taswira1" fx:id="taswira1" fitHeight="160.0" fitWidth="169.0" layoutX="36.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="taswira2" fx:id="taswira2" fitHeight="107.0" fitWidth="135.0" layoutX="44.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="508.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.espacechauffeurController">
+   <children>
+      <JFXButton fx:id="btn_back" layoutX="323.0" layoutY="440.0" onAction="#taxi" text="You Reservation" />
+      <TableView id="reservationTableView" fx:id="reservationTableView" layoutX="157.0" layoutY="103.0" prefHeight="318.0" prefWidth="763.0">
+        <columns>
+            <TableColumn id="regiont" fx:id="regiont" prefWidth="81.0" text="Region" />
+          <TableColumn id="depart" fx:id="depart" prefWidth="143.0" text="Departure" />
+          <TableColumn id="destination" fx:id="destination" prefWidth="124.0" text="Destination" />
+            <TableColumn id="periode" fx:id="periode" minWidth="0.0" prefWidth="100.0" text="Time" />
+            <TableColumn id="dated" fx:id="dated" prefWidth="122.0" text="Date" />
+            <TableColumn id="prix" fx:id="prix" minWidth="0.0" prefWidth="88.0" text="Price" />
+            <TableColumn id="nomclient" fx:id="nomclient" minWidth="0.0" prefWidth="104.0" text="Client" />
+        </columns>
+      </TableView>
+      <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="14.0" prefHeight="57.0" prefWidth="703.0">
+         <children>
+            <JFXComboBox fx:id="Region" layoutX="29.0" layoutY="15.0" prefHeight="31.0" prefWidth="118.0" promptText="Region" />
+            <JFXButton id="btn_search" fx:id="recherche" layoutX="596.0" layoutY="7.0" onAction="#recherchedateRegion" prefHeight="47.0" prefWidth="103.0" text="Search" />
+            <JFXDatePicker id="daterech" fx:id="daterech" layoutX="355.0" layoutY="15.0" />
+            <JFXTextField id="departrech" fx:id="departrech" layoutX="156.0" layoutY="15.0" promptText="Deparrture" />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="anchorpane_right" layoutX="729.0" layoutY="14.0" prefHeight="57.0" prefWidth="191.0">
+         <children>
+            <JFXButton id="btn_sort" layoutX="13.0" layoutY="5.0" onAction="#triprix" prefHeight="41.0" prefWidth="155.0" text="Sort by Price" />
+         </children>
+      </AnchorPane>
+      <JFXButton id="btn_save" layoutX="31.0" layoutY="277.0" onAction="#ajouter" prefHeight="49.0" prefWidth="91.0" text="Add" />
+      <JFXButton id="btn_back1" fx:id="btn_back1" layoutX="600.0" layoutY="440.0" onAction="#menu" text="Menu" />
+      <ImageView id="taxi" fx:id="taxi" fitHeight="150.0" fitWidth="155.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/siwar.png" />
+         </image>
+      </ImageView>
+      <ImageView id="logo" fx:id="logo" fitHeight="102.0" fitWidth="118.0" layoutX="18.0" layoutY="378.0">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

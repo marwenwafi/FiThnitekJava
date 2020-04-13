@@ -8,10 +8,15 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="FiThnitek.jar" size="126374" download="eager" />
+    <jar href="FiThnitek.jar" size="2229350" download="eager" />
     <jar href="lib\activation-1.1.jar" size="62983" download="eager" />
     <jar href="lib\commons-io-2.4.jar" size="185140" download="eager" />
+    <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
+    <jar href="lib\core-3.1.0-javadoc.jar" size="1027366" download="eager" />
+    <jar href="lib\core-3.1.0.jar" size="538421" download="eager" />
     <jar href="lib\fxgraphics2d-1.6.jar" size="20619" download="eager" />
+    <jar href="lib\itextpdf-5.1.0.jar" size="1614453" download="eager" />
+    <jar href="lib\javax.mail.jar" size="659033" download="eager" />
     <jar href="lib\jcommon-1.0.17.jar" size="506386" download="eager" />
     <jar href="lib\jfoenix-8.0.8.jar" size="2708772" download="eager" />
     <jar href="lib\jfreechart-1.5.0.jar" size="1559088" download="eager" />

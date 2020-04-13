@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="Pane" prefHeight="600.0" prefWidth="840.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.LeaderboardsFrontController">
+   <children>
+      <JFXTabPane fx:id="tabs" layoutX="55.0" layoutY="207.0" prefHeight="350.0" prefWidth="734.0" />
+      <Label layoutX="55.0" layoutY="25.0" text="Current LeaderBoards">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="NoLeaders" layoutX="292.0" layoutY="284.0" text="No leaderboards currently" visible="false">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="banner" fitHeight="130.0" fitWidth="734.0" layoutX="57.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

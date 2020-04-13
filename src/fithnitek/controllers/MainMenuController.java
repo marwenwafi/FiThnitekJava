@@ -5,9 +5,12 @@
  */
 package fithnitek.controllers;
 
+import GuiTAXI.taxihomeController;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import fithnitek.models.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,18 +27,35 @@ import javafx.scene.image.Image;
 
 public class MainMenuController implements Initializable {
     
-    protected User currentUser;
+    protected static User currentUser;
 
     
     
+    //private Label welcomename;
+    //private Label usernameLabel;
+    //private JFXButton dashboard;
     @FXML
-    private Label welcomename;
+    private ImageView user;
     @FXML
-    private Label usernameLabel;
+    private ImageView maha;
     @FXML
-    private JFXButton dashboard;
+    private ImageView siwar;
     @FXML
-    private ImageView profilePic;
+    private ImageView yassin;
+    @FXML
+    private ImageView jassem;
+    @FXML
+    private ImageView marwen;
+    @FXML
+    private ImageView logo;
+    @FXML
+    private ImageView sourour;
+    @FXML
+    private ImageView khat;
+    @FXML
+    private JFXButton upadateprofile;
+    @FXML
+    private JFXButton logout;
     
     
     
@@ -46,20 +66,76 @@ public class MainMenuController implements Initializable {
 
     public void setCurrentUser(User currentUser, boolean isAdmin, Image pic) {
         this.currentUser = currentUser;
-        this.welcomename.setText("Welcome: ");
-        this.profilePic.setImage(pic);
-        this.usernameLabel.setText(currentUser.getUsername());
-        this.dashboard.setVisible(isAdmin);
+        //this.welcomename.setText("Welcome: ");
+        this.user.setImage(pic);
+        //this.usernameLabel.setText(currentUser.getUsername());
+        //this.dashboard.setVisible(isAdmin);
     }
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
     }    
 
-    @FXML
     private void goDashboard(MouseEvent event) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/dashboard.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void maha(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUIcovoiturage/AfficherOffreCovoiturage.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void siwar(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GuiTAXI/home.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void yassin(MouseEvent event) {
+    }
+
+    @FXML
+    private void jassem(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ViewsColis/AjouterOffre.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void marwen(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/leaderboardsFront.fxml"));
+        Parent next = loader.load();
+        LeaderboardsFrontController mainController = loader.<LeaderboardsFrontController>getController();
+        //mainController.setCurrentUser(u);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void sourour(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Events/Convertir.fxml"));
         Parent next = loader.load();
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(next);

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="320.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.taxihomeController">
+   <children>
+      <ImageView id="imagedriver" fx:id="imagedriver" fitHeight="250.0" fitWidth="250.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/siwar.png" />
+         </image>
+      </ImageView>
+      <JFXButton id="btn_noir1" fx:id="menu" layoutX="270.0" layoutY="265.0" onAction="#menu" text="Menu" />
+      <ImageView id="imageclient" fx:id="imageclient" fitHeight="250.0" fitWidth="250.0" layoutX="370.0">
+         <image>
+            <Image url="@../images/client.png" />
+         </image>
+      </ImageView>
+      <JFXButton id="btn_save" fx:id="menu1" layoutX="455.0" layoutY="265.0" onAction="#client" text="CLIENT" />
+      <JFXButton id="btn_add_new" fx:id="menu2" layoutX="56.0" layoutY="265.0" onAction="#taxi" text="TAXI DRIVER" />
+   </children>
+</AnchorPane>

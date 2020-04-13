@@ -78,7 +78,7 @@ public class MainLoginController implements Initializable {
             
             else
             {
-                                boolean isAdmin = u.getRoles().contains("ROLE_ADMIN");
+                boolean isAdmin = u.getRoles().contains("ROLE_ADMIN");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/mainMenu.fxml"));
                 Parent next = loader.load();
                 MainMenuController mainController = loader.<MainMenuController>getController();

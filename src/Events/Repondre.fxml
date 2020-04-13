@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Events.RepondreController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="721.0" prefWidth="882.0" styleClass="backgroundsrc" stylesheets="@css/sourour.css">
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="86.0" layoutX="2.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="43.0" layoutY="87.0" prefHeight="542.0" prefWidth="676.0" style="-fx-background-radius: 50;" styleClass="buttonignorer2">
+               <children>
+                  <Label fx:id="Titreevent" ellipsisString="" layoutX="32.0" layoutY="22.0" style="-fx-text-fill: white;" styleClass="labelTitre" stylesheets="@css/sourour.css" text="Lavage" wrapText="true" />
+                  <ScrollPane layoutX="111.0" layoutY="84.0" prefHeight="436.0" prefWidth="533.0">
+                    <content>
+                      <AnchorPane minHeight="436.0" minWidth="533.0" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <VBox fx:id="vbox" minHeight="436.0" minWidth="533.0" styleClass="buttonignorer" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <Button fx:id="reply" layoutX="247.0" layoutY="648.0" mnemonicParsing="false" onAction="#reply" prefHeight="43.0" prefWidth="143.0" style="-fx-border-radius: 30;" styleClass="buttonignorer2" text="Reply" />
+            <Button layoutX="419.0" layoutY="648.0" mnemonicParsing="false" onAction="#ignorer" prefHeight="43.0" prefWidth="143.0" styleClass="buttonparticiper" text="Cancel" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="570.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.EspaceclientBController">
+   <children>
+      <AnchorPane id="anchorpane_left1" layoutX="17.0" layoutY="4.0" prefHeight="47.0" prefWidth="620.0">
+         <children>
+            <JFXButton id="btn_search" layoutX="4.0" layoutY="1.0" onAction="#trierselonetat0" text="Request unreserved " />
+            <JFXButton id="btn_sort" layoutX="238.0" layoutY="1.0" onAction="#trierselonetat1" text="Request reserved " />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="anchorpane_left" layoutX="14.0" layoutY="66.0" prefHeight="440.0" prefWidth="299.0">
+         <children>
+            <JFXComboBox id="region" fx:id="regiona" layoutX="44.0" layoutY="14.0" prefHeight="31.0" prefWidth="149.0" promptText="Region" />
+            <JFXComboBox id="iduser" fx:id="ida" layoutX="44.0" layoutY="72.0" prefHeight="31.0" prefWidth="149.0" promptText="USER" />
+            <JFXTextField id="lieua" fx:id="destinationa" layoutX="34.0" layoutY="187.0" promptText="Destination " />
+            <JFXDatePicker id="date" fx:id="datea" layoutX="34.0" layoutY="230.0" />
+            <JFXTimePicker id="periode" fx:id="periodea" layoutX="36.0" layoutY="284.0" />
+            <JFXTextField fx:id="departa" layoutX="34.0" layoutY="127.0" promptText="Departure" />
+            <JFXTimePicker id="periodef" fx:id="periodef" layoutX="35.0" layoutY="335.0" />
+         </children>
+      </AnchorPane>
+      <TableView id="demandeTableView" fx:id="demandeTableView" layoutX="331.0" layoutY="66.0" onMousePressed="#esm" prefHeight="440.0" prefWidth="620.0">
+        <columns>
+          <TableColumn id="depart" fx:id="depart" prefWidth="139.0" text="Departure" />
+          <TableColumn id="destination" fx:id="destination" prefWidth="158.0" text="Destination" />
+            <TableColumn id="periode" fx:id="periode" prefWidth="111.0" text="Time" />
+            <TableColumn id="dated" fx:id="dated" prefWidth="147.0" text="Date" />
+            <TableColumn id="etat" fx:id="etat" prefWidth="79.0" text="State" />
+        </columns>
+      </TableView>
+      <AnchorPane id="anchorpane_right1" fx:id="anchorpane_right1" layoutX="652.0" layoutY="4.0" prefHeight="41.0" prefWidth="299.0">
+         <children>
+            <JFXButton id="btn_pdf" fx:id="btn_pdf" layoutX="176.0" layoutY="4.0" onAction="#pdftry1" text="PDF" />
+            <JFXComboBox id="etatpdf" fx:id="statepdf" focusColor="#f9fbff" layoutX="48.0" layoutY="13.0" prefHeight="31.0" prefWidth="81.0" promptText="STATE" unFocusColor="#fff8f8" />
+         </children>
+      </AnchorPane>
+      <JFXButton id="btn_delete" layoutX="218.0" layoutY="518.0" onAction="#deleteDemande" prefHeight="0.0" prefWidth="92.0" text="Delete" />
+      <JFXButton id="btn_edit" layoutX="114.0" layoutY="522.0" onAction="#modifier" prefHeight="0.0" prefWidth="92.0" text="Update" />
+      <JFXButton id="btn_save" layoutX="17.0" layoutY="522.0" onAction="#ajouterDemande" prefHeight="0.0" prefWidth="92.0" text="Add" />
+      <JFXButton id="btn_backnoir" fx:id="btn_back" layoutX="379.0" layoutY="524.0" onAction="#menu" text="Menu" />
+      <JFXButton id="btn_noir1" fx:id="btn_back01" layoutX="545.0" layoutY="523.0" onAction="#menu" text="Taxi Reservation" />
+      <JFXButton id="btn_noire2" fx:id="btn_back02" layoutX="783.0" layoutY="522.0" onAction="#menu" text="All Reservation" />
+   </children>
+</AnchorPane>
