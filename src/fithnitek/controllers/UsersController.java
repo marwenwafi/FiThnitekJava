@@ -206,11 +206,6 @@ public class UsersController implements Initializable {
             alert = new Alert(Alert.AlertType.ERROR, "You Have to insert username", ButtonType.CANCEL);
             alert.showAndWait();
         }
-        else if (!u.getUsername().equals(rowData.getUsername()))
-        {
-            alert = new Alert(Alert.AlertType.ERROR, "Username already used!", ButtonType.CANCEL);
-            alert.showAndWait();
-        }
         else if (!isValid(em))
         {
             alert = new Alert(Alert.AlertType.ERROR, "Email format Invalid!", ButtonType.CANCEL);
@@ -241,20 +236,28 @@ public class UsersController implements Initializable {
             alert = new Alert(Alert.AlertType.ERROR, "You have to add an image!", ButtonType.CANCEL);
             alert.showAndWait();
         }
-        else
+        else if (u != null)
         {
-            Date bd = java.sql.Date.valueOf(birthdate.getValue());
-            BufferedImage bImage = ImageIO.read(selectedFile);
-            String hashedpass = rowData.getHashedPwd();
-            if(!pass.equals(""))
-                hashedpass = bcrypt.hashPassword(pass);
-            String extension = FilenameUtils.getExtension(ImageFile);
-            ImageIO.write(bImage, extension, new File("C://wamp64/www/PiDev/web/uploads/profiles/"+un+"."+extension));
-            u = new User(em,un,sur,hashedpass,Integer.parseInt(te),bd,un+"."+extension,1,"a:0:{}");
-            uc.modifier(u);
-            refresh();        
-        }
-        
+            if (!u.getUsername().equals(rowData.getUsername()))
+            {
+                alert = new Alert(Alert.AlertType.ERROR, "Username already used!", ButtonType.CANCEL);
+                alert.showAndWait();
+            }
+            else
+            {
+                Date bd = java.sql.Date.valueOf(birthdate.getValue());
+                BufferedImage bImage = ImageIO.read(selectedFile);
+                String hashedpass = rowData.getHashedPwd();
+                if(!pass.equals(""))
+                    hashedpass = bcrypt.hashPassword(pass);
+                String extension = FilenameUtils.getExtension(ImageFile);
+                ImageIO.write(bImage, extension, new File("C://wamp64/www/PiDev/web/uploads/profiles/"+un+"."+extension));
+                u = new User(rowData.getId(),em,un,sur,hashedpass,Integer.parseInt(te),bd,un+"."+extension,1,"a:0:{}");
+                System.out.println(u);
+                uc.modifier(u);
+                refresh();
+            }
+        }   
     }
     
 

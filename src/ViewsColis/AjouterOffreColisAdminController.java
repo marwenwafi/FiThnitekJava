@@ -42,6 +42,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -399,12 +400,25 @@ voiture.setText(O.getVoiture());
           return (x);   
           
 }
-
+    
     @FXML
-    private void gocolisoffre(ActionEvent event) {
+    private void backendMenu(MouseEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/backend.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void backtomenuback(ActionEvent event) {
+    private void gocolisoffre(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ViewsColis/AfficherAllColisAdmin.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
     }
+
 }

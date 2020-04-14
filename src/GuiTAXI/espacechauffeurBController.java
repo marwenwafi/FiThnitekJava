@@ -126,7 +126,8 @@ public class espacechauffeurBController implements Initializable {
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       nomclient.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
-        Region.getItems().addAll("Ariana","Tunis");
+            Region.getItems().addAll("Ariana", "Béja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kebili", "Kef", "Mahdia", "Manouba", "Medenine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"
+);
         /*
         Connection cnx = DataSource.getInstance().getCnx();
       String req="SELECT email FROM fos_user ";
@@ -193,7 +194,7 @@ public class espacechauffeurBController implements Initializable {
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       nomclient.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
-        Region.getItems().addAll("Ariana","Tunis");
+    
         /*
          Connection cnx = DataSource.getInstance().getCnx();
       String req="SELECT email FROM fos_user ";
@@ -321,7 +322,7 @@ catch (IOException e)
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       nomclient.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
-        Region.getItems().addAll("Ariana","Tunis");
+    
     
     
     
@@ -359,7 +360,7 @@ catch (IOException e)
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       nomclient.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
-       Region.getItems().addAll("Ariana","Tunis");
+   
 
     
     }
@@ -373,22 +374,30 @@ catch (IOException e)
     }  
   
     public  void taxi(ActionEvent event) throws IOException {
-      Parent root = FXMLLoader.load(getClass().getResource("affichertaxiR.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("affichertaxiRB.fxml"));
         Scene scene = new Scene(root);
      scene.getStylesheets().add(getClass().getResource("styletaxi.css").toExternalForm());
           Stage newWindow = new Stage();
            newWindow.setTitle(" Taxi Reservation  ");
            newWindow.setScene(scene);
            newWindow.show();
+                 
+           final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
     }
      public  void menu(ActionEvent event) throws IOException {
-      Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("/fithnitek/views/backend.fxml"));
         Scene scene = new Scene(root);
      scene.getStylesheets().add(getClass().getResource("styletaxi.css").toExternalForm());
           Stage newWindow = new Stage();
            newWindow.setTitle("Menu ");
            newWindow.setScene(scene);
            newWindow.show();
+                 
+           final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
     }
      
      
@@ -400,6 +409,10 @@ catch (IOException e)
            newWindow.setTitle("Taxi Request  ");
            newWindow.setScene(scene);
            newWindow.show();
+                 
+           final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
     }
 
 }

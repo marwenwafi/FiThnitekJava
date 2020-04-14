@@ -30,8 +30,8 @@ public class MainMenuController implements Initializable {
     protected static User currentUser;
 
     
-    
-    //private Label welcomename;
+    @FXML
+    private Label welcomename;
     //private Label usernameLabel;
     //private JFXButton dashboard;
     @FXML
@@ -56,6 +56,8 @@ public class MainMenuController implements Initializable {
     private JFXButton upadateprofile;
     @FXML
     private JFXButton logout;
+    @FXML
+    private JFXButton dashboard;
     
     
     
@@ -66,20 +68,21 @@ public class MainMenuController implements Initializable {
 
     public void setCurrentUser(User currentUser, boolean isAdmin, Image pic) {
         this.currentUser = currentUser;
-        //this.welcomename.setText("Welcome: ");
+        this.welcomename.setText("Welcome: "+currentUser.getUsername());
         this.user.setImage(pic);
         //this.usernameLabel.setText(currentUser.getUsername());
-        //this.dashboard.setVisible(isAdmin);
+        this.dashboard.setVisible(isAdmin);
     }
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        System.out.println(currentUser);
     }    
 
+    @FXML
     private void goDashboard(MouseEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/dashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/backend.fxml"));
         Parent next = loader.load();
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(next);
@@ -108,7 +111,13 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
-    private void yassin(MouseEvent event) {
+    private void yassin(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek_test/Menu.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -141,6 +150,26 @@ public class MainMenuController implements Initializable {
         Scene scene = new Scene(next);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void logOut(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void UpdateProfile(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/updateprofile.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();   
     }
     
 }

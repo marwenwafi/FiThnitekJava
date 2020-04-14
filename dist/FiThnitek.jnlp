@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="FiThnitek.jar" size="2229350" download="eager" />
+    <jar href="FiThnitek.jar" size="2780818" download="eager" />
     <jar href="lib\activation-1.1.jar" size="62983" download="eager" />
     <jar href="lib\commons-io-2.4.jar" size="185140" download="eager" />
     <jar href="lib\controlsfx-8.40.11.jar" size="985420" download="eager" />
@@ -23,6 +23,11 @@
     <jar href="lib\jfreechart-fx-1.0.0.jar" size="27962" download="eager" />
     <jar href="lib\mail-1.4.7.jar" size="521157" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\twilio-7.0.0-rc-12-jar-with-dependencies.jar" size="6927238" download="eager" />
+    <jar href="lib\twilio-7.17.7-jar-with-dependencies.jar" size="8810173" download="eager" />
+    <jar href="lib\twilio-7.17.7-javadoc.jar" size="8923440" download="eager" />
+    <jar href="lib\twilio-7.17.7-sources.jar" size="1784873" download="eager" />
+    <jar href="lib\twilio-7.17.7.jar" size="2801356" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="FiThnitek" >
     <param name="requiredFXVersion" value="8.0+"/>

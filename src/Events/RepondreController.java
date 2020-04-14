@@ -5,6 +5,7 @@
  */
 package Events;
 
+import fithnitek.controllers.MainMenuController;
 import fithnitek.controllers.ServiceNotificationEvent;
 import fithnitek.models.*;
 import java.net.URL;
@@ -51,12 +52,15 @@ public class RepondreController implements Initializable {
     RadioButton reponse1,reponse2;
     @FXML
     private Button reply;
+    User user;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        MainMenuController mmc = new MainMenuController();
+        user = mmc.getCurrentUser();
         titre=ParticiperController.getTitre();
         id=sv.getidBytitre(titre);
         ev=sv.getEventPart(id);
@@ -111,7 +115,7 @@ public class RepondreController implements Initializable {
         else{
             System.out.println("ok");
             
-            sv.repondre(id, 5);
+            sv.repondre(id, user.getId());
             Alert alt= new Alert(Alert.AlertType.INFORMATION, "You participated in the event"+ev.getTitre(), ButtonType.OK);
             
             closeButtonAction(event);

@@ -49,6 +49,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -56,6 +57,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 
@@ -75,7 +77,11 @@ public class AffichageReservationTaxiController implements Initializable {
 
     @FXML
     private TableColumn<ReservationTaxi, String> destination;
+    @FXML
+    private ImageView logo;
 
+    @FXML
+    private ImageView taxi;
     @FXML
     private TableColumn<ReservationTaxi, String> periode;
 
@@ -111,6 +117,10 @@ public class AffichageReservationTaxiController implements Initializable {
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       client.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
+        javafx.scene.image.Image img =  new javafx.scene.image.Image("images/taxi.png");
+        taxi.setImage(img);
+         javafx.scene.image.Image img2 =  new javafx.scene.image.Image("images/logo.png");
+        logo.setImage(img2);
       
     
       
@@ -166,166 +176,12 @@ public class AffichageReservationTaxiController implements Initializable {
      
        public void pdftry1( )  
               
-      {  Document doc = new Document();
-        Connection cnx = DataSource.getInstance().getCnx();
-        //
-      String sql = "SELECT * FROM reservation_taxis R INNER JOIN  demande_taxi D ON  R.iddemande=D.id  INNER JOIN fos_user U ON D.iduser=U.id  where R.iduser="+user.getId();
-       try {
-        
-      
-         PreparedStatement pst = cnx.prepareStatement(sql);
-              
+      { 
+            mypdfjava pdf= new  mypdfjava();
+         pdf.pdfreservation(user.getId());
           
-          ResultSet rs = pst.executeQuery();
-          
-          
-           PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\try1.pdf"));
-           doc.open();
-           Image logo = Image.getInstance("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\logo0.png");
-           logo.scaleAbsoluteHeight(150);
-           logo.scaleAbsoluteWidth(600);
-           logo.setAlignment(Image.ALIGN_CENTER);
-           
-           doc.add(logo);
-            doc.add(new Paragraph(" "));
-            doc.add(new Paragraph(" "));
-            PdfPTable table = new PdfPTable(8);
-            table.setWidthPercentage(100);
-            PdfPCell cell;
-            
-            
-           cell = new PdfPCell( new Phrase("Name",FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-           table.addCell(cell);
-           
-           
-           
-           cell = new PdfPCell( new Phrase("Username",FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-           table.addCell(cell);
-           
-           
-           cell = new PdfPCell( new Phrase("Region",FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-           table.addCell(cell);
-           
-           
-           
-           
-           cell = new PdfPCell( new Phrase("Departure ",FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-           table.addCell(cell);
-           
-            cell = new PdfPCell( new Phrase("Destination ",FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-           table.addCell(cell);
-           
-           
-            cell = new PdfPCell( new Phrase("Date ",FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-          doc.add(table);
-           table.addCell(cell);
-          
-          
-           cell = new PdfPCell( new Phrase("Time ",FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-           doc.add(table);
-           table.addCell(cell);
-          
-           cell = new PdfPCell( new Phrase("Price ",FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-           table.addCell(cell);
-           
-           
-       
-          while(rs.next())
-          {
           
          
-           cell = new PdfPCell( new Phrase(rs.getString(14),FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-         cell.setBackgroundColor(BaseColor.WHITE);
-           table.addCell(cell);
-           
-          
-           cell = new PdfPCell( new Phrase(rs.getString(25),FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-         cell.setBackgroundColor(BaseColor.WHITE);
-           table.addCell(cell);
-           
-           
-           
-         
-           
-           
-           cell = new PdfPCell( new Phrase(rs.getString(8),FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.WHITE);
-           table.addCell(cell);
-           
-           
-           
-           
-           cell = new PdfPCell( new Phrase(rs.getString(6),FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-          cell.setBackgroundColor(BaseColor.WHITE);
-           table.addCell(cell);
-         
-           cell = new PdfPCell( new Phrase(rs.getString(7),FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-           cell.setBackgroundColor(BaseColor.WHITE);
-           table.addCell(cell);
-        
-           
-           
-           
-            cell = new PdfPCell( new Phrase(rs.getString(10),FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-          cell.setBackgroundColor(BaseColor.WHITE);
-           table.addCell(cell);
-           
-           
-            cell = new PdfPCell( new Phrase(rs.getString(9),FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-          cell.setBackgroundColor(BaseColor.WHITE);
-           table.addCell(cell);
-           
-            String price= String.valueOf(rs.getFloat(12));
-            cell = new PdfPCell( new Phrase(price,FontFactory.getFont("Comic Sans MS", 12)));
-           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-          cell.setBackgroundColor(BaseColor.WHITE);
-           table.addCell(cell);
-              
-          }
-          
-           doc.add(table);
-           
-           doc.close();
-           Desktop.getDesktop().open( new File ("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\try1.pdf"));
-          
-        
-                   
-       }
-          
-        catch (DocumentException ex) {
-           Logger.getLogger(AffichageReservationTaxiController.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (FileNotFoundException ex) {
-           Logger.getLogger(AffichageReservationTaxiController.class.getName()).log(Level.SEVERE, null, ex);
-       } 
-       catch (IOException ex) {
-           Logger.getLogger(AffichageReservationTaxiController.class.getName()).log(Level.SEVERE, null, ex);
-       }
-      catch (SQLException ex) {
-              Logger.getLogger(AffichageReservationTaxiController.class.getName()).log(Level.SEVERE, null, ex);
-          }
       }
      
      
@@ -337,6 +193,26 @@ public class AffichageReservationTaxiController implements Initializable {
            newWindow.setTitle("Menu ");
            newWindow.setScene(scene);
            newWindow.show();
+             
+           final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
+           
+    }
+     
+      public  void request(ActionEvent event) throws IOException {
+      Parent root = FXMLLoader.load(getClass().getResource("espaceclientB.fxml"));
+        Scene scene = new Scene(root);
+     scene.getStylesheets().add(getClass().getResource("styletaxi.css").toExternalForm());
+          Stage newWindow = new Stage();
+           newWindow.setTitle("Menu ");
+           newWindow.setScene(scene);
+           newWindow.show();
+             
+           final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
+           
     }
      
     public void  refresh()
@@ -345,13 +221,13 @@ public class AffichageReservationTaxiController implements Initializable {
       ls=reser.affichertaxi(user.getId());
       System.out.println(ls);
       data.addAll(ls);
-      depart.setCellValueFactory(new PropertyValueFactory<>("id"));
-      destination.setCellValueFactory(new PropertyValueFactory<>("iddemande"));
-     // periode.setCellValueFactory(new PropertyValueFactory<>("periode"));
-     // prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-     //region.setCellValueFactory(new PropertyValueFactory<>("region"));
-     // dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
-      client.setCellValueFactory(new PropertyValueFactory<>("iduser"));
+     depart.setCellValueFactory(new PropertyValueFactory<>("lieudepart"));
+      destination.setCellValueFactory(new PropertyValueFactory<>("lieuarrive"));
+      periode.setCellValueFactory(new PropertyValueFactory<>("periode"));
+     prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+    region.setCellValueFactory(new PropertyValueFactory<>("region"));
+      dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
+      client.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
     
     
@@ -367,5 +243,8 @@ public class AffichageReservationTaxiController implements Initializable {
            newWindow.setTitle("taxi ");
            newWindow.setScene(scene);
            newWindow.show();
+                final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
     }
 }

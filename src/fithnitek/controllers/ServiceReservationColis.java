@@ -105,7 +105,8 @@ public class ServiceReservationColis implements IReservation<Reservation_Colis> 
             System.out.println("Reservation ajoutée !");
         //     String qrCodeText = "Hauteur="+O.getHauteurResv()+",Largeur="+O.getLargeurResv()+",idOffre="+O.getId_Offre()+",idU="+O.getId()+",Longueur="+O.getLongueurResv()+"Prix="+PrixR+"";
              String qrCodeText = "tu es Reserve un offre votre id user est ="+O.getId()+", votre reservation compose de : Largeur="+O.getLargeurResv()+",Longueur="+O.getLongueurResv()+",Hauteur ="+O.getHauteurResv()+",Prix="+PrixR+",l'id offre"+O.getId_Offre()+"";
-		String filePath = "C:/Users/marwe/Documents/NetBeansProjects/FiThnitek/src/images/ReserveOffre.png";
+		String filePath = "src/images/ReserveOffre.png";
+                //C:/Users/marwe/Documents/NetBeansProjects/FiThnitek
 		int size = 400;
 		String fileType = "png";
 		File qrFile = new File(filePath);

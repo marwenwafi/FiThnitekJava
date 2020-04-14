@@ -35,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -105,7 +106,9 @@ public class AfficherAllColisAdminController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            ServiceColis OC = new ServiceColis();
+        MainMenuController mmc = new MainMenuController();
+        user = mmc.getCurrentUser();
+        ServiceColis OC = new ServiceColis();
         ArrayList<Offre_Colis> OffreArray =(ArrayList<Offre_Colis>) OC.afficherAllColis() ; 
         ObservableList<Offre_Colis> data = FXCollections.observableArrayList(OffreArray);
         afficher.setItems(data);
@@ -293,7 +296,15 @@ Alert alert = new Alert(Alert.AlertType.INFORMATION);
           }
     }
    
-  
+    @FXML
+    private void backendMenu(MouseEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/backend.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
 
     

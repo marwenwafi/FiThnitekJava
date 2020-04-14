@@ -6,9 +6,11 @@
 package Events;
 
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
+import fithnitek.controllers.MainMenuController;
 import fithnitek.controllers.ServiceEvent;
 import fithnitek.controllers.ServiceNotificationEvent;
 import fithnitek.models.Event;
+import fithnitek.models.User;
 import java.awt.Desktop;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -51,6 +53,7 @@ public class ParticiperController implements Initializable {
     private Label datefin;
     ServiceNotificationEvent sv=new ServiceNotificationEvent();
     Event ev;
+    User user;
 
     public static String getTitre() {
         return titre;
@@ -66,6 +69,8 @@ public class ParticiperController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        MainMenuController mmc = new MainMenuController();
+        user = mmc.getCurrentUser();
         titre=ConvertirController.getIdof();
         System.out.println("je suis da ParticipeController "+titre);
         myevent();
@@ -82,7 +87,7 @@ public class ParticiperController implements Initializable {
         datefin.setText("End date: " +s);
         System.err.println(s);
         try {
-            Image image = new Image(new FileInputStream("C:\\wamp64\\www\\PiDev\\web\\uploads\\eventsImages\\"+ev.getImage()));
+            Image image = new Image(new FileInputStream("C://wamp64/www/PiDev/web/uploads/eventsImages/"+ev.getImage()));
             imagevent.setImage(image);
             imagevent.setFitHeight(235);
             imagevent.setFitWidth(431);
@@ -109,7 +114,7 @@ public class ParticiperController implements Initializable {
         if(operation.equals("Publicité"))
         {
             openWebpage(ev.getUrl());
-           sv.participer(id, 5);
+           sv.participer(id, user.getId());
            
         try {
             toFront(event);

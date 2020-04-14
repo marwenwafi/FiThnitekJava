@@ -28,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -140,7 +141,15 @@ public class ReservationColisController implements Initializable {
 
     }
 
-
+    @FXML
+    private void BackMainMenu(MouseEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/mainMenu.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
 
  
 }

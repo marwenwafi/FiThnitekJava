@@ -398,4 +398,14 @@ Image check = new Image("GUIcovoiturage/logosghir.png");
       playmusic(path);
      notificationBuilder.show();
 }
+
+    @FXML
+    private void backendMenu(MouseEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/backend.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -109,7 +109,7 @@ public class EventQuController implements Initializable {
     private TableView<Event> tab;
     String statusClick ,statusCode;
      ServiceEvent sv= new ServiceEvent();
-     String extension=null;
+     String extension="";
      
     @FXML
     private TableColumn<Event, Integer> idevent;
@@ -360,7 +360,9 @@ public class EventQuController implements Initializable {
         fileLocation.setText(generateUniqueFileName());
          extension =file2.getName().substring(file2.getName().lastIndexOf(".")+1);
          System.out.println("exten"+extension);
+         
         fileLocation.setText(generateUniqueFileName());
+        System.out.println("------>"+fileLocation.getText());
         
         System.out.println(file2.getName());
         BufferedImage bImage;

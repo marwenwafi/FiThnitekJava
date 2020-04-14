@@ -51,14 +51,14 @@ public class mypdfjava {
         String x="";
        
          Connection cnx = DataSource.getInstance().getCnx();
-          String req= "Select username , nom From fos_user  where id='" +id+"' ";
+          String req= "Select username , prenom From fos_user  where id='" +id+"' ";
           PreparedStatement pst = cnx.prepareStatement(req);
           ResultSet rs;
           rs = pst.executeQuery();
           
           if(rs.next())
           {
-              x = rs.getString("username") + " " +rs.getString("nom");
+              x = rs.getString("username") + " " +rs.getString("prenom");
              
     }
           return (x);   
@@ -86,12 +86,12 @@ public class mypdfjava {
           
           
         
-           PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\try1.pdf"));
+           PdfWriter.getInstance(doc, new FileOutputStream("src/images/try1.pdf"));
           
            doc.open();
            Image logo;
         
-              logo = Image.getInstance("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\logo0.png");
+              logo = Image.getInstance("src/images/logo0.png");
          
            logo.scaleAbsoluteHeight(150);
            logo.scaleAbsoluteWidth(600);
@@ -208,7 +208,7 @@ public class mypdfjava {
            doc.add(table);
            
            doc.close();
-           Desktop.getDesktop().open( new File ("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\try1.pdf"));
+           Desktop.getDesktop().open( new File ("src/images/try1.pdf"));
           
         
                    
@@ -254,12 +254,12 @@ public class mypdfjava {
           
           
         
-           PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\back.pdf"));
+           PdfWriter.getInstance(doc, new FileOutputStream("src/images/back.pdf"));
           
            doc.open();
            Image logo;
         
-           logo = Image.getInstance("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\logo0.png");
+           logo = Image.getInstance("src/images/logo0.png");
          
            logo.scaleAbsoluteHeight(150);
            logo.scaleAbsoluteWidth(600);
@@ -395,7 +395,7 @@ public class mypdfjava {
            doc.add(table);
            
            doc.close();
-           Desktop.getDesktop().open( new File ("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\back.pdf"));
+           Desktop.getDesktop().open( new File ("src/images/back.pdf"));
           
         
                    
@@ -435,14 +435,14 @@ public class mypdfjava {
           
           ResultSet rs = pst.executeQuery();
           
-          int nb= genererInt(0,1000);
-        String nompdf = "C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\clientfront.pdf" + nb ;
+          int nb= genererInt(0,100);
+        String nompdf = "src/images/clientfront" + nb + ".pdf" ;
            PdfWriter.getInstance(doc, new FileOutputStream(nompdf));
           
            doc.open();
            Image logo;
         
-           logo = Image.getInstance("C:\\Users\\Lenovo\\Desktop\\FiThnitek\\src\\images\\logo0.png");
+           logo = Image.getInstance("src/images/logo0.png");
          
            logo.scaleAbsoluteHeight(150);
            logo.scaleAbsoluteWidth(600);
@@ -595,6 +595,177 @@ public class mypdfjava {
        
           catch (SQLException ex) {
               Logger.getLogger(mypdfjava.class.getName()).log(Level.SEVERE, null, ex);
+          }
+      }
+       
+       
+       
+       
+       
+       
+       
+       
+          public void pdfreservation( Integer id )  
+              
+      {  Document doc = new Document();
+        Connection cnx = DataSource.getInstance().getCnx();
+        //
+      String sql = "SELECT * FROM reservation_taxis R INNER JOIN  demande_taxi D ON  R.iddemande=D.id  INNER JOIN fos_user U ON D.iduser=U.id  where R.iduser='"+id+"'";
+       try {
+        
+      
+         PreparedStatement pst = cnx.prepareStatement(sql);
+              
+          
+          ResultSet rs = pst.executeQuery();
+          
+          
+           PdfWriter.getInstance(doc, new FileOutputStream("src/images/try1.pdf"));
+           doc.open();
+           Image logo = Image.getInstance("src/images/logo0.png");
+           logo.scaleAbsoluteHeight(150);
+           logo.scaleAbsoluteWidth(600);
+           logo.setAlignment(Image.ALIGN_CENTER);
+           
+           doc.add(logo);
+            doc.add(new Paragraph(" "));
+            doc.add(new Paragraph(" "));
+            PdfPTable table = new PdfPTable(8);
+            table.setWidthPercentage(100);
+            PdfPCell cell;
+            
+            
+           cell = new PdfPCell( new Phrase("Name",FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+           table.addCell(cell);
+           
+           
+           
+           cell = new PdfPCell( new Phrase("Username",FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+           table.addCell(cell);
+           
+           
+           cell = new PdfPCell( new Phrase("Region",FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+           table.addCell(cell);
+           
+           
+           
+           
+           cell = new PdfPCell( new Phrase("Departure ",FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+           table.addCell(cell);
+           
+            cell = new PdfPCell( new Phrase("Destination ",FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+           table.addCell(cell);
+           
+           
+            cell = new PdfPCell( new Phrase("Date ",FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+          doc.add(table);
+           table.addCell(cell);
+          
+          
+           cell = new PdfPCell( new Phrase("Time ",FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+           doc.add(table);
+           table.addCell(cell);
+          
+           cell = new PdfPCell( new Phrase("Price ",FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+           table.addCell(cell);
+           
+           
+       
+          while(rs.next())
+          {
+          
+         
+           cell = new PdfPCell( new Phrase(rs.getString(14),FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+         cell.setBackgroundColor(BaseColor.WHITE);
+           table.addCell(cell);
+           
+          
+           cell = new PdfPCell( new Phrase(rs.getString(25),FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+         cell.setBackgroundColor(BaseColor.WHITE);
+           table.addCell(cell);
+           
+           
+           
+         
+           
+           
+           cell = new PdfPCell( new Phrase(rs.getString(8),FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.WHITE);
+           table.addCell(cell);
+           
+           
+           
+           
+           cell = new PdfPCell( new Phrase(rs.getString(6),FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+          cell.setBackgroundColor(BaseColor.WHITE);
+           table.addCell(cell);
+         
+           cell = new PdfPCell( new Phrase(rs.getString(7),FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+           cell.setBackgroundColor(BaseColor.WHITE);
+           table.addCell(cell);
+        
+           
+           
+           
+            cell = new PdfPCell( new Phrase(rs.getString(10),FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+          cell.setBackgroundColor(BaseColor.WHITE);
+           table.addCell(cell);
+           
+           
+            cell = new PdfPCell( new Phrase(rs.getString(9),FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+          cell.setBackgroundColor(BaseColor.WHITE);
+           table.addCell(cell);
+           
+            String price= String.valueOf(rs.getFloat(12));
+            cell = new PdfPCell( new Phrase(price,FontFactory.getFont("Comic Sans MS", 12)));
+           cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+          cell.setBackgroundColor(BaseColor.WHITE);
+           table.addCell(cell);
+              
+          }
+          
+           doc.add(table);
+           
+           doc.close();
+           Desktop.getDesktop().open( new File ("src/images/try1.pdf"));
+          
+        
+                   
+       }
+          
+        catch (DocumentException ex) {
+           Logger.getLogger(AffichageReservationTaxiController.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(AffichageReservationTaxiController.class.getName()).log(Level.SEVERE, null, ex);
+       } 
+       catch (IOException ex) {
+           Logger.getLogger(AffichageReservationTaxiController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      catch (SQLException ex) {
+              Logger.getLogger(AffichageReservationTaxiController.class.getName()).log(Level.SEVERE, null, ex);
           }
       }
 }

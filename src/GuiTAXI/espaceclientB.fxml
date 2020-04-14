@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="570.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.EspaceclientBController">
+<AnchorPane id="AnchorPane" prefHeight="570.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.EspaceclientBController">
    <children>
       <AnchorPane id="anchorpane_left1" layoutX="17.0" layoutY="4.0" prefHeight="47.0" prefWidth="620.0">
          <children>
@@ -47,7 +47,7 @@
       <JFXButton id="btn_edit" layoutX="114.0" layoutY="522.0" onAction="#modifier" prefHeight="0.0" prefWidth="92.0" text="Update" />
       <JFXButton id="btn_save" layoutX="17.0" layoutY="522.0" onAction="#ajouterDemande" prefHeight="0.0" prefWidth="92.0" text="Add" />
       <JFXButton id="btn_backnoir" fx:id="btn_back" layoutX="379.0" layoutY="524.0" onAction="#menu" text="Menu" />
-      <JFXButton id="btn_noir1" fx:id="btn_back01" layoutX="545.0" layoutY="523.0" onAction="#menu" text="Taxi Reservation" />
-      <JFXButton id="btn_noire2" fx:id="btn_back02" layoutX="783.0" layoutY="522.0" onAction="#menu" text="All Reservation" />
+      <JFXButton id="btn_noir1" fx:id="btn_back01" layoutX="545.0" layoutY="523.0" onAction="#taxi" text="Taxi Reservation" />
+      <JFXButton id="btn_noire2" fx:id="btn_back02" layoutX="783.0" layoutY="522.0" onAction="#reservation" text="All Reservation" />
    </children>
 </AnchorPane>

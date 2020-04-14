@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="661.0" prefWidth="898.0" stylesheets="@../StyleReclamtion1.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek_test.FXMLDocumentController">
+   <children>
+      <TextField fx:id="sujet" layoutX="15.0" layoutY="66.0" prefHeight="26.0" prefWidth="208.0" promptText="Sujet" />
+      <TextArea fx:id="description" layoutX="15.0" layoutY="106.0" prefHeight="378.0" prefWidth="303.0" promptText="Description" />
+      <ComboBox fx:id="rectype" editable="true" layoutX="14.0" layoutY="22.0" prefHeight="26.0" prefWidth="208.0" promptText="type" />
+      <TableView fx:id="listeReclamation" layoutX="361.0" layoutY="22.0" prefHeight="370.0" prefWidth="506.0">
+        <columns>
+          <TableColumn fx:id="idrec" prefWidth="45.5999755859375" text="id reclamation" />
+          <TableColumn fx:id="iduser" prefWidth="62.4000244140625" text="Votre id" />
+            <TableColumn fx:id="taffich" prefWidth="87.20001220703125" text="type" />
+            <TableColumn fx:id="saffich" prefWidth="76.0" text="sujet" />
+            <TableColumn fx:id="daffich" prefWidth="139.99993896484375" text="Description" />
+            <TableColumn fx:id="dateaffiche" prefWidth="96.0001220703125" text="Date" />
+        </columns>
+      </TableView>
+      <Button fx:id="ajouter" layoutX="15.0" layoutY="502.0" mnemonicParsing="false" onAction="#ajouterReclamationAction" prefHeight="26.0" prefWidth="90.0" text="send" />
+      <Button fx:id="supprimer" layoutX="121.0" layoutY="502.0" mnemonicParsing="false" onAction="#supprimerReclamationAction" prefHeight="26.0" prefWidth="90.0" text="delete" />
+      <TableView fx:id="reply" layoutX="361.0" layoutY="415.0" prefHeight="200.0" prefWidth="506.0">
+        <columns>
+          <TableColumn fx:id="id_rec" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="repons" prefWidth="430.4" text="Reply" />
+        </columns>
+      </TableView>
+      <Button fx:id="show" layoutX="228.0" layoutY="502.0" mnemonicParsing="false" onAction="#afficherreponse" prefHeight="26.0" prefWidth="90.0" text="Show Reply" />
+   </children>
+</AnchorPane>

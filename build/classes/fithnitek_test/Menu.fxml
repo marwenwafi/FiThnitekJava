@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@StyleReclamtion1.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek_test.MenuController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="54.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-contact-d'affaires-64.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="329.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-connexion-en-tant-qu'utilisateur-96.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="contact" layoutX="77.0" layoutY="293.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="26.0" prefWidth="110.0" text="Contact Us" />
+      <Button fx:id="rate" layoutX="349.0" layoutY="293.0" mnemonicParsing="false" onAction="#evaluation" prefHeight="26.0" prefWidth="110.0" text="Rate User" />
+   </children>
+</AnchorPane>

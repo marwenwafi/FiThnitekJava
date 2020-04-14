@@ -27,6 +27,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -152,6 +153,16 @@ public class ReservationColisAdminController implements Initializable {
    app_stage.hide(); //optional
    app_stage.setScene(home_page_scene);
    app_stage.show();
+    }
+    
+    @FXML
+    private void backendMenu(MouseEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/backend.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
     }
     
 }

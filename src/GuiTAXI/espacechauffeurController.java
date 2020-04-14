@@ -36,6 +36,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 /**
  * FXML Controller class
  *
@@ -69,9 +71,15 @@ public class espacechauffeurController implements Initializable {
     private TableColumn<DemandeTaxi, String> regiont;
      @FXML
     private TableColumn<DemandeTaxi, String> prix;
+        @FXML
+    private ImageView taxi;
+
+    @FXML
+    private ImageView logo;
      @FXML
     private JFXTextField departrech;
     @FXML 
+    
     
     //private ComboBox maha ; 
     private ObservableList<DemandeTaxi> data = FXCollections.observableArrayList();
@@ -99,7 +107,14 @@ public class espacechauffeurController implements Initializable {
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       nomclient.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
-        Region.getItems().addAll("Ariana","Tunis");
+        Region.getItems().addAll("Ariana", "Béja", "Ben Arous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kebili", "Kef", "Mahdia", "Manouba", "Medenine", "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"
+);
+        
+         Image img =  new Image("images/taxi.png");
+        taxi.setImage(img);
+         Image img2 =  new Image("images/logo.png");
+        logo.setImage(img2);
+        
     }    
     
        public void refresh( ) {
@@ -116,7 +131,10 @@ public class espacechauffeurController implements Initializable {
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       nomclient.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
-        Region.getItems().addAll("Ariana","Tunis");
+      
+      
+      
+ 
        }
        
       
@@ -170,7 +188,7 @@ public class espacechauffeurController implements Initializable {
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       nomclient.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
-        Region.getItems().addAll("Ariana","Tunis");
+      
     
     
     
@@ -193,7 +211,7 @@ public class espacechauffeurController implements Initializable {
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       nomclient.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
-       Region.getItems().addAll("Ariana","Tunis");
+    
     
    
     
@@ -226,7 +244,7 @@ public class espacechauffeurController implements Initializable {
       dated.setCellValueFactory(new PropertyValueFactory<>("dated"));
       nomclient.setCellValueFactory(new PropertyValueFactory<>("username"));
       reservationTableView.setItems(data);
-       Region.getItems().addAll("Ariana","Tunis");
+   
 
     
     }
@@ -247,6 +265,10 @@ public class espacechauffeurController implements Initializable {
            newWindow.setTitle("taxi ");
            newWindow.setScene(scene);
            newWindow.show();
+                final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
+           
     }
      public  void menu(ActionEvent event) throws IOException {
       Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
@@ -256,6 +278,9 @@ public class espacechauffeurController implements Initializable {
            newWindow.setTitle("Menu ");
            newWindow.setScene(scene);
            newWindow.show();
+                final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
     }
 
 }

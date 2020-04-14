@@ -61,6 +61,22 @@ public class User {
         this.roles = roles;
     }
     
+    //For modification
+    public User(int id,String email, String username, String prenom, String hashedPwd, int tel, Date datedenaissance, String image,int enabled, String roles) {
+        this.id = id;
+        this.email = email;
+        this.username = username;
+        this.prenom = prenom;
+        this.hashedPwd = hashedPwd;
+        this.tel = tel;
+        this.datedenaissance = datedenaissance;
+        this.nbroffre = nbroffre;
+        this.points = points;
+        this.image = image;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
+    
     public User(String email, String username, int tel) {
         this.email = email;
         this.username = username;
@@ -71,6 +87,14 @@ public class User {
     {
         this.email = email ; 
     }
+    
+    public User(int id, String username)
+    {
+        this.id = id;
+        this.username = username;
+    }
+
+    
     
     
     public int getId() {

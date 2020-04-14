@@ -5,9 +5,11 @@
  */
 package Events;
 
+import fithnitek.controllers.MainMenuController;
 import fithnitek.controllers.ServiceEvent;
 import fithnitek.controllers.ServiceNotificationEvent;
 import fithnitek.models.NotificationEvent;
+import fithnitek.models.User;
 import java.awt.BorderLayout;
 import java.net.URL;
 import java.util.List;
@@ -56,6 +58,10 @@ public class ConvertirController implements Initializable {
     @FXML
     private Pagination pagination;
     public final int itemsPerPage=2;
+    
+    MainMenuController mmc = new MainMenuController();
+    User user;
+    
 
     public static String getIdof() {
         return idof;
@@ -70,7 +76,8 @@ public class ConvertirController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        int mespoints = sv.getPointsById(5);
+        user = mmc.getCurrentUser();
+        int mespoints = sv.getPointsById(user.getId());
         points.setText(" vous avez "+mespoints+"points.");
         coixConv.getItems().add ("1000=====>5tickets of 1dt");
         coixConv.getItems().add ("5000=====>28 tickets of 1dt");
@@ -100,8 +107,8 @@ public class ConvertirController implements Initializable {
         }
         if(choix>0)
         {
-            sv.ConvertirPoints(carnet, choix, 5);
-            int mespoints = sv.getPointsById(5);
+            sv.ConvertirPoints(carnet, choix, user.getId());
+            int mespoints = sv.getPointsById(user.getId());
             points.setText(" You have "+mespoints+"points.");
         }
         

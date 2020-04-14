@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.MainMenuController">
    <children>
@@ -49,12 +52,21 @@
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-1.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="user" fx:id="user" fitHeight="104.0" fitWidth="150.0" layoutX="14.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView id="user" fx:id="user" fitHeight="100.0" fitWidth="150.0" layoutX="14.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/client.png" />
          </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
       </ImageView>
-      <JFXButton id="upadateprofile" fx:id="upadateprofile" layoutX="250.0" layoutY="582.0" prefHeight="58.0" prefWidth="169.0" text="Update Profile" />
-      <JFXButton id="logout" fx:id="logout" layoutX="461.0" layoutY="584.0" prefHeight="58.0" prefWidth="141.0" text="LOG OUT " />
+      <JFXButton id="upadateprofile" fx:id="upadateprofile" layoutX="161.0" layoutY="590.0" onMouseClicked="#UpdateProfile" prefHeight="58.0" prefWidth="142.0" text="Update Profile" />
+      <JFXButton id="logout" fx:id="logout" layoutX="498.0" layoutY="590.0" onMouseClicked="#logOut" prefHeight="58.0" prefWidth="141.0" text="LOG OUT " />
+      <JFXButton id="upadateprofile" fx:id="dashboard" layoutX="329.0" layoutY="590.0" onMouseClicked="#goDashboard" prefHeight="58.0" prefWidth="142.0" text="Dashboard" />
+      <Label fx:id="welcomename" layoutX="165.0" layoutY="545.0" text="Welcome: ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

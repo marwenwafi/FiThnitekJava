@@ -41,8 +41,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -50,6 +52,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
@@ -97,6 +101,26 @@ public class AfficherOffreCovoiturageController implements Initializable {
     private ObservableList<OffreCovoiturage> data = FXCollections.observableArrayList();
     List<OffreCovoiturage> ev = new ArrayList<>();
     User user;
+    @FXML
+    private AnchorPane id_affichecov;
+    @FXML
+    private Button id_modifier;
+    @FXML
+    private Button id_suprimer;
+    @FXML
+    private Button id_addoffre;
+    @FXML
+    private Separator id_separateur;
+    @FXML
+    private BorderPane id_carsharingoffer;
+    @FXML
+    private BorderPane id_carsharingoffers;
+    @FXML
+    private Button BCarsharingoffers;
+    @FXML
+    private Button BYourReservation;
+    @FXML
+    private Button Bbacktothemenu;
     
     /**
      * Initializes the controller class.
@@ -136,6 +160,7 @@ public class AfficherOffreCovoiturageController implements Initializable {
         id_afficheroffre.setItems(data);
         
     }
+    @FXML
     public void supprimeroffrecovoiturage() throws Exception {
        OffreCovoiturage e = id_afficheroffre.getSelectionModel().getSelectedItem();
        if (e == null )
@@ -176,6 +201,7 @@ String text = "You carsharing offer has been deleted : The details of the Offre 
     }
     }
     
+    @FXML
     public void details (MouseEvent event)
     {
        
@@ -201,6 +227,7 @@ id_dateupdate.setValue(mm);}
 
     }
             
+    @FXML
     public void modifieroffrecovoiturage(ActionEvent event) throws Exception    
 {
 OffreCovoiturage e = id_afficheroffre.getSelectionModel().getSelectedItem();  
@@ -338,6 +365,7 @@ String text = "You have just added an offer : The details of the Offre are :" +"
  }
  }
  }
+    @FXML
     public void redirectionversafficherallofre(ActionEvent event) throws IOException
     {
      
@@ -352,6 +380,7 @@ String text = "You have just added an offer : The details of the Offre are :" +"
        stage.close();
     
     }
+    @FXML
     public void redirectionversreservation(ActionEvent event) throws IOException
     {
      
@@ -405,6 +434,16 @@ Image check = new Image("GUIcovoiturage/logosghir.png");
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @FXML
+    private void BackMainMenu(MouseEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/mainMenu.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
     }
 
 

@@ -37,6 +37,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -127,6 +128,7 @@ public class LeaderBoardController implements Initializable {
             String requete = "UPDATE leader_board SET category='"+l.getCategory()+"', title='" + l.getTitle()+ "',description='" + l.getDescription()+
                     "',size='" + l.getSize()+ "', start_date='"+ l.getStart_date()+"', end_date='"+l.getEnd_date()+"', color='"+l.getColor()+"'"
                     + ", image= '"+l.getImage()+"' WHERE idleaderboard=" + l.getIdleaderboard();
+            System.out.println(requete);
             Statement st = cnx.createStatement();
             st.executeUpdate(requete);
             System.out.println("LeaderBoard modifiée !");
@@ -179,8 +181,12 @@ public class LeaderBoardController implements Initializable {
         rowData.setSize(Integer.parseInt(size.getText()));
         rowData.setStart_date(java.sql.Date.valueOf(start_date.getValue()));
         rowData.setEnd_date(java.sql.Date.valueOf(end_date.getValue()));
-        //Category c = cc.findByID(Integer.parseInt(category.getText()));
-        //rowData.setCategory(category.getValue());
+        Category c = cc.findByID(category.getSelectionModel().getSelectedItem().getId_Category());
+        Color value = color.getValue();
+        String hex = String.format("#%02X%02X%02X",((int)color.getValue().getRed())*255,((int)color.getValue().getGreen())*255,((int)color.getValue().getBlue())*255);
+        System.out.println(hex);
+        rowData.setColor(hex);
+        rowData.setCategory(c.getId_Category());
         modifier(rowData);
         refresh();
     }
@@ -259,6 +265,8 @@ public class LeaderBoardController implements Initializable {
         start_date.setValue(mm);
         mm = LocalDate.parse(l.getEnd_date().toString(), formatter);
         end_date.setValue(mm);
+        Color col = Color.web(l.getColor());
+        color.setValue(col);
         size.setText(""+l.getSize());
         modify.setDisable(false);
         add.setDisable(true);

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.AffichageReservationTaxiBController">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiTAXI.AffichageReservationTaxiController">
    <children>
       <Pane id="pane_top" prefHeight="67.0" prefWidth="950.0">
          <children>
@@ -34,14 +34,13 @@
         </columns>
       </TableView>
       <JFXButton id="btn_delete" layoutX="29.0" layoutY="309.0" onAction="#deleteReservation" prefHeight="47.0" prefWidth="92.0" text="Delete" />
-      <JFXButton fx:id="btn_back1" layoutX="475.0" layoutY="500.0" onAction="#menu" text="Menu" />
-      <JFXButton fx:id="btn_back" layoutX="712.0" layoutY="500.0" onAction="#taxi" text="Go Back" />
-      <ImageView fitHeight="119.0" fitWidth="153.0" layoutX="5.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+      <JFXButton fx:id="btn_back" layoutX="712.0" layoutY="500.0" onAction="#request" text="Go Back" />
+      <ImageView id="taxi" fx:id="taxi" fitHeight="119.0" fitWidth="153.0" layoutX="5.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../FiThnitek/src/images/siwar.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="14.0" layoutY="396.0">
+      <ImageView id="logo" fx:id="logo" layoutX="14.0" layoutY="396.0">
          <image>
             <Image url="@../../../FiThnitek/src/images/logo.png" />
          </image>
