@@ -28,6 +28,8 @@ import javafx.scene.image.Image;
 public class MainMenuController implements Initializable {
     
     protected static User currentUser;
+    protected static boolean isAdmin;
+    protected static Image pic;
 
     
     @FXML
@@ -66,18 +68,34 @@ public class MainMenuController implements Initializable {
         return currentUser;
     }
 
+    public Image getPic() {
+        return pic;
+    }
+
+    public void setPic(Image pic) {
+        MainMenuController.pic = pic;
+    }
+    
+    
+
     public void setCurrentUser(User currentUser, boolean isAdmin, Image pic) {
         this.currentUser = currentUser;
+        this.isAdmin = isAdmin;
+        this.pic = pic;
         this.welcomename.setText("Welcome: "+currentUser.getUsername());
         this.user.setImage(pic);
-        //this.usernameLabel.setText(currentUser.getUsername());
         this.dashboard.setVisible(isAdmin);
     }
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(currentUser);
+        if (currentUser != null)
+        {
+            this.welcomename.setText("Welcome: "+currentUser.getUsername());
+            this.user.setImage(pic);
+            this.dashboard.setVisible(isAdmin);
+        }
     }    
 
     @FXML
@@ -134,8 +152,6 @@ public class MainMenuController implements Initializable {
     private void marwen(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/leaderboardsFront.fxml"));
         Parent next = loader.load();
-        LeaderboardsFrontController mainController = loader.<LeaderboardsFrontController>getController();
-        //mainController.setCurrentUser(u);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(next);
         stage.setScene(scene);

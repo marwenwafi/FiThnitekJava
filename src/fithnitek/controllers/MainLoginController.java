@@ -89,11 +89,8 @@ public class MainLoginController implements Initializable {
                 Scene scene = new Scene(next);
                 stage.setScene(scene);
                 stage.show();
-
             }
-            
         }
-        
     }
     
     @Override

@@ -6,6 +6,7 @@
 package fithnitek.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import static fithnitek.controllers.MainMenuController.currentUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -55,7 +56,9 @@ public class BackendController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        MainMenuController mmc = new MainMenuController();
+        this.welcomename.setText("Welcome: "+mmc.currentUser.getUsername());
+        this.user.setImage(mmc.getPic());
     }    
 
     @FXML

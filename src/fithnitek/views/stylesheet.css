@@ -21,3 +21,9 @@
     -jfx-focus-color:#4059a9;
     -jfx-unfocus-color: WHITE;
 }
+
+.jfx-date-picker2{
+    -fx-prompt-text-fill: #cccdcf;
+    -jfx-focus-color:#4059a9;
+    -jfx-unfocus-color: WHITE;
+}

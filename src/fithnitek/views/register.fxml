@@ -4,11 +4,14 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" style="-fx-background-color: #343a40;" styleClass="container" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.RegistrationController">
+<AnchorPane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" style="-fx-background-color: #343a40;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.RegistrationController">
     <children>
             <Text fill="#f8f549" fontSmoothingType="LCD" layoutX="20.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register Now">
                <font>
@@ -50,12 +53,20 @@
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXDatePicker fx:id="birthdate" defaultColor="WHITE" layoutX="65.0" layoutY="445.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Birth date" />
+            <JFXDatePicker fx:id="birthdate" defaultColor="WHITE" layoutX="65.0" layoutY="445.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Birth date" styleClass="jfx-date-picker" />
             <JFXButton layoutX="65.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#register" prefHeight="40.0" prefWidth="250.0" text="Sign Up" textAlignment="CENTER">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
             </JFXButton>
       <JFXButton fx:id="image" layoutX="118.0" layoutY="525.0" onMouseClicked="#uploadPicture" prefHeight="26.0" prefWidth="129.0" style="-fx-background-color: #cccdcf;" text="Choose picture" />
+      <FontAwesomeIconView fill="WHITE" glyphName="ARROW_CIRCLE_LEFT" layoutX="315.0" layoutY="57.0" onMouseClicked="#back" size="40">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Glow level="0.46" />
+         </effect>
+      </FontAwesomeIconView>
     </children>
 </AnchorPane>

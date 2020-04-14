@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.MainMenuController">
+<AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="667.0" stylesheets="@../../GuiTAXI/styletaxi.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.MainMenuController">
    <children>
       <ImageView id="maha" fx:id="maha" fitHeight="150.0" fitWidth="150.0" layoutX="24.0" layoutY="164.0" onMousePressed="#maha" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -31,7 +31,7 @@
             <Image url="@../../images/jassem.png" />
          </image>
       </ImageView>
-      <ImageView id="marwen" fx:id="marwen" fitHeight="150.0" fitWidth="150.0" layoutX="5.0" layoutY="346.0" onMousePressed="#marwen">
+      <ImageView id="marwen" fx:id="marwen" fitHeight="150.0" fitWidth="150.0" layoutX="24.0" layoutY="336.0" onMousePressed="#marwen">
          <image>
             <Image url="@../../images/marwen.png" />
          </image>

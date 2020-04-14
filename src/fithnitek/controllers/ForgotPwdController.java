@@ -144,4 +144,14 @@ public class ForgotPwdController implements Initializable {
             return false; 
         return pat.matcher(email).matches(); 
     }
+    
+    @FXML
+    private void back(MouseEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

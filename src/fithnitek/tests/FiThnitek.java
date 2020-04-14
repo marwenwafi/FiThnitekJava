@@ -103,7 +103,7 @@ public class FiThnitek extends Application {
         oc.afficher().forEach(System.out::println);
         */
         
-        Parent root = FXMLLoader.load(getClass().getResource("/fithnitek/views/dashboardMarwen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

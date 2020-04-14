@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="Pane" prefHeight="600.0" prefWidth="840.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.LeaderboardsFrontController">
    <children>
-      <JFXTabPane fx:id="tabs" layoutX="55.0" layoutY="207.0" prefHeight="350.0" prefWidth="734.0" />
+      <JFXTabPane fx:id="tabs" layoutX="55.0" layoutY="207.0" prefHeight="323.0" prefWidth="734.0" />
       <Label layoutX="55.0" layoutY="25.0" text="Current LeaderBoards">
          <font>
             <Font name="System Bold" size="22.0" />
@@ -19,6 +22,24 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <ImageView fx:id="banner" fitHeight="130.0" fitWidth="734.0" layoutX="57.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="banner" fitHeight="130.0" fitWidth="477.0" layoutX="57.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
+      <FontAwesomeIconView glyphName="ARROW_CIRCLE_LEFT" layoutX="67.0" layoutY="575.0" onMouseClicked="#back" size="40">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Glow level="0.46" />
+         </effect>
+      </FontAwesomeIconView>
+      <Label fx:id="descr" layoutX="540.0" layoutY="57.0" prefHeight="32.0" prefWidth="264.0" text="Description:" visible="false">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="description" layoutX="542.0" layoutY="89.0" prefHeight="32.0" prefWidth="264.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

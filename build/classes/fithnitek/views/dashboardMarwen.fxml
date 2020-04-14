@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fithnitek.controllers.DashboardMarwenController">
     <children>
-      <Pane layoutX="-6.0" prefHeight="600.0" prefWidth="160.0" style="-fx-background-color: #343a40;">
+      <Pane layoutY="1.0" prefHeight="600.0" prefWidth="160.0" style="-fx-background-color: #343a40;">
          <children>
             <JFXButton fx:id="categories" buttonType="RAISED" layoutY="223.0" onMouseClicked="#loadCategories" prefHeight="34.0" prefWidth="160.0" style="-fx-background-color: Grey;" stylesheets="@stylesheet.css" text="Categories" textFill="WHITE">
                <font>
@@ -29,6 +32,14 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="ARROW_CIRCLE_LEFT" layoutX="63.0" layoutY="567.0" onMouseClicked="#mainBackend" size="40">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Glow level="0.46" />
+               </effect>
+            </FontAwesomeIconView>
          </children>
       </Pane>
       <Pane fx:id="content" layoutX="160.0" layoutY="1.0" prefHeight="600.0" prefWidth="840.0" />

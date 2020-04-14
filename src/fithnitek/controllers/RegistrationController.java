@@ -291,5 +291,23 @@ public class RegistrationController implements Initializable{
         return pat.matcher(email).matches(); 
     }
     
+    @FXML
+    private void back(MouseEvent event) throws Exception {
+        Parent next = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainLogin.fxml"));
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    private void backMainMenu(MouseEvent event) throws Exception {
+        Parent next = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainMenu.fxml"));
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     
 }

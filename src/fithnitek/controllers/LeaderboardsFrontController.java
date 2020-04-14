@@ -37,9 +37,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 
 /**
@@ -61,6 +66,10 @@ public class LeaderboardsFrontController implements Initializable {
     private Label NoLeaders;
     @FXML
     private ImageView banner;
+    @FXML
+    private Label descr;
+    @FXML
+    private Label description;
    
 
     @Override
@@ -80,6 +89,8 @@ public class LeaderboardsFrontController implements Initializable {
                     Image image = new Image(file.toURI().toString());
                     banner.setImage(image);
                     Pane.setStyle("-fx-background-color: " + list.get(tabs.getSelectionModel().getSelectedIndex()).getColor());
+                    descr.setVisible(true);
+                    description.setText(list.get(tabs.getSelectionModel().getSelectedIndex()).getDescription());
                 }
             });
                 tabs.getTabs().add(new Tab(l.getTitle(), tablefactory(queryBuilder(cc.findByID(l.getCategory()), l.getSize(), l.getStart_date(), l.getEnd_date()))));
@@ -173,6 +184,16 @@ public class LeaderboardsFrontController implements Initializable {
         
         tableview.setItems(data);
         return tableview;
+    }
+    
+    @FXML
+    private void back(MouseEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fithnitek/views/mainMenu.fxml"));
+        Parent next = loader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(next);
+        stage.setScene(scene);
+        stage.show();
     }
     
 }

@@ -47,7 +47,6 @@ public class LeaderBoardController implements Initializable {
     
     Connection cnx = DataSource.getInstance().getCnx();
     
-    private String ImageFile = "";
     @FXML
     private AnchorPane Pane;
     
@@ -95,6 +94,8 @@ public class LeaderBoardController implements Initializable {
     LeaderBoard rowData;
     CategoryController cc = new CategoryController();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private String ImageFile = "";
+    File selectedFile;
 
     
     public void ajouter(LeaderBoard l) {
@@ -182,10 +183,8 @@ public class LeaderBoardController implements Initializable {
         rowData.setStart_date(java.sql.Date.valueOf(start_date.getValue()));
         rowData.setEnd_date(java.sql.Date.valueOf(end_date.getValue()));
         Category c = cc.findByID(category.getSelectionModel().getSelectedItem().getId_Category());
-        Color value = color.getValue();
-        String hex = String.format("#%02X%02X%02X",((int)color.getValue().getRed())*255,((int)color.getValue().getGreen())*255,((int)color.getValue().getBlue())*255);
-        System.out.println(hex);
-        rowData.setColor(hex);
+        String hex = color.getValue().toString().substring(2, 8);
+        rowData.setColor("#"+hex);
         rowData.setCategory(c.getId_Category());
         modifier(rowData);
         refresh();
@@ -267,6 +266,7 @@ public class LeaderBoardController implements Initializable {
         end_date.setValue(mm);
         Color col = Color.web(l.getColor());
         color.setValue(col);
+        banner.setText(ImageFile);
         size.setText(""+l.getSize());
         modify.setDisable(false);
         add.setDisable(true);
