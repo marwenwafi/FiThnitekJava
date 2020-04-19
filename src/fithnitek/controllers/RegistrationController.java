@@ -87,8 +87,6 @@ public class RegistrationController implements Initializable{
         currentuser = mmc.getCurrentUser();
         if(currentuser != null)
         {
-            username.setText(currentuser.getUsername());
-            email.setText(currentuser.getEmail());
             surname.setText(currentuser.getPrenom());
             tel.setText(currentuser.getTel()+"");
             LocalDate mm = LocalDate.parse(currentuser.getDatedenaissance().toString(), formatter);
@@ -184,28 +182,17 @@ public class RegistrationController implements Initializable{
     
     @FXML
     private void modifyUser(MouseEvent event) throws IOException {
-        String un = username.getText();
-        String em = email.getText();
         String pass = password.getText();
         String conf = confirm.getText();
         String sur = surname.getText();
         String te = tel.getText();
         
-        User u = uc.findByUsername(un);    
+        User u = uc.findByUsername(currentuser.getUsername());    
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         
-        if (un.equals(""))
-        {
-            alert = new Alert(Alert.AlertType.ERROR, "You Have to insert username", ButtonType.CANCEL);
-            alert.showAndWait();
-        }
-        else if (!isValid(em))
-        {
-            alert = new Alert(Alert.AlertType.ERROR, "Email format Invalid!", ButtonType.CANCEL);
-            alert.showAndWait();
-        }
-        else if (!pass.equals(conf))
+
+        if (!pass.equals(conf))
         {
             alert = new Alert(Alert.AlertType.ERROR, "Password missmatch!", ButtonType.CANCEL);
             alert.showAndWait();
@@ -245,8 +232,8 @@ public class RegistrationController implements Initializable{
                 if(!pass.equals(""))
                     hashedpass = bcrypt.hashPassword(pass);
                 String extension = FilenameUtils.getExtension(ImageFile);
-                ImageIO.write(bImage, extension, new File("C://wamp64/www/PiDev/web/uploads/profiles/"+un+"."+extension));
-                u = new User(currentuser.getId(),em,un,sur,hashedpass,Integer.parseInt(te),bd,un+"."+extension,1,"a:0:{}");
+                ImageIO.write(bImage, extension, new File("C://wamp64/www/PiDev/web/uploads/profiles/"+currentuser.getUsername()+"."+extension));
+                u = new User(currentuser.getId(),currentuser.getEmail(),currentuser.getUsername(),sur,hashedpass,Integer.parseInt(te),bd,currentuser.getUsername()+"."+extension,1,"a:0:{}");
                 uc.modifier(u);
                 Parent next = FXMLLoader.load(getClass().getResource("/fithnitek/views/mainMenu.fxml"));
                 Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

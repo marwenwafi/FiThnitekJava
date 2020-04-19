@@ -23,44 +23,34 @@
                   <Font name="Ebrima Bold" size="14.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="username" layoutX="65.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Username" styleClass="jfx-password-field2" unFocusColor="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="email" layoutX="65.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Email" styleClass="jfx-password-field2" unFocusColor="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </JFXTextField>
-            <JFXPasswordField fx:id="password" layoutX="65.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="jfx-password-field2" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="password" layoutX="65.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="jfx-password-field2" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXPasswordField>
-            <JFXPasswordField fx:id="confirm" layoutX="65.0" layoutY="264.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Confirm password" styleClass="jfx-password-field2" unFocusColor="WHITE">
+            <JFXPasswordField fx:id="confirm" layoutX="65.0" layoutY="234.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Confirm password" styleClass="jfx-password-field2" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXPasswordField>
-            <JFXTextField fx:id="surname" layoutX="65.0" layoutY="325.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Surname" styleClass="jfx-password-field2" unFocusColor="WHITE">
+            <JFXTextField fx:id="surname" layoutX="65.0" layoutY="295.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="250.0" promptText="Surname" styleClass="jfx-password-field2" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="tel" layoutX="65.0" layoutY="385.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#processKeyEvent" prefHeight="35.0" prefWidth="250.0" promptText="Telephone" styleClass="jfx-password-field2" unFocusColor="WHITE">
+            <JFXTextField fx:id="tel" layoutX="65.0" layoutY="355.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#processKeyEvent" prefHeight="35.0" prefWidth="250.0" promptText="Telephone" styleClass="jfx-password-field2" unFocusColor="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXTextField>
-            <JFXDatePicker fx:id="birthdate" defaultColor="#acacac" layoutX="65.0" layoutY="445.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Birth date" />
-            <JFXButton layoutX="65.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#modifyUser" prefHeight="40.0" prefWidth="250.0" text="Modify" textAlignment="CENTER">
+            <JFXDatePicker fx:id="birthdate" defaultColor="#acacac" layoutX="65.0" layoutY="415.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0" promptText="Birth date" />
+            <JFXButton layoutX="65.0" layoutY="570.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#modifyUser" prefHeight="40.0" prefWidth="250.0" text="Modify" textAlignment="CENTER">
                <font>
                   <Font name="Ebrima Bold" size="16.0" />
                </font>
             </JFXButton>
-      <JFXButton fx:id="image" layoutX="118.0" layoutY="525.0" onMouseClicked="#uploadPicture" prefHeight="26.0" prefWidth="129.0" style="-fx-background-color: #cccdcf;" text="Choose picture" />
-      <FontAwesomeIconView fill="WHITE" glyphName="ARROW_CIRCLE_LEFT" layoutX="306.0" layoutY="57.0" onMouseClicked="#backMainMenu" size="40">
+      <JFXButton fx:id="image" layoutX="118.0" layoutY="495.0" onMouseClicked="#uploadPicture" prefHeight="26.0" prefWidth="129.0" style="-fx-background-color: #cccdcf;" text="Choose picture" />
+      <FontAwesomeIconView fill="WHITE" glyphName="ARROW_CIRCLE_LEFT" layoutX="316.0" layoutY="87.0" onMouseClicked="#backMainMenu" size="40">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -43,6 +44,9 @@ public class taxihomeController implements Initializable {
            newWindow.setTitle(" Taxi Request ");
            newWindow.setScene(scene);
            newWindow.show();
+           final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
     }
 
    public  void taxi(ActionEvent  event) throws IOException {
@@ -53,6 +57,9 @@ public class taxihomeController implements Initializable {
            newWindow.setTitle("  Taxi Driver ");
            newWindow.setScene(scene);
            newWindow.show();
+           final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
     }
    
    
@@ -86,6 +93,9 @@ public class taxihomeController implements Initializable {
            newWindow.setTitle(" Menu  ");
            newWindow.setScene(scene);
            newWindow.show();
+           final Node source = (Node) event.getSource();
+           final Stage stage = (Stage) source.getScene().getWindow();
+       stage.close();
     }
 
 
