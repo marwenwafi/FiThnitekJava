@@ -197,7 +197,7 @@ public class EventQuController implements Initializable {
         {
             verifier("Vous devez remplir tous les champs !");
         }catch(NumberFormatException e){
-            verifier("La promotion doit etre un chiffre !");
+            new Alert(Alert.AlertType.ERROR, "Promotion is Number ", ButtonType.OK).show();
             
         }
         
