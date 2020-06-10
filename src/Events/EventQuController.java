@@ -35,6 +35,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -44,6 +45,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -109,7 +111,7 @@ public class EventQuController implements Initializable {
     private TableView<Event> tab;
     String statusClick ,statusCode;
      ServiceEvent sv= new ServiceEvent();
-     String extension=null;
+     String extension="";
      
     @FXML
     private TableColumn<Event, Integer> idevent;
@@ -117,12 +119,15 @@ public class EventQuController implements Initializable {
     private final static int rowsPerPage = 11;
     public static String rq;
     public static String eventpart;
+    public static String Verifimage ;
     FileChooser file=new FileChooser();
     @FXML
     private VBox vbMenu;
     @FXML
     private TextField fileLocation;
     Image image2 ;
+    @FXML
+    private ImageView imgSelected;
 
     /**
      * Initializes the controller class.
@@ -210,7 +215,7 @@ public class EventQuController implements Initializable {
         e.setTitre(titre.getText());
         e.setOperation(option.getValue());
         e.setPromotion(Integer.parseInt(promotion.getText()));
-        if( !((fileLocation.getText()+"."+extension).equals(click.getImage()))){
+        if( !((fileLocation.getText()).equals(click.getImage()))){
                 e.setImage(fileLocation.getText()+"."+extension);
         } 
        e.setDescription(description.getText());
@@ -340,6 +345,9 @@ public class EventQuController implements Initializable {
         }
 
     }
+    /***************************************************/
+    /*************    CHOOSE IMAGE   *****************/
+    /***************************************************/
     
     @FXML
     private void ChoisirImage(ActionEvent event) {
@@ -361,9 +369,21 @@ public class EventQuController implements Initializable {
          extension =file2.getName().substring(file2.getName().lastIndexOf(".")+1);
          System.out.println("exten"+extension);
         fileLocation.setText(generateUniqueFileName());
+        System.out.println("file2.getPath()=====" +file2.getPath());
         
         System.out.println(file2.getName());
         BufferedImage bImage;
+        Verifimage=file2.getAbsolutePath();
+        Image im=new Image(file2.getAbsoluteFile().toURI().toString());
+        imgSelected.setImage(im);
+        
+            
+        
+        
+            
+        
+        
+        
         //fileLocation.setText(generateUniqueFileName()+);
             try {
                 bImage = ImageIO.read(file2);
@@ -371,6 +391,8 @@ public class EventQuController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(EventQuController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            
 
 
     }
@@ -378,7 +400,7 @@ public class EventQuController implements Initializable {
        
     }
     
-   public static void saveToFile(Image image) {
+   /*public static void saveToFile(Image image) {
     File outputFile = new File("C:\\wamp64\\www\\PiDev\\web\\uploads\\eventsImages\\");
         BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
     try {
@@ -386,38 +408,43 @@ public class EventQuController implements Initializable {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-  }
+  }*/
     public boolean verifier(String s){
-        if(!s.equals(""))
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR,s);
-        alert.initStyle(StageStyle.DECORATED.UTILITY);
-        alert.setTitle("Attention");
-        alert.showAndWait();
-        return false;
         
-        }
         if(titre.getText().equals("") || description.getText().equals("")||
            promotion.getText().equals("") || fileLocation.getText().equals("") ||
-            option.getValue().equals("") 
+            option.getValue()== null ||
+                dateDebut.getValue() == null || dateFin.getValue()==null
                 
                 )
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Vous devez remplir tous les champs ");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"You must fill all the fields ");
         alert.initStyle(StageStyle.DECORATED.UTILITY);
-        alert.setTitle("Attention");
+        alert.setTitle("Warning");
         alert.showAndWait();
            return false;  
         }
         if (description.getText().length()< 6){
-         Alert alert = new Alert(Alert.AlertType.ERROR,"La taille de description doit etre supérieur à 6 caractères !");
+         Alert alert = new Alert(Alert.AlertType.ERROR,"Description size must be greater than 6 characters!");
         alert.initStyle(StageStyle.DECORATED.UTILITY);
-        alert.setTitle("Attention");
+        alert.setTitle("Warning");
         alert.showAndWait();
            return false;  
         }
-         
-        
+         int resu=dateDebut.getValue().compareTo(dateFin.getValue());
+        if(resu>0)
+        {
+            new Alert(Alert.AlertType.ERROR, "End Date must be equal to or greater than start date !", ButtonType.OK).show();
+            return false;  
+        }
+        if(dateDebut.getValue().compareTo(LocalDate.now())<0){
+            new Alert(Alert.AlertType.ERROR, "Start Date must be equal to or greater than current date !", ButtonType.OK).show();
+            return false;  
+        }
+        if(dateFin.getValue().compareTo(LocalDate.now())<0){
+            new Alert(Alert.AlertType.ERROR, "End Date must be equal to or greater than current date !", ButtonType.OK).show();
+            return false;  
+        }
         
        return true;      
     
@@ -486,7 +513,6 @@ public class EventQuController implements Initializable {
     stage.close();
  
 }
-    @FXML
     private void toFront(ActionEvent event) throws Exception {               
     try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EventQu.fxml"));

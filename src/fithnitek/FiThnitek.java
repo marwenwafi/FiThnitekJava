@@ -38,8 +38,8 @@ public class FiThnitek extends Application {
      
      @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Events/Convertir.fxml"));
-        
+        //Parent root = FXMLLoader.load(getClass().getResource("/Events/Convertir.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Events/EventQu.fxml"));
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

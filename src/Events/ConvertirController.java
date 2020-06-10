@@ -24,6 +24,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -83,6 +84,7 @@ public class ConvertirController implements Initializable {
     @FXML
     private void Convertir(ActionEvent event) {
         String carnet ="";
+        int mespoints = sv.getPointsById(5);
         System.out.println("carnet : "+carnet);
         int choix=0;
         if(coixConv.getValue().equals("1000=====>5tickets of 1dt"))
@@ -101,8 +103,12 @@ public class ConvertirController implements Initializable {
         if(choix>0)
         {
             sv.ConvertirPoints(carnet, choix, 5);
-            int mespoints = sv.getPointsById(5);
+            mespoints = sv.getPointsById(5);
             points.setText(" You have "+mespoints+"points.");
+        }
+        if(choix>mespoints){
+            new Alert(Alert.AlertType.ERROR, "you haven't enough points", ButtonType.OK).show();
+            
         }
         
         

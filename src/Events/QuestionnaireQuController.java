@@ -107,7 +107,7 @@ public class QuestionnaireQuController implements Initializable {
         q.setReponse1(reponse1.getText());
         q.setReponse2(reponse2.getText());
         q.setIdevent(e);
-        if(verifier("Vous devez remlir tous les champs !")==true){
+        if(verifier("You must fill all the fields !")==true){
            sv.ajouter(q);
         afficherQuestionnaire(); 
         }
@@ -134,7 +134,7 @@ public class QuestionnaireQuController implements Initializable {
         q.setIdevent(click.getIdevent());
         
         q.setId(click.getId());
-        if(verifier("Vous devez remlir tous les champs !")==true){
+        if(verifier("You must fill all the fields !")==true){
             sv.modifier(q);
         afficherQuestionnaire();
         }
@@ -204,24 +204,24 @@ public class QuestionnaireQuController implements Initializable {
             {
             Alert alert = new Alert(Alert.AlertType.ERROR,s);
         alert.initStyle(StageStyle.DECORATED.UTILITY);
-        alert.setTitle("Attention");
+        
         alert.showAndWait();
         return false;
         }
         }
         if(question.getText().length()<5)
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR,"Le champ question doit contient au mois 5 caractères ");
+                Alert alert = new Alert(Alert.AlertType.ERROR,"The question field must contain at least 5 characters ");
         alert.initStyle(StageStyle.DECORATED.UTILITY);
-        alert.setTitle("Attention");
+        alert.setTitle("Warning");
         alert.showAndWait();
         return false;
             }
         if(idevvv.getText().equals("0") || idevvv.getText().equals(0))
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"il faut ajouter un évènement d'abord");
+            Alert alert = new Alert(Alert.AlertType.ERROR,"You must add an event first");
         alert.initStyle(StageStyle.DECORATED.UTILITY);
-        alert.setTitle("Attention");
+        alert.setTitle("Warning");
         alert.showAndWait();
         return false;
             

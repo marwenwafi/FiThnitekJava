@@ -82,6 +82,7 @@
                   <Button fx:id="image" mnemonicParsing="false" onAction="#ChoisirImage" prefHeight="29.0" prefWidth="76.0" text="insert a picture" />
                </children>
             </VBox>
+            <ImageView fx:id="imgSelected" fitHeight="90.0" fitWidth="189.0" layoutX="230.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>
